@@ -3,7 +3,12 @@ import { css } from "@emotion/react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { HeaderContainer } from "./styles";
 
+const today =  new Date();
+const thisYear = today.getFullYear();
+const thisMonth = today.getMonth() + 1;
+
 const Header = ({ headDate }) => {
+
   return (
     <header
       css={css`
@@ -28,7 +33,7 @@ const Header = ({ headDate }) => {
 };
 
 Header.defaultProps = {
-  headDate: new Date().getMonth() + 1 + "월",
+  headDate: `${thisYear}년 ${thisMonth}월`,
 };
 
 export default Header;
