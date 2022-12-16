@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 export const TemplateWrap = styled.div`
   padding: 13px 0 ;
   width: 100%;
-  height: 100vh;
 `;
 export const TemplateContainer = styled.div`
   max-width: 680px;
