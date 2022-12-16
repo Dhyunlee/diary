@@ -1,8 +1,13 @@
+import DiaryTemplate from "./layouts/DiaryTemplate";
+import Header from './components/Header'
+import DiaryList from "./pages/DiaryList";
+
 function App() {
   return (
-    <div className="App">
-       리액트 시작하기
-    </div>
+    <DiaryTemplate>
+      <Header />
+      <DiaryList/>
+    </DiaryTemplate>
   );
 }
 
