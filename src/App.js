@@ -1,11 +1,11 @@
 import DiaryTemplate from "./layouts/DiaryTemplate";
-import Header from './components/Header'
 import DiaryList from "./pages/DiaryList";
+import DiaryHeader from "./components/DiaryHeader";
 
 function App() {
   return (
     <DiaryTemplate>
-      <Header />
+      <DiaryHeader />
       <DiaryList/>
     </DiaryTemplate>
   );
