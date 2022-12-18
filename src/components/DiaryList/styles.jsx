@@ -39,7 +39,7 @@ export const DiaryListBox = styled.div`
     font-size: 15px;
     height: 22px;
   }
-  .cnt-inner .contents {
+  .cnt-inner .content {
     margin-top: 12px;
     height: 130px;
     font-size: 13px;

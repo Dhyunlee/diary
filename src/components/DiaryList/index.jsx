@@ -18,6 +18,9 @@ const DiaryList = () => {
   return (
     <DiaryContainer>
       <DiaryListBox>
+        {
+          diaryList.length === 0 && <div>로딩중...</div>
+        }
          {
           diaryList.map(diary => (
             <DiaryItem key={diary.id} {...diary}/>
