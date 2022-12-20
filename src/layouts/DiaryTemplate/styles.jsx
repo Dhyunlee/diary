@@ -7,7 +7,7 @@ export const TemplateWrap = styled.div`
 export const TemplateContainer = styled.div`
   max-width: 680px;
   width: 80%;
-  margin: 40px auto;
+  margin: 0px auto;
   background-color: #fbfafa;
   box-shadow: 0 0 5px 1px rgb(0 0 0 / 13%);
 `;

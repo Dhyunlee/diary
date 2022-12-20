@@ -4,7 +4,7 @@ import { diaryData } from "../../fake/diaryData";
 
 const DiaryDetail = () => {
   const noImg = '/assets/images/no-img.png';
-  
+
   const { id } = useParams();
   const [diaryItem, setDiaryItem] = useState([]);
 
@@ -34,7 +34,7 @@ const DiaryDetail = () => {
           <div className="content-wrap">{diaryItem.content}</div>
         </div>
       </div>
-    </div>
+    </div> 
   );
 };
 

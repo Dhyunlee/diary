@@ -1,17 +1,13 @@
+import Header from "./components/Header";
 import DiaryTemplate from "./layouts/DiaryTemplate";
-import Home from "./pages/Home";
-import { Route, Routes } from "react-router-dom";
-import DiaryDetail from "./pages/DiaryDetail";
+import Routers from "./routers";
 
 function App() {
   return (
     <>
-      <header>헤더 영역</header>
+      <Header />
       <DiaryTemplate>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="detail/:id" element={<DiaryDetail />} />
-        </Routes>
+        <Routers/>
       </DiaryTemplate>
     </>
   );

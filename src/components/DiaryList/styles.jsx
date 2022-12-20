@@ -11,7 +11,7 @@ export const DiaryListBox = styled.div`
   gap: 20px;
 
   .diary-item {
-    width: 200px;
+    width: 310px;
     border-radius: 4px;
     border: none;
     background-color: #f9f7f7;
@@ -24,8 +24,8 @@ export const DiaryListBox = styled.div`
     }
   }
   .img-wrap {
-    width: 200px;
-    height: 128px;
+    width: 100%;
+    height: 180px;
     img {
       width: 100%;
       height: 100%;
