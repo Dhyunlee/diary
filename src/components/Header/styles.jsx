@@ -30,7 +30,7 @@ export const UserMenu = styled.div`
 
 export const HeaderWrap = styled.header`
   width: 100%;
-  padding: 15px;
+  padding: 15px 0;
 `;
 export const HeaderContainer = styled.div`
   max-width: 680px;

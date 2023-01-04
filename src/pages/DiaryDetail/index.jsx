@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { diaryData } from "../../fake/diaryData";
+import { fetchGetDiaryItem } from "../../services/diary";
 
 const DiaryDetail = () => {
-  const noImg = '/assets/images/no-img.png';
+  const noImg = "/assets/images/no-img.png";
+  const { id: paramId } = useParams();
+  const [diaryItem, setDiaryItem] = useState({});
 
-  const { id } = useParams();
-  const [diaryItem, setDiaryItem] = useState([]);
-
-  console.log({ paramId: id });
   useEffect(() => {
-    const timerId = setTimeout(() => {
-      const diaryItem = diaryData.find((item) => item.id === Number(id));
-      setDiaryItem(diaryItem);
-    }, 500);
-
-    console.log({ diaryItem });
-    return () => {
-      clearTimeout(timerId);
+    const getData = async () => {
+      const data = await fetchGetDiaryItem(paramId);
+      setDiaryItem(data);
     };
-  }, [diaryItem, id]);
+
+    getData();
+  }, [paramId]);
   return (
     <div>
       <div className="detail-wrap">
@@ -29,12 +25,12 @@ const DiaryDetail = () => {
         </div>
         <div className="contents">
           <div className="img-wrap">
-          <img src={diaryItem.imgUrl || noImg} alt="detail-img" />
+            <img src={diaryItem.imgUrl || noImg} alt="detail-img" />
           </div>
           <div className="content-wrap">{diaryItem.content}</div>
         </div>
       </div>
-    </div> 
+    </div>
   );
 };
 
