@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const DiaryItem = (props) => {
   const { id, writer, title, content, imgUrl, createAt } = props;
   const noImg = '/assets/images/no-img.png';
+  
   return (
     <div className="diary-item">
       <Link to={`/detail/${id}`}>

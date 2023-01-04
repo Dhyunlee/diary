@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import DiaryDetail from "../pages/DiaryDetail";
 import PrivateRoute from "./PrivateRoute";
-import Mypage from "../pages/Mypage";
+import Mypage from "../pages/mypage";
 import Login from "../pages/Login";
 
 const Routers = () => {

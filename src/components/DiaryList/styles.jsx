@@ -49,3 +49,7 @@ export const DiaryListBox = styled.div`
     font-size: 12px;
   }
 `;
+
+export const CreateBtn = styled.div`
+  
+`
