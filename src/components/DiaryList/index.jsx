@@ -5,11 +5,14 @@ import { DiaryContainer, DiaryListBox } from "./styles";
 
 const DiaryList = () => {
   const [diaryList, setDiaryList] = useState([]);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const getData = async () => {
       const res = await fetchGetDiarys();
       setDiaryList(res);
+      setLoading(false);
     };
     getData();
   }, []);
@@ -17,7 +20,7 @@ const DiaryList = () => {
   return (
     <DiaryContainer>
       <DiaryListBox>
-        {diaryList.length === 0 && <div>로딩중...</div>}
+        {isLoading && <div style={{height: 1000}}>로딩중...</div>}
         {diaryList.map((diary) => (
           <DiaryItem key={diary.id} {...diary} />
         ))}

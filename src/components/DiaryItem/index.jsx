@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { getDate } from "../../utils/lib";
 
 const DiaryItem = (props) => {
-  const { id, writer, title, content, imgUrl, createAt } = props;
+  const { id, writer, title, content, imgUrl, createdAt } = props;
   const noImg = '/assets/images/no-img.png';
-  
   return (
     <div className="diary-item">
       <Link to={`/detail/${id}`}>
@@ -17,7 +17,7 @@ const DiaryItem = (props) => {
             <span>{content}</span>
           </div>
           <div className="create-date">
-            <span>{createAt}</span>
+            <span>{getDate(createdAt)}</span>
           </div>
         </div>
       </Link>
