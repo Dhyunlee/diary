@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const TemplateWrap = styled.div`
-  padding: 13px 0 ;
+  padding: 30px 0 ;
   width: 100%;
 `;
 export const TemplateContainer = styled.div`

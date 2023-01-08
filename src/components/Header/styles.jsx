@@ -2,7 +2,10 @@ import styled from "@emotion/styled";
 
 export const NavBarWrapper = styled.div`
   width: 100%;
-  padding: 13px 8px;
+
+  .navbars {
+    padding: 22px 25px;
+  }
 `;
 export const TopBar = styled.nav`
   width: 100%;
@@ -29,8 +32,12 @@ export const UserMenu = styled.div`
 `;
 
 export const HeaderWrap = styled.header`
+  background: #fff;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
   width: 100%;
-  padding: 15px 0;
+  padding: 15px 0 0;
 `;
 export const HeaderContainer = styled.div`
   max-width: 680px;
@@ -41,12 +48,11 @@ export const HeaderContainer = styled.div`
 `;
 
 export const Navbar = styled.nav`
-  margin-top: 12px;
   border-top: 1px solid #eceaea;
 
   ul {
     display: flex;
-    margin-top: 15px;
+    margin-right: 25px;
   }
 
   li:not(:first-of-type) {

@@ -8,7 +8,7 @@ const Header = () => {
     <HeaderWrap>
       <HeaderContainer>
         <NavBarWrapper>
-        <TopBar>
+        <TopBar className="navbars">
           <Logo>
             <h1>
               <Link to="/">Diary</Link>
@@ -19,10 +19,9 @@ const Header = () => {
             <Link>회원가입</Link>
           </UserMenu>
         </TopBar>
-        <Navbar>
+        <Navbar className="navbars">
             <ul>
-                <li><Link to={'/'}>menu1</Link></li>
-                <li><Link to={'/'}>menu2</Link></li>
+                <li><Link to={'/'}>글쓰기</Link></li>
             </ul>
         </Navbar>
         </NavBarWrapper>

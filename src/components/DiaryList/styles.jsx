@@ -41,15 +41,19 @@ export const DiaryListBox = styled.div`
   }
   .cnt-inner .content {
     margin-top: 12px;
-    height: 130px;
-    font-size: 13px;
+    height: 80px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: normal;
+    font-size: 18px;
   }
 
   .create-date {
+    margin-top: 15px;
     font-size: 12px;
   }
 `;
 
-export const CreateBtn = styled.div`
-  
-`
+export const CreateBtn = styled.div``;
