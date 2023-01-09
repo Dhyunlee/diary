@@ -1,6 +1,6 @@
 import React from "react";
 import DiaryHeader from "../../components/DiaryHeader";
-import DiaryList from "../../components/DiaryList";
+import DiaryList from "../../containers/DiaryList";
 
 const Home = () => {
   return (

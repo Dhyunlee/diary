@@ -3,8 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import DiaryDetail from "../pages/DiaryDetail";
 import PrivateRoute from "./PrivateRoute";
-import Mypage from "../pages/mypage";
+import Mypage from "../pages/Mypage";
 import Login from "../pages/Login";
+import WriteDiary from "../pages/WriteDiary";
 
 const Routers = () => {
   return (
@@ -12,6 +13,7 @@ const Routers = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="detail/:id" element={<DiaryDetail />} />
+        <Route path='write' element={<WriteDiary />} />
         <Route path="login" element={<Login />} />
         <Route
           path="mypage"

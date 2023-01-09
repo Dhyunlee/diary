@@ -14,6 +14,7 @@ export const reset = css`
     padding: 0;
     box-sizing: border-box;
     font-family: "nexongoth";
+    font-size: 16px;
     line-height: 1.4;
   }
 

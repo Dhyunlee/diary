@@ -4,7 +4,7 @@ import { dbService } from "../fbconfig";
 const diaryCollectionRef = collection(dbService, "diarys");
 
 // 다이어리 리스트 조회
-export const fetchGetDiarys = async () => {
+export const fetchGetDiary = async () => {
   try {
     const { docs } = await getDocs(diaryCollectionRef);
     return docs.map((doc) => ({
@@ -18,7 +18,7 @@ export const fetchGetDiarys = async () => {
 };
 
 // 다이어리 상세 조회
-export const fetchGetDiaryItem = async (id) => {
+export const fetchGetDiaryById = async (id) => {
   const diaryDocRef = doc(dbService, "diarys", id);
   try {
     const getData = await getDoc(diaryDocRef);
