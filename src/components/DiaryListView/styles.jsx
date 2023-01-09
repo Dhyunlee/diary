@@ -33,21 +33,20 @@ export const DiaryListBox = styled.div`
     }
   }
   .cnt-inner {
-    padding: 17px 8px;
+    padding: 17px 20px;
   }
   .cnt-inner .title {
-    font-size: 15px;
+    font-size: 18px;
     height: 22px;
   }
   .cnt-inner .content {
     margin-top: 12px;
-    height: 80px;
+    height: 70px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     white-space: normal;
-    font-size: 18px;
   }
 
   .create-date {

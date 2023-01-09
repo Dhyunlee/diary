@@ -4,7 +4,7 @@ export const NavBarWrapper = styled.div`
   width: 100%;
 
   .navbars {
-    padding: 22px 25px;
+    padding: 8px 18px;
   }
 `;
 export const TopBar = styled.nav`
@@ -24,10 +24,13 @@ export const Logo = styled.div`
 `;
 
 export const UserMenu = styled.div`
-  a {
+  button {
+    border: none;
+    background: transparent;
     margin-left: 5px;
     padding: 0 5px;
     display: inline-block;
+    cursor: pointer;
   }
 `;
 

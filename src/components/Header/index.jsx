@@ -15,13 +15,13 @@ const Header = () => {
             </h1>
           </Logo>
           <UserMenu>
-            <Link>로그인</Link>
-            <Link>회원가입</Link>
+            <button>로그인</button>
+            <button>회원가입</button>
           </UserMenu>
         </TopBar>
         <Navbar className="navbars">
             <ul>
-                <li><Link to={'/'}>글쓰기</Link></li>
+                <li><Link to={'/write'}>글쓰기</Link></li>
             </ul>
         </Navbar>
         </NavBarWrapper>
