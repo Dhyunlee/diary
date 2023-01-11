@@ -7,7 +7,7 @@ function App() {
     <>
       <Header />
       <DiaryTemplate>
-        <Routers/>
+        <Routers />
       </DiaryTemplate>
     </>
   );

@@ -9,22 +9,19 @@ import WriteDiary from "../pages/WriteDiary";
 
 const Routers = () => {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="detail/:id" element={<DiaryDetail />} />
-        <Route path='write' element={<WriteDiary />} />
-        <Route path="login" element={<Login />} />
-        <Route
-          path="mypage"
-          element={
-            <PrivateRoute>
-              <Mypage />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="detail/:id" element={<DiaryDetail />} />
+      <Route path="write" element={<WriteDiary />} />
+      <Route
+        path="mypage"
+        element={
+          <PrivateRoute>
+            <Mypage />
+          </PrivateRoute>
+        }
+      />
+    </Routes>
   );
 };
 

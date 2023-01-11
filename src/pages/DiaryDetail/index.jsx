@@ -10,7 +10,7 @@ import {
   EditArea,
 } from "./styles";
 
-import { fetchGetDiaryItem } from "../../services/diary";
+import { fetchGetDiaryById } from "../../services/diary";
 import { getDate } from "../../utils/lib";
 
 const DiaryDetail = () => {
@@ -22,7 +22,7 @@ const DiaryDetail = () => {
   useEffect(() => {
     setLoading(true);
     const getData = async () => {
-      const data = await fetchGetDiaryItem(paramId);
+      const data = await fetchGetDiaryById(paramId);
       setDiaryItem(data);
       setLoading(false);
     };
