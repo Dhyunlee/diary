@@ -1,19 +1,23 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useCallback, useEffect, useState } from "react";
 import DiaryListView from "../../components/DiaryListView";
-import { loadDiary } from "../../store/actions/diary";
-import { getDiary } from "../../store/reducers/diary";
+import { fetchGetDiary } from "../../services/diary";
 
 function DiaryList() {
-  const dispatch = useDispatch();
-  const {diary, isLoading} = useSelector(getDiary);
+  const [diary, setDiary] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchDiaryList = useCallback(async () => {
+    setIsLoading(true);
+    const data = await fetchGetDiary();
+    setIsLoading(false);
+    setDiary(data);
+  }, []);
 
   useEffect(() => {
-    if(!isLoading) {
-      dispatch(loadDiary());
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    fetchDiaryList();
+  }, [fetchDiaryList]);
+
+  diary && console.log(diary)
 
   return <DiaryListView isLoading={isLoading} diaryList={diary} />;
 }

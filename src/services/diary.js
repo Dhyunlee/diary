@@ -7,11 +7,12 @@ const diaryCollectionRef = collection(dbService, "diarys");
 export const fetchGetDiary = async () => {
   try {
     const { docs } = await getDocs(diaryCollectionRef);
-    return docs.map((doc) => ({
+    const getData = docs.map((doc) => ({
       ...doc.data(),
       id: doc.id,
       createdAt: new Date(doc.data().createdAt.toDate()).getTime(),
     }));
+    return getData;
   } catch (err) {
     console.error(err);
   }
