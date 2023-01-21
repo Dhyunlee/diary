@@ -1,4 +1,5 @@
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { async } from "q";
 import { dbService } from "../fbconfig";
 
 const diaryCollectionRef = collection(dbService, "diarys");
@@ -34,7 +35,16 @@ export const fetchGetDiaryById = async (id) => {
 };
 
 // 다이어리 추가
+export const fetchPostDiary = async () => {
+
+}
 
 // 다이어리 수정
+export const fetchPutDiaryById = async () => {
+  
+}
 
 // 다이어리 삭제
+export const fetchDeleteDiaryById = async () => {
+  
+}

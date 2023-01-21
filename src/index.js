@@ -6,6 +6,7 @@ import { reset } from "./styles/reset";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/configureStore";
+import { HelmetProvider } from "react-helmet-async";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -13,7 +14,9 @@ root.render(
     <Global styles={reset} />
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

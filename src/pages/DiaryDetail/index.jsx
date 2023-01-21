@@ -12,6 +12,7 @@ import {
 
 import { fetchGetDiaryById } from "../../services/diary";
 import { getDate } from "../../utils/lib";
+import { Helmet } from "react-helmet-async";
 
 const DiaryDetail = () => {
   const noImg = "/assets/images/no-img.png";
@@ -32,25 +33,31 @@ const DiaryDetail = () => {
 
   if (isLoading) return <div>로딩중...</div>;
   const { title, createdAt, content, imgUrl } = diaryItem;
+  console.log(title)
   return (
-    <DetailWrap>
-      <EditArea>
-         <button>수정</button>
-         <button>삭제</button>
-      </EditArea>
-      <DateArea>
-        <span>{getDate(createdAt)}</span>
-      </DateArea>
-      <Title className="title">{title}</Title>
-      <Contents className="contents">
-        <ImgWrap className="img-wrap">
-          <img src={imgUrl || noImg} alt="detail-img" />
-        </ImgWrap>
-        <Content className="content-wrap">
-          <div>{content}</div>
-        </Content>
-      </Contents>
-    </DetailWrap>
+    <>
+      <Helmet>
+        <title>diary | {`${title || '제목 없음'}`}</title>
+      </Helmet>
+      <DetailWrap>
+        <EditArea>
+          <button>수정</button>
+          <button>삭제</button>
+        </EditArea>
+        <DateArea>
+          <span>{getDate(createdAt)}</span>
+        </DateArea>
+        <Title className="title">{title}</Title>
+        <Contents className="contents">
+          <ImgWrap className="img-wrap">
+            <img src={imgUrl || noImg} alt="detail-img" />
+          </ImgWrap>
+          <Content className="content-wrap">
+            <div>{content}</div>
+          </Content>
+        </Contents>
+      </DetailWrap>
+    </>
   );
 };
 
