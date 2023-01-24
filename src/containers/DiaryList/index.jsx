@@ -17,8 +17,6 @@ function DiaryList() {
     fetchDiaryList();
   }, [fetchDiaryList]);
 
-  diary && console.log(diary)
-
   return <DiaryListView isLoading={isLoading} diaryList={diary} />;
 }
 

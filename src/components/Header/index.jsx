@@ -9,7 +9,6 @@ import {
   TopBar,
   UserMenu,
 } from "./styles";
-import { AiFillHome } from "react-icons/ai";
 
 const Header = () => {
   return (
