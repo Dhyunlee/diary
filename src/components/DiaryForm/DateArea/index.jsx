@@ -9,7 +9,7 @@ import { DatePickerBtn, DatePickerWrap } from "./styles";
 import "react-datepicker/dist/react-datepicker.css";
 registerLocale("ko", ko);
 
-function DateArea() {
+function DateArea({setDate}) {
   const [startDate, setStartDate] = useState(new Date());
   const months = [
     "01월",
@@ -57,9 +57,9 @@ function DateArea() {
       withPortal
       locale="ko"
       dateFormat="yyyy.MM.dd"
-      minDate={new Date()}
+      maxDate={new Date()}
       selected={startDate}
-      onChange={(date) => setStartDate(date)}
+      onChange={(date) => {setStartDate(date); setDate(date)}}
       renderCustomHeader={renderCustomHeader}
     />
   );

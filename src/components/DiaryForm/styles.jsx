@@ -4,10 +4,6 @@ export const Form = styled.form`
   width: 100%;
 `;
 
-export const Date = styled.div`
-  margin-bottom: 30px;
-`;
-
 export const InputGroup = styled.div`
   margin-bottom: 25px;
   padding: 0 0;
@@ -23,6 +19,18 @@ export const InputWrap = styled.div`
   textarea {
     resize: none;
     height: 400px;
+  }
+  .emotion-text .emotion-inner {
+    width: 40px;
+    height: 40px;
+    padding-left: 5px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: pointer;
+    }
   }
 `;
 
@@ -44,7 +52,7 @@ export const FormBtn = styled.div`
       cursor: pointer;
       color: #fffafa;
       font-size: 18px;
-      transition: transform .1s;
+      transition: transform 0.1s;
 
       &[type="button"] {
         background: #eb5a40;

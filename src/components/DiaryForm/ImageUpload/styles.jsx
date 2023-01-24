@@ -11,15 +11,16 @@ export const ImgUploadBox = styled.div`
 `;
 
 export const DrapFileArea = styled.div`
+  width: 90%;
+  height: 266px;
+  padding: 36px 0 76px;
+  margin: 0 auto;
   position: relative;
   cursor: pointer;
 
   .icon-wrap {
-    padding: 36px 0 76px;
-    margin: 0 auto;
-    display: flex;
     justify-content: center;
-    width: 90%;
+    display: flex;
     opacity: 0.1;
   }
 
@@ -38,5 +39,17 @@ export const DrapFileArea = styled.div`
 
   input {
     display: none;
+  }
+`;
+
+export const ThumbnailImg = styled.div`
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  img {
+    width: 100%;
+    height: 100%;
   }
 `;

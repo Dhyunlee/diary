@@ -2,7 +2,6 @@ import DiaryItem from "../DiaryItem";
 import { DiaryContainer, DiaryListBox } from "./styles";
 
 const DiaryListView = ({isLoading, diaryList}) => {
-  console.log({isLoading})
   return (
     <DiaryContainer>
       <DiaryListBox>
