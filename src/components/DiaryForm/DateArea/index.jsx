@@ -9,7 +9,7 @@ import { DatePickerBtn, DatePickerWrap } from "./styles";
 import "react-datepicker/dist/react-datepicker.css";
 registerLocale("ko", ko);
 
-function DateArea({setDate}) {
+const DateArea = ({setDate}) => {
   const [startDate, setStartDate] = useState(new Date());
   const months = [
     "01월",

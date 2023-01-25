@@ -4,7 +4,6 @@ import Home from "../pages/Home";
 import Detail from "../pages/Detail";
 import PrivateRoute from "./PrivateRoute";
 import Mypage from "../pages/Mypage";
-import Login from "../pages/Login";
 import WriteDiary from "../pages/WriteDiary";
 
 const Routers = () => {

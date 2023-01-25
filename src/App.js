@@ -1,9 +1,9 @@
-import Header from "./components/Header";
+import Header from "./components/base/Header";
 import DiaryTemplate from "./layouts/DiaryTemplate";
 import Routers from "./routers";
 import { Wrap } from "./styles/common";
 
-function App() {
+const App = () => {
   return (
     <Wrap>
       <Header />

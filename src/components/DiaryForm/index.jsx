@@ -1,11 +1,10 @@
-import React from "react";
-import {Form, FormBtn, InputGroup, InputWrap } from "./styles";
-import DateArea from "./DateArea";
-import Label from "./Label";
-import ImageUpload from "./ImageUpload";
 import { useState } from "react";
-import Modal from "../Modal";
-import EmotionModal from "../EmotionModal";
+import {Form, FormBtn, InputGroup, InputWrap } from "./styles";
+import Label from "../base/Label";
+import Modal from "../base/Modal";
+import DateArea from "./DateArea";
+import ImageUpload from "./ImageUpload";
+import EmotionModal from "./EmotionModal";
 
 const DiaryForm = () => {
   const [date, setDate] = useState(new Date());
@@ -26,7 +25,6 @@ const DiaryForm = () => {
     e.preventDefault();
     console.log({ date, title, contents, emotion });
   };
-  emotion && console.log({ emotion });
   return (
     <Form onSubmit={onSubmit}>
       <InputGroup>
@@ -36,7 +34,7 @@ const DiaryForm = () => {
       <InputGroup>
         <Label text="오늘 내 감정" />
         <InputWrap>
-          <div className="emotion-text">
+          <div className="emotion-text" title="오늘 기분은 어떠신가요? 클릭 >>">
             <div
               className="emotion-inner"
               onClick={(e) => setIsShowModal((prev) => !prev)}
