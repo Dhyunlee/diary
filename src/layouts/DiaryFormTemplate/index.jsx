@@ -1,7 +1,7 @@
 import React from "react";
 import { FormWrap } from "./styles";
 
-function FormTemplate({ children }) {
+const FormTemplate = ({ children }) => {
   return (
     <FormWrap> {children}</FormWrap>
   );

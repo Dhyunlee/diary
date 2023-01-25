@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  isShowAuthModal: false,
   loginLoading: false,
   loginSuccess: false,
   loginError: null,
@@ -15,7 +16,21 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
+  reducers: {
+    showAuthModal: {
+      reducer(state) {
+        state.isShowAuthModal = true;
+      },
+    },
+    dropAuthModal: {
+      reducer(state) {
+        state.isShowAuthModal = false;
+      },
+    },
+  },
   extraReducers: {},
 });
 
+export const {showAuthModal, dropAuthModal} = authSlice.actions
 export default authSlice;
+

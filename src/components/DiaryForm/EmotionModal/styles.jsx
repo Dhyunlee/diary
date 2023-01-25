@@ -25,7 +25,7 @@ export const Emotions = styled.div`
     cursor: pointer;
 
     &.selected {
-      border: 3px solid #f06292;
+      border: 3px dashed #f06292;
     }
 
     img {

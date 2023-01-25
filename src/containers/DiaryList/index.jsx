@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import DiaryListView from "../../components/DiaryListView";
 import { fetchGetDiary } from "../../services/diary";
 
-function DiaryList() {
+const DiaryList = () => {
   const [diary, setDiary] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,6 +17,7 @@ function DiaryList() {
     fetchDiaryList();
   }, [fetchDiaryList]);
 
+  if (isLoading) return <div>로딩중...</div>;
   return <DiaryListView isLoading={isLoading} diaryList={diary} />;
 }
 

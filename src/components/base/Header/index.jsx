@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { showAuthModal } from "../../../store/reducers/auth";
+import ProcessAuth from '../../../containers/ProcessAuth'
+
 import {
   HeaderContainer,
   HeaderWrap,
@@ -11,6 +15,14 @@ import {
 } from "./styles";
 
 const Header = () => {
+  const [isShowModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
+
+  const onClickAuthModal = (e) => {
+    setShowModal((prev) => (prev = true));
+    dispatch(showAuthModal(isShowModal));
+  };
+
   return (
     <HeaderWrap>
       <HeaderContainer>
@@ -22,7 +34,7 @@ const Header = () => {
               </h1>
             </Logo>
             <UserMenu>
-              <button>로그인</button>
+              <button onClick={onClickAuthModal}>로그인</button>
             </UserMenu>
           </TopBar>
           <Navbar className="navbars">
@@ -32,6 +44,7 @@ const Header = () => {
               </li>
             </ul>
           </Navbar>
+          {isShowModal && <ProcessAuth />}
         </NavBarWrapper>
       </HeaderContainer>
     </HeaderWrap>

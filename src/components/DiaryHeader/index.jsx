@@ -1,14 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { getDate } from "../../utils/lib";
 import { DiaryHeaderContainer } from "./styles";
 
-const today =  new Date();
-const thisYear = today.getFullYear();
-const thisMonth = today.getMonth() + 1;
+const date = getDate(new Date()).substring(0 , 9);
 
-const DiaryHeader = ({ headDate }) => {
-
+const DiaryHeader = () => {
   return (
     <div
       css={css`
@@ -21,7 +19,7 @@ const DiaryHeader = ({ headDate }) => {
             <AiOutlineArrowLeft />
           </button>
         </div>
-        <div className="showDataText">{headDate}</div>
+        <div className="showDataText">{date}</div>
         <div className="arrowBtn">
           <button>
             <AiOutlineArrowRight />
@@ -30,10 +28,6 @@ const DiaryHeader = ({ headDate }) => {
       </DiaryHeaderContainer>
     </div>
   );
-};
-
-DiaryHeader.defaultProps = {
-  headDate: `${thisYear}년 ${thisMonth}월`,
 };
 
 export default DiaryHeader;
