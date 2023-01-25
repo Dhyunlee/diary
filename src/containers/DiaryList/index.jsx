@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
-import DiaryListView from "../../components/DiaryListView";
-import { fetchGetDiary } from "../../services/diary";
+import DiaryListView from "@components/DiaryListView";
+import { fetchGetDiary } from "@services/diary";
 
 const DiaryList = () => {
   const [diary, setDiary] = useState([]);

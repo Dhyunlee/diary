@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import DetailView from "../../components/DetailView";
-import { fetchGetDiaryById } from "../../services/diary";
-import { getDate } from "../../utils/lib";
+import DetailView from "@components/DetailView";
+import { fetchGetDiaryById } from "@services/diary";
+import { getDate } from "@utils/lib";
 
 export const DiaryDetail = () => {
   const { id: paramId } = useParams();

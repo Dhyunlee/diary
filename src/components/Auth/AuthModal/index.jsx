@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { dropAuthModal } from "../../../store/reducers/auth";
-import Modal from "../../base/Modal";
+import { dropAuthModal } from "@store/reducers/auth";
+import Modal from "@components/base/Modal";
 import { AuthFormModal } from "./styles";
 
 const AuthModal = () => {

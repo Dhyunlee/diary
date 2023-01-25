@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
-import { getDate } from "../../utils/lib";
+import { getDate } from "@utils/lib";
 import { DiaryHeaderContainer } from "./styles";
 
 const date = getDate(new Date()).substring(0 , 9);

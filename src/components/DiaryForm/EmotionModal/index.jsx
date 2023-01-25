@@ -1,7 +1,6 @@
-import React from "react";
-import { EmotionWrap, Emotions } from "./styles";
-import { emotionList } from "../../../utils/emotion";
 import { useState, useEffect } from "react";
+import { emotionList } from "@utils/emotion";
+import { EmotionWrap, Emotions } from "./styles";
 
 const EmotionModal = ({ setEmotion, onCloseModal }) => {
   const [selectedElement, setsSelectedElement] = useState(null);

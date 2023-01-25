@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { showAuthModal } from "../../../store/reducers/auth";
-import ProcessAuth from '../../../containers/ProcessAuth'
+import { showAuthModal } from "@store/reducers/auth";
+import ProcessAuth from "@containers/ProcessAuth";
 
 import {
   HeaderContainer,

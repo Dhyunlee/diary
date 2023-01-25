@@ -1,4 +1,4 @@
-import DiaryItem from "../DiaryItem";
+import DiaryItem from "@components/DiaryItem";
 import { DiaryContainer, DiaryListBox } from "./styles";
 
 const DiaryListView = ({diaryList}) => {

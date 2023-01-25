@@ -1,10 +1,12 @@
 import { useState } from "react";
-import {Form, FormBtn, InputGroup, InputWrap } from "./styles";
-import Label from "../base/Label";
-import Modal from "../base/Modal";
+
+import Label from "@components/base/Label";
+import Modal from "@components/base/Modal";
 import DateArea from "./DateArea";
 import ImageUpload from "./ImageUpload";
 import EmotionModal from "./EmotionModal";
+
+import { Form, FormBtn, InputGroup, InputWrap } from "./styles";
 
 const DiaryForm = () => {
   const [date, setDate] = useState(new Date());

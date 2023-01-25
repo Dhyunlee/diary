@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "../pages/Home";
-import Detail from "../pages/Detail";
+import Home from "@pages/Home";
+import Detail from "@pages/Detail";
+import WriteDiary from "@pages/WriteDiary";
+import Mypage from "@pages/Mypage";
 import PrivateRoute from "./PrivateRoute";
-import Mypage from "../pages/Mypage";
-import WriteDiary from "../pages/WriteDiary";
 
 const Routers = () => {
   return (

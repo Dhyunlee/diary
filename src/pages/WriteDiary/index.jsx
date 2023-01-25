@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
-import DiaryForm from "../../components/DiaryForm";
-import DiaryFormTemplate from "../../layouts/DiaryFormTemplate";
+import DiaryForm from "@components/DiaryForm";
+import DiaryFormTemplate from "@layouts/DiaryFormTemplate";
 import { FormDiaryContainer, HeaderTitle } from "./styles";
 
 const WriteDiary = () => {

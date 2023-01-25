@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import DiaryHeader from "../../components/DiaryHeader";
-import DiaryList from "../../containers/DiaryList";
+import DiaryHeader from "@components/DiaryHeader";
+import DiaryList from "@containers/DiaryList";
 
 const Home = () => {
   return (
