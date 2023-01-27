@@ -7,6 +7,7 @@ import ImageUpload from "./ImageUpload";
 import EmotionModal from "./EmotionModal";
 
 import { Form, FormBtn, InputGroup, InputWrap } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 const DiaryForm = () => {
   const [date, setDate] = useState(new Date());
@@ -19,10 +20,15 @@ const DiaryForm = () => {
   });
   const [isShowModal, setIsShowModal] = useState(false);
 
+  const navigate = useNavigate();
+
   const onCloseModal = (e) => {
     setIsShowModal((prev) => (prev = false));
   };
 
+  const onGoBack = () => {
+    navigate(-1);
+  };
   const onSubmit = (e) => {
     e.preventDefault();
     console.log({ date, title, contents, emotion });
@@ -83,7 +89,9 @@ const DiaryForm = () => {
       </InputGroup>
       <FormBtn>
         <div className="btnWrap">
-          <button type="button">취소</button>
+          <button type="button" onClick={onGoBack}>
+            취소
+          </button>
         </div>
         <div className="btnWrap">
           <button type="submit">등록</button>

@@ -28,7 +28,6 @@ const authSlice = createSlice({
       },
     },
   },
-  extraReducers: {},
 });
 
 export const {showAuthModal, dropAuthModal} = authSlice.actions

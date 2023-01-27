@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { dropAuthModal } from "@store/reducers/auth";
 import Modal from "@components/base/Modal";
 import { AuthFormModal } from "./styles";
+import SingUpForm from "../SingUpForm";
+import LogInForm from "../LogInForm";
 
-const AuthModal = () => {
+const AuthModal = (props) => {
+  const {authType} = props;
   // 로그인 / 회원가입에 따라 컴포넌트 불러오게 하자!
   const { isShowAuthModal } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -17,7 +20,7 @@ const AuthModal = () => {
     <div>
       <Modal isShowModal={isShowAuthModal} onCloseModal={onCloseModal}>
         <AuthFormModal>
-           인증 모달
+           {authType === 'singup' ? <SingUpForm {...props}/> : <LogInForm {...props}/>}
         </AuthFormModal>
       </Modal>
     </div>
