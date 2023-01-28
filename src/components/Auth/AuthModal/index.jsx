@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { dropAuthModal, showAuthModal } from "@store/reducers/auth";
+import { dropAuthModal } from "@store/reducers/auth";
 import Modal from "@components/base/Modal";
 import { AuthFormModal } from "./styles";
 import {
@@ -25,7 +25,7 @@ const AuthModal = (props) => {
   };
 
   return (
-    <div>
+    <>
       <Modal isShowModal={isShowAuthModal} onCloseModal={onCloseModal}>
         <AuthFormModal>
           {authType === "singup" ? (
@@ -35,7 +35,7 @@ const AuthModal = (props) => {
           )}
         </AuthFormModal>
       </Modal>
-    </div>
+    </>
   );
 };
 

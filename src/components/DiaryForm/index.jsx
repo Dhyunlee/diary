@@ -8,6 +8,7 @@ import EmotionModal from "./EmotionModal";
 
 import { Form, FormBtn, InputGroup, InputWrap } from "./styles";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const DiaryForm = () => {
   const [date, setDate] = useState(new Date());
@@ -19,9 +20,11 @@ const DiaryForm = () => {
     desc: "보통",
   });
   const [isShowModal, setIsShowModal] = useState(false);
-
   const navigate = useNavigate();
 
+  const onClickeEotionModal = (e) => {
+    setIsShowModal((prev) => (prev = true));
+  };
   const onCloseModal = (e) => {
     setIsShowModal((prev) => (prev = false));
   };
@@ -43,16 +46,20 @@ const DiaryForm = () => {
         <Label text="오늘 내 감정" />
         <InputWrap>
           <div className="emotion-text" title="오늘 기분은 어떠신가요? 클릭 >>">
-            <div
-              className="emotion-inner"
-              onClick={(e) => setIsShowModal((prev) => !prev)}
-            >
+            <div className="emotion-inner" onClick={onClickeEotionModal}>
               <img src={emotion.img} alt="emotion-img" />
             </div>
           </div>
-          <Modal isShowModal={isShowModal} onCloseModal={onCloseModal}>
-            <EmotionModal setEmotion={setEmotion} onCloseModal={onCloseModal} />
-          </Modal>
+          {isShowModal && (
+            <>
+              <Modal isShowModal={isShowModal} onCloseModal={onCloseModal}>
+                <EmotionModal
+                  setEmotion={setEmotion}
+                  onCloseModal={onCloseModal}
+                />
+              </Modal>
+            </>
+          )}
         </InputWrap>
       </InputGroup>
       <InputGroup>

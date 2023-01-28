@@ -31,7 +31,7 @@ const EmotionModal = ({ setEmotion, onCloseModal }) => {
         </header>
         <section>
           <Emotions>
-            {emotionList?.map((emotion) => {
+            {emotionList && emotionList?.map((emotion) => {
               return (
                 <div
                   key={emotion.id}

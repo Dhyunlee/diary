@@ -2,13 +2,6 @@ import styled from "@emotion/styled";
 
 export const EmotionWrap = styled.div`
   padding: 20px 15px;
-  .container {
-  }
-
-  header {
-  }
-  section {
-  }
 `;
 
 export const Emotions = styled.div`

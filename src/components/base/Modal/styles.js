@@ -60,7 +60,6 @@ export const ModalWrap = styled.div`
 
 export const ModalContainer = styled.div`
   width: auto;
-  height: 640px;
   padding: 50px 70px;
   position: absolute;
   border: 1px solid gray;
