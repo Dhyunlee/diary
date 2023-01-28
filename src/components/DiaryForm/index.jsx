@@ -1,13 +1,12 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import Label from "@components/base/Label";
-import Modal from "@components/base/Modal";
 import DateArea from "./DateArea";
 import ImageUpload from "./ImageUpload";
 import EmotionModal from "./EmotionModal";
-
 import { Form, FormBtn, InputGroup, InputWrap } from "./styles";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getState, showEmotionModal } from "@store/reducers/diary";
 
 const DiaryForm = () => {
   const [date, setDate] = useState(new Date());
@@ -18,13 +17,11 @@ const DiaryForm = () => {
     img: "/assets/images/emtion_3.png",
     desc: "보통",
   });
-  const [isShowModal, setIsShowModal] = useState(false);
+  const [isEmotionModal, setIsEmotionModal] = useState(false);
 
+  const { isShowModal } = useSelector(getState);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const onCloseModal = (e) => {
-    setIsShowModal((prev) => (prev = false));
-  };
 
   const onGoBack = () => {
     navigate(-1);
@@ -33,6 +30,12 @@ const DiaryForm = () => {
     e.preventDefault();
     console.log({ date, title, contents, emotion });
   };
+
+  const onClickEmotionModal = (e) => {
+    setIsEmotionModal((prev) => (prev = true));
+    dispatch(showEmotionModal(isShowModal));
+  };
+
   return (
     <Form onSubmit={onSubmit}>
       <InputGroup>
@@ -42,17 +45,14 @@ const DiaryForm = () => {
       <InputGroup>
         <Label text="오늘 내 감정" />
         <InputWrap>
-          <div className="emotion-text" title="오늘 기분은 어떠신가요? 클릭 >>">
-            <div
-              className="emotion-inner"
-              onClick={(e) => setIsShowModal((prev) => !prev)}
-            >
+          <div className="emotion-text">
+            <div className="emotion-inner" title="오늘 기분은 어떠신가요?" onClick={onClickEmotionModal}>
               <img src={emotion.img} alt="emotion-img" />
             </div>
           </div>
-          <Modal isShowModal={isShowModal} onCloseModal={onCloseModal}>
-            <EmotionModal setEmotion={setEmotion} onCloseModal={onCloseModal} />
-          </Modal>
+          {isEmotionModal && (
+            <EmotionModal emotion={emotion} setEmotion={setEmotion} />
+          )}
         </InputWrap>
       </InputGroup>
       <InputGroup>

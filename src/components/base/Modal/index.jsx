@@ -1,8 +1,8 @@
-import React, { useCallback, useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 import { useEffect } from "react";
 import { CloseBtn, ModalContainer, ModalWrap } from "./styles";
 
-const Modal = ({ children, isShowModal, onCloseModal }) => {
+const Modal = ({ height, children, isShowModal, onCloseModal }) => {
   const stopPropagation = useCallback((e) => {
     e.stopPropagation();
   }, []);
@@ -11,19 +11,23 @@ const Modal = ({ children, isShowModal, onCloseModal }) => {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    console.log(localVisible)
+    let t;
     if ((localVisible, !isShowModal)) {
       setAnimate(true);
-      setTimeout(() => setAnimate(false), 250);
+      t = setTimeout(() => setAnimate(false), 250);
     }
     setLocalVisible(isShowModal);
+
+    return () => {
+      clearTimeout(t)
+    }
   }, [isShowModal, localVisible]);
 
   if (!localVisible && !animate) return null;
 
   return (
     <ModalWrap disappear={!isShowModal} onClick={onCloseModal}>
-      <ModalContainer disappear={!isShowModal} onClick={stopPropagation}>
+      <ModalContainer height={height} disappear={!isShowModal} onClick={stopPropagation}>
         <CloseBtn onClick={onCloseModal}>
           <span>&times;</span>
         </CloseBtn>
@@ -33,8 +37,4 @@ const Modal = ({ children, isShowModal, onCloseModal }) => {
   );
 };
 
-Modal.defaultProps = {
-  isShowModal: false,
-};
-
-export default Modal;
+export default memo(Modal);

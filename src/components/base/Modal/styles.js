@@ -60,7 +60,7 @@ export const ModalWrap = styled.div`
 
 export const ModalContainer = styled.div`
   width: auto;
-  height: 640px;
+  height: ${({ height }) => (height ? height : "auto")};
   padding: 50px 70px;
   position: absolute;
   border: 1px solid gray;
@@ -87,8 +87,8 @@ export const CloseBtn = styled.button`
   box-shadow: 0 0 0 0 rgb(0 0 0 / 10%), 0 2px 5px rgb(0 0 0 / 10%);
   border-radius: 5px;
   position: absolute;
-  top: 3px;
-  right: 6px;
+  top: 8px;
+  right: 10px;
   cursor: pointer;
 
   &:active {
