@@ -1,4 +1,5 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
+import { useEffect } from "react";
 import { CloseBtn, ModalContainer, ModalWrap } from "./styles";
 
 const Modal = ({ children, isShowModal, onCloseModal }) => {
@@ -6,10 +7,23 @@ const Modal = ({ children, isShowModal, onCloseModal }) => {
     e.stopPropagation();
   }, []);
 
-  if (!isShowModal) return null;
+  const [localVisible, setLocalVisible] = useState(isShowModal);
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    console.log(localVisible)
+    if ((localVisible, !isShowModal)) {
+      setAnimate(true);
+      setTimeout(() => setAnimate(false), 250);
+    }
+    setLocalVisible(isShowModal);
+  }, [isShowModal, localVisible]);
+
+  if (!localVisible && !animate) return null;
+
   return (
-    <ModalWrap onClick={onCloseModal}>
-      <ModalContainer onClick={stopPropagation}>
+    <ModalWrap disappear={!isShowModal} onClick={onCloseModal}>
+      <ModalContainer disappear={!isShowModal} onClick={stopPropagation}>
         <CloseBtn onClick={onCloseModal}>
           <span>&times;</span>
         </CloseBtn>

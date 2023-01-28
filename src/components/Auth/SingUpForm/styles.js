@@ -1,8 +1,19 @@
-import styled from '@emotion/styled';
+import { keyframes } from "@emotion/react";
+import styled from "@emotion/styled";
+
+export const fadeIn = keyframes`
+ from {
+    opacity: 0;
+} to {
+    opacity: 1;
+ }
+`;
 
 export const Container = styled.div`
   width: 70%;
   margin: 20px auto;
+
+  animation: ${fadeIn} 0.25s ease-in;
 
   h1.title {
     width: 100%;
@@ -15,18 +26,11 @@ export const Container = styled.div`
 export const FormWrap = styled.div`
   margin-top: 30px;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   form {
     position: relative;
   }
 `;
-// .frmGroup {
-//   /* margin: 0 172px; 양 옆 줄간격 맞추기 위함 */
-//   /* border: 1px solid #807a7a; */
-// }
 
 export const InputGroup = styled.div`
   margin: 18px 18px 32px;
@@ -69,6 +73,7 @@ export const InputWrap = styled.div`
   }
 
   button {
+    font-size: 13px;
     outline: none;
     transition: 0.2s;
     cursor: pointer;
@@ -84,7 +89,6 @@ export const CheckBtn = styled.button`
   padding: 5px;
   margin: 0 0.3rem;
   position: relative;
-  top: ${props => props.top && props.top};
   border: 1px solid #dcdcdc;
   width: 100px;
   height: 100%;
@@ -99,31 +103,28 @@ export const CheckBtn = styled.button`
 `;
 
 export const FrmBtnContainer = styled.div`
+  margin: 18px 18px 32px;
   position: relative;
-  left: ${props => props.left || '15px'};
-  top: ${props => props.top || 0};
-  width: calc(100% + 7px);
 
   & > button {
     border: 1px solid transparent;
-    max-width: 42%;
-    height: 40px;
-    /* color: #dcdcdc; */
+    height: 38px;
     color: #fff;
     font-size: 18px;
     padding: 5px;
-    margin: 0.8rem 0.3rem;
     cursor: pointer;
+    background-color: #3c6b8a;
+
+    &.login-btn {
+      width: 100%;
+    }
+
+    &.singup-btn {
+      width: 98%;
+    }
 
     &:hover {
       opacity: 0.8;
-    }
-
-    &[type='submit'] {
-      background-color: #77afe4;
-    }
-    &[type='reset'] {
-      background-color: #c04e21;
     }
   }
 `;

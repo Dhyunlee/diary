@@ -1,5 +1,4 @@
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { async } from "q";
 import { dbService } from "../fbconfig";
 
 const diaryCollectionRef = collection(dbService, "diarys");
