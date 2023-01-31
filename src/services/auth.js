@@ -61,29 +61,30 @@ export const signUp = async ({ email, password }) => {
 };
 
 export const logIn = async ({ email, password }) => {
+  console.log("로그인");
   const auth = getAuth();
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    const { user } = await signInWithEmailAndPassword(auth, email, password);
     return {
       isOk: true,
-      data: {
-        msg: "인증 성공",
-      },
+      msg: "인증 성공",
+      userId: user.uid,
     };
   } catch (err) {
     return {
       isOk: false,
-      data: {
-        msg: err.message,
-      },
+      msg: err.message,
     };
   }
 };
 
 export const logOut = async () => {
   try {
-    const res = signOut(authService);
-    return res && "로그아웃됨";
+    await signOut(authService);
+    return {
+      isOk: false,
+      msg: null,
+    };
   } catch (err) {
     console.error(err);
   }

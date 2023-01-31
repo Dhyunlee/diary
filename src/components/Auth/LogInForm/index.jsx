@@ -1,10 +1,12 @@
+import { getUserInfo } from "@store/actions/users";
 import { dropAuthModal } from "@store/reducers/modal";
 import React from "react";
 
 import { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import {
   Container,
   FormWrap,
@@ -12,9 +14,11 @@ import {
   InputName,
   InputWrap,
   FrmBtnContainer,
-  FormBtn
+  FormBtn,
 } from "../SingUpForm/styles";
 import { EmailAuthWrap, SocialAuthWrap } from "./styles";
+
+const alert = withReactContent(Swal);
 
 const LogInForm = ({ setAuthType, onAuth }) => {
   const [inputs, setInputs] = useState({
@@ -22,9 +26,8 @@ const LogInForm = ({ setAuthType, onAuth }) => {
     password: "",
   });
   const dispatch = useDispatch();
-  
-  const { email, password } = inputs;
 
+  const { email, password } = inputs;
 
   const onGoSingUp = () => {
     setAuthType((prev) => (prev = "singup"));
@@ -42,15 +45,21 @@ const LogInForm = ({ setAuthType, onAuth }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    try {
-      if(email && password) {
-        const {isOk} = await onAuth({email, password});
-        if(isOk) {
-          dispatch(dropAuthModal(false));
-        } 
+    if (email && password) {
+      const { isOk, userId} = await onAuth({ email, password });
+      if (isOk) {
+        dispatch(dropAuthModal(false));
+        dispatch(getUserInfo(userId))
+      } else {
+        alert.fire({
+          html: (
+            <p style={{ fontSize: 18 }}>
+              로그인 실패, 확인해주시고 다시 시도해주세요!
+            </p>
+          ),
+          icon: "error",
+        });
       }
-    } catch(err) {
-      console.error(err)
     }
   };
 
@@ -63,43 +72,45 @@ const LogInForm = ({ setAuthType, onAuth }) => {
         <FormWrap>
           <EmailAuthWrap>
             <form onSubmit={onSubmit}>
-            <InputGroup>
-              <InputName htmlFor="email">이메일</InputName>
-              <InputWrap>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  style={{
-                    width: "100%",
-                  }}
-                  placeholder="이메일"
-                  onChange={onFormChange}
-                  value={email}
-                />
-              </InputWrap>
-            </InputGroup>
-            <InputGroup>
-              <InputName htmlFor="pw">비밀번호</InputName>
-              <InputWrap>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  required
-                  style={{
-                    width: "100%",
-                  }}
-                  placeholder="비밀번호"
-                  onChange={onFormChange}
-                  value={password}
-                />
-              </InputWrap>
-            </InputGroup>
-            <FrmBtnContainer>
-              <button className="login-btn" type="submit">로그인</button>
-            </FrmBtnContainer>
+              <InputGroup>
+                <InputName htmlFor="email">이메일</InputName>
+                <InputWrap>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    style={{
+                      width: "100%",
+                    }}
+                    placeholder="이메일"
+                    onChange={onFormChange}
+                    value={email}
+                  />
+                </InputWrap>
+              </InputGroup>
+              <InputGroup>
+                <InputName htmlFor="pw">비밀번호</InputName>
+                <InputWrap>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                    style={{
+                      width: "100%",
+                    }}
+                    placeholder="비밀번호"
+                    onChange={onFormChange}
+                    value={password}
+                  />
+                </InputWrap>
+              </InputGroup>
+              <FrmBtnContainer>
+                <button className="login-btn" type="submit">
+                  로그인
+                </button>
+              </FrmBtnContainer>
             </form>
           </EmailAuthWrap>
           <SocialAuthWrap>
