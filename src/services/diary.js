@@ -1,4 +1,12 @@
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import { dbService } from "../fbconfig";
 
 const diaryCollectionRef = collection(dbService, "diarys");
@@ -34,16 +42,40 @@ export const fetchGetDiaryById = async (id) => {
 };
 
 // 다이어리 추가
-export const fetchPostDiary = async () => {
-
-}
+export const fetchPostDiary = async (data) => {
+  try {
+    await addDoc(diaryCollectionRef, data);
+    return {
+      isOk: true,
+      msg: "추가했습니다.",
+    };
+  } catch (err) {
+    return {
+      isOk: false,
+      msg: err.massage,
+    };
+  }
+};
 
 // 다이어리 수정
-export const fetchPutDiaryById = async () => {
-  
-}
+export const fetchPutDiaryById = async (id, data) => {
+  const diaryDocRef = doc(dbService, "diarys", id);
+  await updateDoc(diaryDocRef, data)
+};
 
 // 다이어리 삭제
-export const fetchDeleteDiaryById = async () => {
-  
-}
+export const fetchDeleteDiaryById = async (id) => {
+  const diaryDocRef = doc(dbService, "diarys", id);
+  try {
+    await deleteDoc(diaryDocRef);
+    return {
+      isOk: true,
+      msg: "삭제되었습니다.",
+    }; // res는 undefined
+  } catch (err) {
+    return {
+      isOk: false,
+      msg: err.massage,
+    };
+  }
+};
