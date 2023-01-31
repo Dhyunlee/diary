@@ -10,7 +10,7 @@ export const fadeIn = keyframes`
 `;
 
 export const Container = styled.div`
-  width: 70%;
+  width: 75%;
   margin: 20px auto;
 
   animation: ${fadeIn} 0.25s ease-in;
@@ -62,7 +62,7 @@ export const InputWrap = styled.div`
 
   input {
     outline: none;
-    width: 215px;
+    width: 225px;
     height: 100%;
     padding: 3px 8px;
     border: 1px solid #dcdcdc;

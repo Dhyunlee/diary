@@ -1,6 +1,8 @@
+import { dropAuthModal } from "@store/reducers/auth";
 import React from "react";
 
 import { useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import {
@@ -13,13 +15,15 @@ import {
 } from "../SingUpForm/styles";
 import { EmailAuthWrap, FormBtn, SocialAuthWrap } from "./styles";
 
-const LogInForm = ({ setAuthType }) => {
+const LogInForm = ({ setAuthType, onAuth }) => {
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
   });
+  const dispatch = useDispatch();
 
   const { email, password } = inputs;
+
 
   const onGoSingUp = () => {
     setAuthType((prev) => (prev = "singup"));
@@ -37,6 +41,8 @@ const LogInForm = ({ setAuthType }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    onAuth({email, password});
+    dispatch(dropAuthModal(false));
     console.log("로그인 완료");
   };
 
@@ -47,7 +53,8 @@ const LogInForm = ({ setAuthType }) => {
           <span style={{ fontSize: "25px" }}>로그인</span>
         </h1>
         <FormWrap>
-          <EmailAuthWrap onSubmit={onSubmit}>
+          <EmailAuthWrap>
+            <form onSubmit={onSubmit}>
             <InputGroup>
               <InputName htmlFor="email">이메일</InputName>
               <InputWrap>
@@ -85,6 +92,7 @@ const LogInForm = ({ setAuthType }) => {
             <FrmBtnContainer>
               <button className="login-btn" type="submit">로그인</button>
             </FrmBtnContainer>
+            </form>
           </EmailAuthWrap>
           <SocialAuthWrap>
             <InputGroup>
