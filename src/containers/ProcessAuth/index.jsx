@@ -8,25 +8,13 @@ const ProcessAuth = () => {
   // api 요청 로직 및 인증 관련된 비즈니스 코드
   const onAuth = async ({ email, password }) => {
     if (authType === "login") {
-      try {
-        return await logIn({ email, password });
-      } catch (err) {
-        return err.message;
-      }
+      return await logIn({ email, password });
     } else {
-      try {
-        return await signUp({ email, password });
-      } catch (err) {
-        return err.message;
-      }
+      return await signUp({ email, password });
     }
   };
   return (
-    <AuthModal
-      onAuth={onAuth}
-      authType={authType}
-      setAuthType={setAuthType}
-    />
+    <AuthModal onAuth={onAuth} authType={authType} setAuthType={setAuthType} />
   );
 };
 

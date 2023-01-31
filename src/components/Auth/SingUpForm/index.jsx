@@ -131,20 +131,16 @@ const SingUpForm = ({ setAuthType, onAuth }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    try {
-      if (isCheckEmail && isCheckPw) {
-        const {isOk} = await onAuth({ email, password });
-        if(isOk) {
-          alert.fire({
-            html: <p style={{ fontSize: 18 }}>가입되었습니다. 로그인해주세요!</p>,
-            icon: "success",
-          });
-          setAuthType("login");
-          dispatch(dropAuthModal(false));
-        }
+    if (isCheckEmail && isCheckPw) {
+      const { isOk } = await onAuth({ email, password });
+      if (isOk) {
+        alert.fire({
+          html: <p style={{ fontSize: 18 }}>가입되었습니다. 로그인해주세요!</p>,
+          icon: "success",
+        });
+        setAuthType("login");
+        dispatch(dropAuthModal(false));
       }
-    } catch (err) {
-      console.log({isSingUp: err.message});
     }
   };
   return (
