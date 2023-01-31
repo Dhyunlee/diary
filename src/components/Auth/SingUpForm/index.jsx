@@ -1,10 +1,9 @@
-import { checkEmail } from "@services/auth";
-import { useCallback } from "react";
-import { useState, useRef } from "react";
-import withReactContent from "sweetalert2-react-content";
-
+import { useState, useCallback, useRef } from "react";
+import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
-import { FormBtn } from "../LogInForm/styles";
+import withReactContent from "sweetalert2-react-content";
+import { checkEmail } from "@services/auth";
+import { dropAuthModal } from "@store/reducers/modal";
 import {
   CheckBtn,
   Container,
@@ -14,9 +13,8 @@ import {
   InputWrap,
   Valid,
   FrmBtnContainer,
+  FormBtn,
 } from "./styles";
-import { useDispatch } from "react-redux";
-import { dropAuthModal } from "@store/reducers/auth";
 
 const alert = withReactContent(Swal);
 
@@ -141,6 +139,7 @@ const SingUpForm = ({ setAuthType, onAuth }) => {
             html: <p style={{ fontSize: 18 }}>가입되었습니다. 로그인해주세요!</p>,
             icon: "success",
           });
+          setAuthType("login");
           dispatch(dropAuthModal(false));
         }
       }

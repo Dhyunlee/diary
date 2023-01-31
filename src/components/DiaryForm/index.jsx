@@ -6,7 +6,7 @@ import ImageUpload from "./ImageUpload";
 import EmotionModal from "./EmotionModal";
 import { Form, FormBtn, InputGroup, InputWrap } from "./styles";
 import { useDispatch, useSelector } from "react-redux";
-import { getState, showEmotionModal } from "@store/reducers/diary";
+import { getState, showEmotionModal } from "@store/reducers/modal";
 
 const DiaryForm = () => {
   const [date, setDate] = useState(new Date());

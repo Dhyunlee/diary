@@ -1,10 +1,10 @@
 import Modal from "@components/base/Modal";
-import { getState, dropEmotionModal } from "@store/reducers/diary";
+import { dropEmotionModal, getState } from "@store/reducers/modal";
 import { useDispatch, useSelector } from "react-redux";
 import SelectEmotion from "../SelectEmotion";
 
 const EmotionModal = ({ emotion, setEmotion }) => {
-  const { isShowModal } = useSelector(getState);
+  const { isEmotionModal  } = useSelector(getState);
   const dispatch = useDispatch();
 
   const onCloseModal = () => {
@@ -12,7 +12,7 @@ const EmotionModal = ({ emotion, setEmotion }) => {
   };
 
   return (
-    <Modal isShowModal={isShowModal} onCloseModal={onCloseModal}>
+    <Modal isShowModal={isEmotionModal} onCloseModal={onCloseModal}>
       <SelectEmotion
         emotion={emotion}
         setEmotion={setEmotion}

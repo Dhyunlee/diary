@@ -15,11 +15,3 @@ export const SocialAuthWrap = styled.div`
   .social-link {
   }
 `;
-
-export const FormBtn = styled.div`
-  .btn-name {
-    cursor: pointer;
-    font-weight: 600;
-    color: #3c6b8a;
-  }
-`;

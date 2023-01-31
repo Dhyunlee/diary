@@ -1,16 +1,15 @@
-import {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { dropAuthModal, getState } from "@store/reducers/auth";
 import Modal from "@components/base/Modal";
 import SingUpForm from "@components/Auth/SingUpForm";
 import LogInForm from "@components/Auth/LogInForm";
 
 import { AuthFormModal } from "./styles";
+import { dropAuthModal, getState } from "@store/reducers/modal";
 
 const AuthModal = (props) => {
+  // authType(로그인 or 회원가입)에 따라 컴포넌트 불러옴
   const { authType, setAuthType } = props;
-  // 로그인 / 회원가입에 따라 컴포넌트 불러오게 하자!
-  const { isShowModal } = useSelector(getState);
+  const { isAuthModal } = useSelector(getState);
   const dispatch = useDispatch();
   
   const onCloseModal = () => {
@@ -18,11 +17,10 @@ const AuthModal = (props) => {
     setAuthType((prev) => (prev = "login"));
   };
 
-  useEffect(() => {}, [isShowModal]);
   return (
     <Modal
       height={"605px"}
-      isShowModal={isShowModal}
+      isShowModal={isAuthModal}
       onCloseModal={onCloseModal}
     >
       <AuthFormModal>

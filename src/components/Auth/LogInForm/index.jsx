@@ -1,4 +1,4 @@
-import { dropAuthModal } from "@store/reducers/auth";
+import { dropAuthModal } from "@store/reducers/modal";
 import React from "react";
 
 import { useState, useCallback } from "react";
@@ -12,8 +12,9 @@ import {
   InputName,
   InputWrap,
   FrmBtnContainer,
+  FormBtn
 } from "../SingUpForm/styles";
-import { EmailAuthWrap, FormBtn, SocialAuthWrap } from "./styles";
+import { EmailAuthWrap, SocialAuthWrap } from "./styles";
 
 const LogInForm = ({ setAuthType, onAuth }) => {
   const [inputs, setInputs] = useState({
@@ -21,7 +22,7 @@ const LogInForm = ({ setAuthType, onAuth }) => {
     password: "",
   });
   const dispatch = useDispatch();
-
+  
   const { email, password } = inputs;
 
 
@@ -39,11 +40,18 @@ const LogInForm = ({ setAuthType, onAuth }) => {
     [inputs]
   );
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    onAuth({email, password});
-    dispatch(dropAuthModal(false));
-    console.log("로그인 완료");
+    try {
+      if(email && password) {
+        const {isOk} = await onAuth({email, password});
+        if(isOk) {
+          dispatch(dropAuthModal(false));
+        } 
+      }
+    } catch(err) {
+      console.error(err)
+    }
   };
 
   return (

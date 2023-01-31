@@ -9,9 +9,9 @@ const ProcessAuth = () => {
   const onAuth = async ({ email, password }) => {
     if (authType === "login") {
       try {
-        const result = await logIn({ email, password });
+        return await logIn({ email, password });
       } catch (err) {
-        console.log(err);
+        return err.message;
       }
     } else {
       try {

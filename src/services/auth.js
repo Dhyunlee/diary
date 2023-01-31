@@ -1,19 +1,18 @@
 import {
-  addDoc,
   collection,
   doc,
-  getDoc,
   getDocs,
   query,
   setDoc,
   where,
 } from "firebase/firestore";
-import { dbService } from "../fbconfig";
+import { authService, dbService } from "../fbconfig";
 
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 
 const usersRef = collection(dbService, "users");
@@ -64,9 +63,28 @@ export const signUp = async ({ email, password }) => {
 export const logIn = async ({ email, password }) => {
   const auth = getAuth();
   try {
-    const result = await signInWithEmailAndPassword(auth, email, password);
-    console.log(result);
+    await signInWithEmailAndPassword(auth, email, password);
+    return {
+      isOk: true,
+      data: {
+        msg: "인증 성공",
+      },
+    };
   } catch (err) {
-    return err.message;
+    return {
+      isOk: false,
+      data: {
+        msg: err.message,
+      },
+    };
+  }
+};
+
+export const logOut = async () => {
+  try {
+    const res = signOut(authService);
+    return res && "로그아웃됨";
+  } catch (err) {
+    console.error(err);
   }
 };

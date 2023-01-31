@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { showAuthModal } from "@store/reducers/auth";
 import ProcessAuth from "@containers/ProcessAuth";
 
 import {
@@ -13,6 +12,7 @@ import {
   TopBar,
   UserMenu,
 } from "./styles";
+import { showAuthModal } from "@store/reducers/modal";
 
 const Header = () => {
   const [isShowModal, setShowModal] = useState(false);
