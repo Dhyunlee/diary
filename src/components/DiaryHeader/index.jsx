@@ -1,12 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
-import { getDate } from "@utils/lib";
 import { DiaryHeaderContainer } from "./styles";
-
-const date = getDate(new Date()).substring(0 , 9);
-
-const DiaryHeader = () => {
+const DiaryHeader = ({ thisMonth, onIncreateMonth, ondecreateMonth }) => {
   return (
     <div
       css={css`
@@ -15,13 +11,13 @@ const DiaryHeader = () => {
     >
       <DiaryHeaderContainer>
         <div className="arrowBtn">
-          <button>
+          <button onClick={() => ondecreateMonth()}>
             <AiOutlineArrowLeft />
           </button>
         </div>
-        <div className="showDataText">{date}</div>
+        <div className="showDataText">{thisMonth}</div>
         <div className="arrowBtn">
-          <button>
+          <button onClick={() => onIncreateMonth()}>
             <AiOutlineArrowRight />
           </button>
         </div>

@@ -2,7 +2,9 @@ import styled from "@emotion/styled";
 
 export const DiaryContainer = styled.div`
   padding: 30px 20px;
-  width: 100%;
+  width: 700px;
+  height: 780px;
+  overflow-y: auto;
 `;
 export const DiaryListBox = styled.div`
   width: 100%;
