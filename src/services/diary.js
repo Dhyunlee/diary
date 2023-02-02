@@ -4,20 +4,21 @@ import {
   deleteDoc,
   doc,
   getDoc,
-  getDocs,
   onSnapshot,
   orderBy,
   query,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import { dbService } from "../fbconfig";
 
 const diaryCollectionRef = collection(dbService, "diarys");
 
 // 다이어리 리스트 조회
-export const fetchGetDiary = async () => {
+export const fetchGetDiary = async (thisMonth) => {
+  console.log({thisMonth})
   try {
-    const q = query(diaryCollectionRef, orderBy("createdAt", "desc"));
+    const q = query(diaryCollectionRef, where('month', '==', thisMonth), orderBy("createdAt", "desc"));
     const getData = new Promise((res, rej) => {
       onSnapshot(q, (snapshop) => {
         let result = snapshop.docs.map((doc) => ({
