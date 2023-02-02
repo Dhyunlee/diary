@@ -2,6 +2,7 @@ import DiaryItem from "@components/DiaryItem";
 import { DiaryContainer, DiaryListBox } from "./styles";
 
 const DiaryListView = ({diaryList}) => {
+  console.log(diaryList)
   return (
     <DiaryContainer>
       <DiaryListBox>
