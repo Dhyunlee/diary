@@ -5,6 +5,9 @@ import {
   doc,
   getDoc,
   getDocs,
+  onSnapshot,
+  orderBy,
+  query,
   updateDoc,
 } from "firebase/firestore";
 import { dbService } from "../fbconfig";
@@ -14,15 +17,24 @@ const diaryCollectionRef = collection(dbService, "diarys");
 // 다이어리 리스트 조회
 export const fetchGetDiary = async () => {
   try {
-    const { docs } = await getDocs(diaryCollectionRef);
-    const getData = docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-      createdAt: new Date(doc.data().createdAt.toDate()).getTime(),
-    }));
-    return getData;
+    const q = query(diaryCollectionRef, orderBy("createdAt", "desc"));
+    const getData = new Promise((res, rej) => {
+      onSnapshot(q, (snapshop) => {
+        let result = snapshop.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+          createdAt: new Date(doc.data().createdAt.toDate()).getTime(),
+        }));
+        if (!result) {
+          rej("Failed to fetch data");
+        } else {
+          res(result);
+        }
+      });
+    });
+    return getData.then((data) => data);
   } catch (err) {
-    console.error(err);
+    new Error(err);
   }
 };
 
@@ -60,7 +72,7 @@ export const fetchPostDiary = async (data) => {
 // 다이어리 수정
 export const fetchPutDiaryById = async (id, data) => {
   const diaryDocRef = doc(dbService, "diarys", id);
-  await updateDoc(diaryDocRef, data)
+  await updateDoc(diaryDocRef, data);
 };
 
 // 다이어리 삭제
