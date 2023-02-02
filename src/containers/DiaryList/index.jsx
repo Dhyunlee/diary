@@ -9,6 +9,7 @@ const DiaryList = () => {
   const fetchDiaryList = useCallback(async () => {
     setIsLoading(true);
     const data = await fetchGetDiary();
+    console.log({data})
     setIsLoading(false);
     setDiary(data);
   }, []);
@@ -18,7 +19,9 @@ const DiaryList = () => {
   }, [fetchDiaryList]);
 
   if (isLoading) return <div>로딩중...</div>;
-  return <DiaryListView isLoading={isLoading} diaryList={diary} />;
-}
+  return (
+    <>{diary && <DiaryListView isLoading={isLoading} diaryList={diary} />}</>
+  );
+};
 
 export default DiaryList;

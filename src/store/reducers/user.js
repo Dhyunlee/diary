@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getLogOut, getUserInfo } from "@store/actions/users";
 
 const initialState = {
-  loadUserLoading: false, //로그인 정보(유저 정보) 로딩 상태
-  loadUserInfo: undefined, //로그인 정보(유저 정보)
-  isLoggedIn: false,
-  loadUserError: null,
+  loadUserLoading: false, //유저 정보(유저 정보) 로딩 상태
+  loadUserInfo: undefined,
+  loadUserError: null, 
+  isLoggedIn: false, // 로그인 상태
 };
 
 const userSlice = createSlice({
