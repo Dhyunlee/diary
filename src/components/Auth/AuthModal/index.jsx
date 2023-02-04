@@ -13,7 +13,7 @@ const AuthModal = (props) => {
   const dispatch = useDispatch();
   
   const onCloseModal = () => {
-    dispatch(dropAuthModal(false));
+    dispatch(dropAuthModal());
     setAuthType((prev) => (prev = "login"));
   };
 

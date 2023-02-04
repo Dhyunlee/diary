@@ -1,26 +1,28 @@
 import React, { useCallback, useEffect, useState } from "react";
 import DiaryListView from "@components/DiaryListView";
 import { fetchGetDiary } from "@services/diary";
+import {useSelector} from 'react-redux'
+import { getState } from "@store/reducers/user";
 
 const DiaryList = ({getMonth}) => {
   const [diary, setDiary] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { loadUserInfo } = useSelector(getState);
+  
   const fetchDiaryList = useCallback(async () => {
     setIsLoading(true);
-    const data = await fetchGetDiary(getMonth);
-    console.log({data})
+    const data = loadUserInfo && await fetchGetDiary(loadUserInfo.userId, getMonth);
     setIsLoading(false);
     setDiary(data);
-  }, [getMonth]);
+  }, [getMonth, loadUserInfo]);
 
   useEffect(() => {
     fetchDiaryList();
   }, [fetchDiaryList]);
 
-  if (isLoading) return <div>로딩중...</div>;
-  console.log(diary.length)
   return (
-    <>{diary && <DiaryListView isLoading={isLoading} diaryList={diary} />}</>
+    <>{<DiaryListView isLoading={isLoading} diaryList={diary} />}</>
   );
 };
 

@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { format,add, sub } from "date-fns";
+import React, { useEffect, useState } from "react";
+import { format, add, sub } from "date-fns";
 import { Helmet } from "react-helmet-async";
 import DiaryHeader from "@components/DiaryHeader";
 import DiaryList from "@containers/DiaryList";
 
 const Home = () => {
-  
   const [currentDate, setCurrentDate] = useState(new Date());
   const thisMonth = format(currentDate, "yyyy년 MM월");
   const getMonth = thisMonth.substring(6);
+
   const onIncreateMonth = () => {
     setCurrentDate((prev) => add(prev, { months: 1 }));
   };
@@ -28,9 +28,7 @@ const Home = () => {
         thisMonth={thisMonth}
         currentDate={currentDate}
       />
-      <DiaryList 
-        getMonth={getMonth}
-      />
+      <DiaryList getMonth={getMonth} />
     </>
   );
 };
