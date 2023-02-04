@@ -20,15 +20,14 @@ const Header = () => {
   const [isShowModal, setShowModal] = useState(false);
   const { loadUserInfo, isLoggedIn } = useSelector(getState);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const onClickAuthModal = (e) => {
     setShowModal((prev) => (prev = true));
-    dispatch(showAuthModal(isShowModal));
+    dispatch(showAuthModal());
   };
 
   const onClickLogOut = () => {
-      dispatch(getLogOut());
+    dispatch(getLogOut());
   };
   return (
     <HeaderWrap>
@@ -54,13 +53,15 @@ const Header = () => {
               </UserMenu>
             )}
           </TopBar>
-          <Navbar className="navbars">
-            <ul>
-              <li>
-                <Link to={"/write"}>글쓰기</Link>
-              </li>
-            </ul>
-          </Navbar>
+          {isLoggedIn && (
+            <Navbar className="navbars">
+              <ul>
+                <li>
+                  <Link to={"/write"}>글쓰기</Link>
+                </li>
+              </ul>
+            </Navbar>
+          )}
           {isShowModal && <ProcessAuth />}
         </NavBarWrapper>
       </HeaderContainer>

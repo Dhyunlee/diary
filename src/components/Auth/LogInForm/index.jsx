@@ -46,10 +46,10 @@ const LogInForm = ({ setAuthType, onAuth }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (email && password) {
-      const { isOk, userId} = await onAuth({ email, password });
+      const { isOk, userId } = await onAuth({ email, password });
       if (isOk) {
         dispatch(dropAuthModal(false));
-        dispatch(getUserInfo(userId))
+        dispatch(getUserInfo(userId));
       } else {
         alert.fire({
           html: (
@@ -138,5 +138,9 @@ const LogInForm = ({ setAuthType, onAuth }) => {
     </div>
   );
 };
+
+LogInForm.defaultProps = {
+  LogInForm: 'login'
+}
 
 export default LogInForm;

@@ -4,6 +4,7 @@ import {
   deleteDoc,
   doc,
   getDoc,
+  limit,
   onSnapshot,
   orderBy,
   query,
@@ -15,10 +16,9 @@ import { dbService } from "../fbconfig";
 const diaryCollectionRef = collection(dbService, "diarys");
 
 // 다이어리 리스트 조회
-export const fetchGetDiary = async (thisMonth) => {
-  console.log({thisMonth})
+export const fetchGetDiary = async (userId, thisMonth) => {
   try {
-    const q = query(diaryCollectionRef, where('month', '==', thisMonth), orderBy("createdAt", "desc"));
+    const q = query(diaryCollectionRef, where('writer', '==', userId), where('month', '==', thisMonth), orderBy("createdAt", "desc"), limit(10));
     const getData = new Promise((res, rej) => {
       onSnapshot(q, (snapshop) => {
         let result = snapshop.docs.map((doc) => ({

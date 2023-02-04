@@ -9,9 +9,30 @@ import PrivateRoute from "./PrivateRoute";
 const Routers = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="detail/:id" element={<Detail />} />
-      <Route path="write" element={<WriteDiary />} />
+      <Route
+        path="/"
+        element={
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="detail/:id"
+        element={
+          <PrivateRoute>
+            <Detail />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="write"
+        element={
+          <PrivateRoute>
+            <WriteDiary />
+          </PrivateRoute>
+        }
+      />
       <Route
         path="mypage"
         element={
