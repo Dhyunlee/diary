@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { memo, useRef, useState } from "react";
 import {
   ImgUploadBox,
   DrapFileArea,
@@ -66,4 +66,4 @@ const ImageUpload = () => {
   );
 };
 
-export default ImageUpload;
+export default memo(ImageUpload);

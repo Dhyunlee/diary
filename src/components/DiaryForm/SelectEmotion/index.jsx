@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo, useCallback } from "react";
 import { emotionList } from "@utils/emotion";
 import { EmotionWrap, Emotions } from "./styles";
 
@@ -19,10 +19,10 @@ const SelectEmotion = ({ setEmotion, onCloseModal }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedElement]);
 
-  const onClickEmotion = (emotion) => {
+  const onClickEmotion = useCallback((emotion) => {
     setEmotion((prev) => Object.assign(prev, emotion));
     setsSelectedElement(emotion.id);
-  };
+  }, [setEmotion]);
 
   return (
     <EmotionWrap>
@@ -58,4 +58,4 @@ const SelectEmotion = ({ setEmotion, onCloseModal }) => {
   );
 };
 
-export default SelectEmotion;
+export default memo(SelectEmotion);

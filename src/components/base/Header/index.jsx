@@ -16,9 +16,9 @@ import { showAuthModal } from "@store/reducers/modal";
 import { getState } from "@store/reducers/user";
 import { getLogOut } from "@store/actions/users";
 
-const Header = () => {
+const Header = ({ isLoggedIn }) => {
   const [isShowModal, setShowModal] = useState(false);
-  const { loadUserInfo, isLoggedIn } = useSelector(getState);
+  const { loadUserInfo } = useSelector(getState);
   const dispatch = useDispatch();
 
   const onClickAuthModal = (e) => {
@@ -29,6 +29,13 @@ const Header = () => {
   const onClickLogOut = () => {
     dispatch(getLogOut());
   };
+
+  const getUserName = (loadUserInfo) => {
+    const name = loadUserInfo.email?.slice(0, loadUserInfo.email?.indexOf("@"));
+    return `${name}님 환영합니다.`;
+  };
+
+  console.log("Header", { isLoggedIn, loadUserInfo });
   return (
     <HeaderWrap>
       <HeaderContainer>
@@ -41,11 +48,12 @@ const Header = () => {
             </Logo>
             {isLoggedIn ? (
               <UserMenu>
-                <span>
-                  {loadUserInfo.email.slice(0, loadUserInfo.email.indexOf("@"))}
-                  님 환영합니다.
-                </span>
-                <button onClick={onClickLogOut}>로그아웃</button>
+                {loadUserInfo && (
+                  <>
+                    <span>{getUserName(loadUserInfo)}</span>
+                    <button onClick={onClickLogOut}>로그아웃</button>
+                  </>
+                )}
               </UserMenu>
             ) : (
               <UserMenu>
@@ -53,7 +61,7 @@ const Header = () => {
               </UserMenu>
             )}
           </TopBar>
-          {isLoggedIn && (
+          {isLoggedIn && loadUserInfo && (
             <Navbar className="navbars">
               <ul>
                 <li>

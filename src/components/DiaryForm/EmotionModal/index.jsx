@@ -1,7 +1,8 @@
-import Modal from "@components/base/Modal";
+import { memo } from "react";
 import { dropEmotionModal, getState } from "@store/reducers/modal";
 import { useDispatch, useSelector } from "react-redux";
-import SelectEmotion from "../SelectEmotion";
+import Modal from "@components/base/Modal";
+import SelectEmotion from "@components/DiaryForm/SelectEmotion";
 
 const EmotionModal = ({ emotion, setEmotion }) => {
   const { isEmotionModal  } = useSelector(getState);
@@ -22,4 +23,4 @@ const EmotionModal = ({ emotion, setEmotion }) => {
   );
 };
 
-export default EmotionModal;
+export default memo(EmotionModal);

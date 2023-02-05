@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import DiaryForm from "@components/DiaryForm";
 import DiaryFormTemplate from "@layouts/DiaryFormTemplate";
 import { FormDiaryContainer, HeaderTitle } from "./styles";
+import { memo } from "react";
 
 const WriteDiary = () => {
   return (
@@ -21,4 +22,4 @@ const WriteDiary = () => {
   );
 };
 
-export default WriteDiary;
+export default memo(WriteDiary);

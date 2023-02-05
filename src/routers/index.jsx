@@ -1,46 +1,23 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "@pages/Home";
 import Detail from "@pages/Detail";
 import WriteDiary from "@pages/WriteDiary";
 import Mypage from "@pages/Mypage";
-import PrivateRoute from "./PrivateRoute";
-
-const Routers = () => {
+const Routers = ({ isLoggedIn }) => {
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <PrivateRoute>
-            <Home />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="detail/:id"
-        element={
-          <PrivateRoute>
-            <Detail />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="write"
-        element={
-          <PrivateRoute>
-            <WriteDiary />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="mypage"
-        element={
-          <PrivateRoute>
-            <Mypage />
-          </PrivateRoute>
-        }
-      />
+      <Route path="/" index element={<Home isLoggedIn={isLoggedIn} />} />
+      <>
+        <Route path="detail/:id" element={isLoggedIn ? <Detail /> : <Navigate to='/' replace={false}/>} />
+        <Route path="write" element={isLoggedIn ? <WriteDiary /> : <Navigate to='/' replace={false}/>} />
+        <Route path="mypage" element={isLoggedIn ? <Mypage /> : <Navigate to='/' replace={false}/> } />
+        <Route
+          path="not-found"
+          element={<div>요청하신 페이지가 없습니다.</div>}
+        />
+        <Route path="*" element={<Navigate replace to="/not-found" />} />
+      </>
     </Routes>
   );
 };

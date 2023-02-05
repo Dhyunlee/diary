@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { ko } from "date-fns/esm/locale";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
@@ -64,4 +64,4 @@ const DateArea = ({setDate}) => {
   );
 }
 
-export default DateArea;
+export default memo(DateArea);

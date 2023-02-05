@@ -1,22 +1,27 @@
-import { useState } from "react";
+import { memo, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getState, showEmotionModal } from "@store/reducers/modal";
 import Label from "@components/base/Label";
 import DateArea from "./DateArea";
 import ImageUpload from "./ImageUpload";
 import EmotionModal from "./EmotionModal";
 import { Form, FormBtn, InputGroup, InputWrap } from "./styles";
-import { useDispatch, useSelector } from "react-redux";
-import { getState, showEmotionModal } from "@store/reducers/modal";
 
 const DiaryForm = () => {
+  console.log("호출");
   const [date, setDate] = useState(new Date());
-  const [title, setTitle] = useState("");
-  const [contents, setContents] = useState("");
+  const [inputs, setInputs] = useState({
+    title: "",
+    contents: "",
+  });
   const [emotion, setEmotion] = useState({
     id: 3,
     img: "/assets/images/emtion_3.png",
     desc: "보통",
   });
+
+  const {title, contents} = inputs;
   const [isEmotionModal, setIsEmotionModal] = useState(false);
 
   const { isShowModal } = useSelector(getState);
@@ -31,10 +36,20 @@ const DiaryForm = () => {
     console.log({ date, title, contents, emotion });
   };
 
-  const onClickEmotionModal = (e) => {
+  const onFormChange = useCallback(
+    (e) => {
+      setInputs({
+        ...inputs,
+        [e.target.name]: e.target.value.trim(),
+      });
+    },
+    [inputs]
+  );
+
+  const onClickEmotionModal = useCallback((e) => {
     setIsEmotionModal((prev) => (prev = true));
     dispatch(showEmotionModal(isShowModal));
-  };
+  }, [dispatch, isShowModal]);
 
   return (
     <Form onSubmit={onSubmit}>
@@ -46,7 +61,11 @@ const DiaryForm = () => {
         <Label text="오늘 내 감정" />
         <InputWrap>
           <div className="emotion-text">
-            <div className="emotion-inner" title="오늘 기분은 어떠신가요?" onClick={onClickEmotionModal}>
+            <div
+              className="emotion-inner"
+              title="오늘 기분은 어떠신가요?"
+              onClick={onClickEmotionModal}
+            >
               <img src={emotion.img} alt="emotion-img" />
             </div>
           </div>
@@ -64,7 +83,7 @@ const DiaryForm = () => {
             required
             placeholder="제목을 입력해주세요"
             autoFocus
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={onFormChange}
             value={title}
           />
         </InputWrap>
@@ -73,7 +92,7 @@ const DiaryForm = () => {
         <Label text="내용" />
         <InputWrap>
           <textarea
-            onChange={(e) => setContents(e.target.value)}
+            onChange={onFormChange}
             name="contents"
             required
             placeholder="내용을 입력해주세요"
@@ -101,4 +120,4 @@ const DiaryForm = () => {
   );
 };
 
-export default DiaryForm;
+export default memo(DiaryForm);
