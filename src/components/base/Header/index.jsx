@@ -15,6 +15,7 @@ import {
 import { showAuthModal } from "@store/reducers/modal";
 import { getState } from "@store/reducers/user";
 import { getLogOut } from "@store/actions/users";
+import { getUserName } from "@utils/lib";
 
 const Header = ({ isLoggedIn }) => {
   const [isShowModal, setShowModal] = useState(false);
@@ -28,11 +29,6 @@ const Header = ({ isLoggedIn }) => {
 
   const onClickLogOut = () => {
     dispatch(getLogOut());
-  };
-
-  const getUserName = (loadUserInfo) => {
-    const name = loadUserInfo.email?.slice(0, loadUserInfo.email?.indexOf("@"));
-    return `${name}님 환영합니다.`;
   };
 
   console.log("Header", { isLoggedIn, loadUserInfo });
@@ -50,7 +46,7 @@ const Header = ({ isLoggedIn }) => {
               <UserMenu>
                 {loadUserInfo && (
                   <>
-                    <span>{getUserName(loadUserInfo)}</span>
+                    <span>{getUserName(loadUserInfo.email)}</span>
                     <button onClick={onClickLogOut}>로그아웃</button>
                   </>
                 )}

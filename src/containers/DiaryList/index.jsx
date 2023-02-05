@@ -32,14 +32,7 @@ const DiaryList = ({ isLoggedIn }) => {
   const ondecreateMonth = () => {
     setCurrentDate((prev) => sub(prev, { months: 1 }));
   };
-
-  // if (!isLoggedIn && !loadUserInfo) {
-  //   return (
-  //     <div>
-  //       <p>다이어리를 사용하시려면 인증이 필요합니다.</p>
-  //     </div>
-  //   );
-  // }
+  
   return (
     <>
       <DiaryHeader

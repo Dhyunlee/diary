@@ -5,7 +5,6 @@ const initialState = {
   loadUserLoading: false, //유저 정보(유저 정보) 로딩 상태
   loadUserInfo: undefined,
   loadUserError: null, 
-  isLoggedIn: false, // 로그인 상태
 };
 
 const userSlice = createSlice({
@@ -19,7 +18,6 @@ const userSlice = createSlice({
       })
       .addCase(getUserInfo.fulfilled, (state, action) => {
         state.loadUserLoading = false;
-        state.isLoggedIn = true;
         state.loadUserInfo = action.payload;
       })
       .addCase(getUserInfo.rejected, (state, action) => {
@@ -31,7 +29,6 @@ const userSlice = createSlice({
       })
       .addCase(getLogOut.fulfilled, (state, action) => {
         state.loadUserLoading = false;
-        state.isLoggedIn = false;
         state.loadUserInfo = action.payload;
       })
       .addCase(getLogOut.rejected, (state, action) => {

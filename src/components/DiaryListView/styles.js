@@ -7,6 +7,7 @@ export const DiaryContainer = styled.div`
   overflow-y: auto;
 `;
 export const DiaryListBox = styled.div`
+  margin-top: 42px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
