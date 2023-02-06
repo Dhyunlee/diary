@@ -21,6 +21,7 @@ export const fetchGetDiary = async (userId, thisMonth) => {
     const q = query(diaryCollectionRef, where('writer', '==', userId), where('month', '==', thisMonth), orderBy("createdAt", "desc"), limit(10));
     const getData = new Promise((res, rej) => {
       onSnapshot(q, (snapshop) => {
+        snapshop.docs.map(doc => console.log(doc.data().createdAt))
         let result = snapshop.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),

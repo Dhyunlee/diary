@@ -1,18 +1,30 @@
 import styled from "@emotion/styled";
 
 export const DiaryContainer = styled.div`
-  padding: 30px 20px;
-  width: 700px;
-  height: 780px;
+  padding: 20px 10px;
+  width: 100%;
+  height: 870px;
   overflow-y: auto;
 `;
 export const DiaryListBox = styled.div`
-  margin-top: 42px;
+  margin-top: 40px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 
+  .empty-diary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 54vh;
+
+    p {
+      font-size: 22px;
+      color: #495057;
+    }
+  }
   .diary-item {
     width: 310px;
     border-radius: 4px;

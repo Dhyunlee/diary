@@ -28,19 +28,19 @@ export const UserMenu = styled.div`
     border: none;
     background: transparent;
     margin-left: 5px;
-    padding: 0 5px;
+    padding-left: 10px;
     display: inline-block;
     cursor: pointer;
   }
 `;
 
 export const HeaderWrap = styled.header`
-  padding: 15px;
-  background: #fff;
+  padding: 20px 0;
   position: sticky;
   top: 0px;
-  z-index: 2;
   width: 100%;
+  background: #fff;
+  z-index: 2;
 `;
 export const HeaderContainer = styled.div`
   max-width: 680px;

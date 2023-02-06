@@ -15,7 +15,6 @@ export const DrapFileArea = styled.div`
   height: 266px;
   padding: 36px 0 76px;
   margin: 0 auto;
-  position: relative;
   cursor: pointer;
 
   .icon-wrap {

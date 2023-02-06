@@ -9,7 +9,6 @@ import {
 import { authService, dbService } from "../fbconfig";
 
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
@@ -18,7 +17,6 @@ import {
 const usersRef = collection(dbService, "users");
 
 export const checkEmail = async (email) => {
-  console.log(email);
   let hasUserEmail;
   const getQuery = query(usersRef, where("email", "==", email));
 
@@ -40,10 +38,9 @@ export const checkEmail = async (email) => {
 };
 
 export const signUp = async ({ email, password }) => {
-  const auth = getAuth();
   try {
     const { user } = await createUserWithEmailAndPassword(
-      auth,
+      authService,
       email,
       password
     );
@@ -61,10 +58,12 @@ export const signUp = async ({ email, password }) => {
 };
 
 export const logIn = async ({ email, password }) => {
-  console.log("로그인");
-  const auth = getAuth();
   try {
-    const { user } = await signInWithEmailAndPassword(auth, email, password);
+    const { user } = await signInWithEmailAndPassword(
+      authService,
+      email,
+      password
+    );
     return {
       isOk: true,
       msg: "인증 성공",

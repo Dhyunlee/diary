@@ -1,27 +1,38 @@
 import { memo, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import { useDispatch, useSelector } from "react-redux";
 import { getState, showEmotionModal } from "@store/reducers/modal";
+import { getState as userGetState } from "@store/reducers/user";
 import Label from "@components/base/Label";
 import DateArea from "./DateArea";
 import ImageUpload from "./ImageUpload";
 import EmotionModal from "./EmotionModal";
+import { fetchPostDiary } from "@services/diary";
 import { Form, FormBtn, InputGroup, InputWrap } from "./styles";
+import { format } from "date-fns";
+
+const alert = withReactContent(Swal);
 
 const DiaryForm = () => {
-  console.log("호출");
+  const { loadUserInfo } = useSelector(userGetState);
   const [date, setDate] = useState(new Date());
-  const [inputs, setInputs] = useState({
-    title: "",
-    contents: "",
-  });
+  // const [inputs, setInputs] = useState({
+  //   title: "",
+  //   content: "",
+  // });
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
   const [emotion, setEmotion] = useState({
     id: 3,
     img: "/assets/images/emtion_3.png",
     desc: "보통",
   });
 
-  const {title, contents} = inputs;
+  const [uploadImgFile, setUploadImgFile] = useState(null);
+
+  // const { title, content } = inputs;
   const [isEmotionModal, setIsEmotionModal] = useState(false);
 
   const { isShowModal } = useSelector(getState);
@@ -31,25 +42,36 @@ const DiaryForm = () => {
   const onGoBack = () => {
     navigate(-1);
   };
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log({ date, title, contents, emotion });
+    const uploadData = {
+      createdAt: date,
+      month: format(date, "MM월"),
+      title,
+      content,
+      writer: loadUserInfo?.userId,
+      imgUrl: uploadImgFile,
+      emotion,
+    };
+    console.log(uploadData);
+    const res = await fetchPostDiary(uploadData);
+    console.log({ 업로드: res });
+    if (res.isOk) {
+      alert.fire({
+        html: <p style={{ fontSize: 18 }}>다이어리가 등록되었습니다.</p>,
+        icon: "success",
+      });
+      navigate("/");
+    }
   };
 
-  const onFormChange = useCallback(
+  const onClickEmotionModal = useCallback(
     (e) => {
-      setInputs({
-        ...inputs,
-        [e.target.name]: e.target.value.trim(),
-      });
+      setIsEmotionModal((prev) => (prev = true));
+      dispatch(showEmotionModal(isShowModal));
     },
-    [inputs]
+    [dispatch, isShowModal]
   );
-
-  const onClickEmotionModal = useCallback((e) => {
-    setIsEmotionModal((prev) => (prev = true));
-    dispatch(showEmotionModal(isShowModal));
-  }, [dispatch, isShowModal]);
 
   return (
     <Form onSubmit={onSubmit}>
@@ -83,7 +105,7 @@ const DiaryForm = () => {
             required
             placeholder="제목을 입력해주세요"
             autoFocus
-            onChange={onFormChange}
+            onInput={(e) => setTitle(e.target.value)}
             value={title}
           />
         </InputWrap>
@@ -92,18 +114,24 @@ const DiaryForm = () => {
         <Label text="내용" />
         <InputWrap>
           <textarea
-            onChange={onFormChange}
-            name="contents"
+            onChange={(e) => setContent(e.target.value)}
+            name="content"
             required
             placeholder="내용을 입력해주세요"
-            value={contents}
+            value={content}
           />
         </InputWrap>
       </InputGroup>
-      <InputGroup>
+      <InputGroup style={{ position: "relative" }}>
         <Label text="이미지 추가" />
+        <button
+          type="button"
+          style={{ position: "absolute", right: 0, top: 20 }}
+        >
+          이미지 취소
+        </button>
         <InputWrap>
-          <ImageUpload />
+          <ImageUpload setUploadImgFile={setUploadImgFile} />
         </InputWrap>
       </InputGroup>
       <FormBtn>

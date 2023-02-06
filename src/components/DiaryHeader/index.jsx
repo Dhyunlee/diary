@@ -12,13 +12,13 @@ const DiaryHeader = ({ thisMonth, onIncreateMonth, ondecreateMonth }) => {
       <DiaryHeaderContainer>
         <div className="arrowBtn">
           <button onClick={() => ondecreateMonth()}>
-            <AiOutlineArrowLeft />
+            <AiOutlineArrowLeft size={18}/>
           </button>
         </div>
-        <div className="showDataText">{thisMonth}</div>
+        <div className="diary-date">{thisMonth}</div>
         <div className="arrowBtn">
           <button onClick={() => onIncreateMonth()}>
-            <AiOutlineArrowRight />
+            <AiOutlineArrowRight size={18}/>
           </button>
         </div>
       </DiaryHeaderContainer>

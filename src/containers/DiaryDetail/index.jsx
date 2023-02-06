@@ -1,30 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import DetailView from "@components/DetailView";
 import { fetchGetDiaryById } from "@services/diary";
-import { getDate } from "@utils/lib";
 
 export const DiaryDetail = () => {
   const { id: paramId } = useParams();
-  const [diaryItem, setDiaryItem] = useState({});
+  const {state: diaryId} = useLocation();
+  const [diaryItem, setDiaryItem] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
     const getData = async () => {
-      const data = await fetchGetDiaryById(paramId);
+      setLoading(true);
+      const data = await fetchGetDiaryById(diaryId);
       setDiaryItem(data);
       setLoading(false);
     };
 
     getData();
-  }, [paramId]);
+  }, [diaryId, paramId]);
 
-  if (isLoading) return <div>로딩중...</div>;
-  const { title, createdAt, content, imgUrl } = diaryItem;
-  const date = getDate(createdAt);
-
+  if(isLoading) return <div>다이어리 불러오기</div>
   return (
-    <DetailView title={title} date={date} imgUrl={imgUrl} content={content} />
+    <>
+      {diaryItem && (
+        <DetailView
+          {...diaryItem}/>
+      )}
+    </>
   );
 };

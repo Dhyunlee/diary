@@ -1,15 +1,18 @@
 import styled from '@emotion/styled';
 
 export const DiaryHeaderContainer = styled.div`
-  padding: 8px 30px;
+  padding: 0 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 18px;
+  .diary-date {
+    font-size: 18px;
+    font-weight: 600;
+    color: #212121;
+  }
   .arrowBtn {
     button {
       padding: 15px 20px;
-      font-size: 18px;
       cursor: pointer;
       line-height: 10px;
       border: none;

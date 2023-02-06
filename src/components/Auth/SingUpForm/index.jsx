@@ -141,6 +141,11 @@ const SingUpForm = ({ setAuthType, onAuth }) => {
         setAuthType("login");
         dispatch(dropAuthModal(false));
       }
+    } else {
+      alert.fire({
+        html: <p style={{ fontSize: 18 }}>이메일 중복을 확인하거나 비밀번호를 확인해주세요</p>,
+        icon: "warning",
+      });
     }
   };
   return (

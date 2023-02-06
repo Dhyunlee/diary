@@ -1,41 +1,83 @@
 import { memo, useRef, useState } from "react";
 import {
+  getDownloadURL,
+  ref,
+  getStorage,
+  uploadBytesResumable,
+} from "firebase/storage";
+
+import {
   ImgUploadBox,
   DrapFileArea,
   ImageUploadForm,
   ThumbnailImg,
 } from "./styles";
-import { getDownloadURL, ref, uploadBytes, getStorage } from "firebase/storage";
 
-const ImageUpload = () => {
+const storage = getStorage();
+
+const ImageUpload = ({ setUploadImgFile }) => {
   const inputFileRef = useRef(null);
   const [thumbnail, setThumbnail] = useState(null);
-  const [imageUpload, setImageUpload] = useState("");
 
   const onChangeImg = (e) => {
     console.log("이미지 업로드");
-    const { files } = e.target;
+    const file = e.target.files[0];
 
-    console.log(files);
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(files[0]);
-    fileReader.addEventListener("loadend", (e) => {
-      const { result } = e.currentTarget;
-      setImageUpload(result);
-    });
-    console.log(fileReader.result);
+    console.log(file);
+    if (file) {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.addEventListener("loadend", (e) => {
+        const { result } = e.currentTarget;
+        setThumbnail(result);
+        onSaveToFStorage(file);
+      });
+      console.log(fileReader.result);
+    }
   };
   const onClickFileInput = () => {
     inputFileRef?.current.click();
   };
-  imageUpload && console.log(imageUpload);
+
+  const onSaveToFStorage = (file) => {
+    const uniqueKey = new Date().getTime();
+    const newName = file.name
+      .replace(/[~`!#$%^&*+=\-[\]\\';,/{}()|\\":<>?]/g, "")
+      .split(" ")
+      .join("");
+
+    const metaData = {
+      contentType: file.type,
+    };
+
+    const storageRef = ref(storage, "images/" + newName + uniqueKey);
+    const uploadTask = uploadBytesResumable(storageRef, file, metaData);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        // const progress =
+        //   (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        // console.log(`Upload is ${progress}% done`);
+      },
+      (error) => {
+        alert(`error: image upload error ${JSON.stringify(error)}`);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
+          console.log(`완료 url: ${downloadUrl}`);
+          setUploadImgFile(downloadUrl);
+        });
+      }
+    );
+  };
+
   return (
     <ImageUploadForm>
       <ImgUploadBox style={{ position: "relative" }}>
         <DrapFileArea onClick={onClickFileInput}>
           {thumbnail ? (
             <ThumbnailImg>
-              <img src="https://img.icons8.com/ios/512/image--v1.png" alt="" />
+              <img src={thumbnail} alt="" />
             </ThumbnailImg>
           ) : (
             <>

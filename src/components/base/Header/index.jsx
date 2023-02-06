@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ProcessAuth from "@containers/ProcessAuth";
 
 import {
@@ -30,8 +30,7 @@ const Header = ({ isLoggedIn }) => {
   const onClickLogOut = () => {
     dispatch(getLogOut());
   };
-
-  console.log("Header", { isLoggedIn, loadUserInfo });
+  console.log({ loadUserInfo, isLoggedIn });
   return (
     <HeaderWrap>
       <HeaderContainer>
@@ -57,7 +56,7 @@ const Header = ({ isLoggedIn }) => {
               </UserMenu>
             )}
           </TopBar>
-          {isLoggedIn && loadUserInfo && (
+          {isLoggedIn && (
             <Navbar className="navbars">
               <ul>
                 <li>

@@ -1,13 +1,14 @@
 import DiaryItem from "@components/DiaryItem";
 import React from "react";
-import {DiaryListBox } from "./styles";
+import { DiaryListBox } from "./styles";
 
-const DiaryListView = ({diaryList }) => {
-  console.log('DiaryListView')
+const DiaryListView = ({ diaryList }) => {
   return (
     <DiaryListBox>
       {diaryList?.length === 0 ? (
-        <div>작성하신 내용이 없습니다.</div>
+        <div className="empty-diary">
+          <p>작성하신 내용이 없습니다.</p>
+        </div>
       ) : (
         diaryList?.map((diary) => <DiaryItem key={diary.id} {...diary} />)
       )}

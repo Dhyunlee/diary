@@ -1,3 +1,4 @@
+import { getDate } from "@utils/lib";
 import { Helmet } from "react-helmet-async";
 import {
   DateArea,
@@ -9,13 +10,13 @@ import {
   EditArea,
 } from "./styles";
 
-const DetailView = ({ title, date, imgUrl, content }) => {
+const DetailView = ({ title, createdAt, imgUrl, content }) => {
   const noImgUrl = '/assets/images/no-img.png';
 
   return (
     <>
       <Helmet>
-        <title>diary | {`${title || "제목 없음"}`}</title>
+        <title>{`${title || "제목 없음"}`}</title>
       </Helmet>
       <DetailWrap>
         <EditArea>
@@ -23,7 +24,7 @@ const DetailView = ({ title, date, imgUrl, content }) => {
           <button>삭제</button>
         </EditArea>
         <DateArea>
-          <span>{date}</span>
+          <span>{getDate(createdAt)}</span>
         </DateArea>
         <Title className="title">{title}</Title>
         <Contents className="contents">
