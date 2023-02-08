@@ -1,5 +1,7 @@
+import { memo } from "react";
 import { getDate } from "@utils/lib";
 import { Helmet } from "react-helmet-async";
+import { FiEdit, FiTrash2 } from "react-icons/fi";
 import {
   DateArea,
   DetailWrap,
@@ -10,9 +12,10 @@ import {
   EditArea,
 } from "./styles";
 
-const DetailView = ({ title, createdAt, imgUrl, content }) => {
-  const noImgUrl = '/assets/images/no-img.png';
-
+const DetailView = ({ onDelDiary, onEditDiary, diaryItem }) => {
+  const noImgUrl = "/assets/images/no-img.png";
+  const { diaryId, title, createdAt, imgUrl, content } = diaryItem;
+  console.log({ diaryItem });
   return (
     <>
       <Helmet>
@@ -20,8 +23,22 @@ const DetailView = ({ title, createdAt, imgUrl, content }) => {
       </Helmet>
       <DetailWrap>
         <EditArea>
-          <button>수정</button>
-          <button>삭제</button>
+          <button
+            title="수정"
+            onClick={(e) => {
+              onEditDiary(diaryId);
+            }}
+          >
+            <FiEdit size="20" color="#424242" />
+          </button>
+          <button
+            title="삭제"
+            onClick={(e) => {
+              onDelDiary(diaryId);
+            }}
+          >
+            <FiTrash2 size="20" color="#424242" />
+          </button>
         </EditArea>
         <DateArea>
           <span>{getDate(createdAt)}</span>
@@ -40,4 +57,4 @@ const DetailView = ({ title, createdAt, imgUrl, content }) => {
   );
 };
 
-export default DetailView;
+export default memo(DetailView);

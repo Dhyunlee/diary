@@ -30,7 +30,6 @@ const Header = ({ isLoggedIn }) => {
   const onClickLogOut = () => {
     dispatch(getLogOut());
   };
-  console.log({ loadUserInfo, isLoggedIn });
   return (
     <HeaderWrap>
       <HeaderContainer>

@@ -18,10 +18,15 @@ const diaryCollectionRef = collection(dbService, "diarys");
 // 다이어리 리스트 조회
 export const fetchGetDiary = async (userId, thisMonth) => {
   try {
-    const q = query(diaryCollectionRef, where('writer', '==', userId), where('month', '==', thisMonth), orderBy("createdAt", "desc"), limit(10));
+    const q = query(
+      diaryCollectionRef,
+      where("writer", "==", userId),
+      where("month", "==", thisMonth),
+      orderBy("createdAt", "desc"),
+      limit(10)
+    );
     const getData = new Promise((res, rej) => {
       onSnapshot(q, (snapshop) => {
-        snapshop.docs.map(doc => console.log(doc.data().createdAt))
         let result = snapshop.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -47,6 +52,7 @@ export const fetchGetDiaryById = async (id) => {
     const getData = await getDoc(diaryDocRef);
     if (!getData.exists()) return "해당 데이터가 존재하지 않습니다.";
     return {
+      diaryId: id,
       ...getData.data(),
       createdAt: new Date(getData.data().createdAt.toDate()).getTime(),
     };

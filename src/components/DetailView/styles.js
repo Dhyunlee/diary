@@ -41,7 +41,7 @@ export const EditArea = styled.div`
   right: 20px;
 
   button {
-    /* padding: 5px; */
+    display: inline-block;
     background: transparent;
     border: none;
     border-radius: 5px;
@@ -51,7 +51,7 @@ export const EditArea = styled.div`
     font-size: 15px;
     
     &:first-of-type {
-      margin-right: 6px;
+      margin-right: 3px;
     }
 
     &:active {
