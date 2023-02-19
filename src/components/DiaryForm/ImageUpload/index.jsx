@@ -15,9 +15,9 @@ import {
 
 const storage = getStorage();
 
-const ImageUpload = ({ setUploadImgFile }) => {
+const ImageUpload = ({ diaryItem, setUploadImgFile }) => {
   const inputFileRef = useRef(null);
-  const [thumbnail, setThumbnail] = useState(null);
+  const [thumbnail, setThumbnail] = useState(diaryItem?.imgUrl);
 
   const onChangeImg = (e) => {
     console.log("이미지 업로드");

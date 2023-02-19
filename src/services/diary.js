@@ -79,8 +79,20 @@ export const fetchPostDiary = async (data) => {
 
 // 다이어리 수정
 export const fetchPutDiaryById = async (id, data) => {
-  const diaryDocRef = doc(dbService, "diarys", id);
-  await updateDoc(diaryDocRef, data);
+  console.log({id, data})
+  const diaryDocRef = doc(diaryCollectionRef, id);
+  try {
+    await updateDoc(diaryDocRef, data);
+    return {
+      isOk: true,
+      msg: "수정했습니다.",
+    };
+  } catch (err) {
+    return {
+      isOk: false,
+      msg: err.massage,
+    };
+  }
 };
 
 // 다이어리 삭제
