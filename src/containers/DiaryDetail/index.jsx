@@ -1,10 +1,10 @@
 import React, { useEffect, useState, memo, useCallback } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
-import DetailView from '@components/DetailView';
-import { fetchDeleteDiaryById, fetchGetDiaryById } from '@services/diary';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import DetailView from '@components/DetailView';
 import Spinners from '@components/Spinners';
+import { fetchDeleteDiaryById, fetchGetDiaryById } from '@services/diary';
 const alert = withReactContent(Swal);
 
 const DiaryDetail = () => {

@@ -11,7 +11,7 @@ const DiaryItem = (props) => {
         <div className="img-wrap">{<img src={imgUrl|| noImg} alt="" />}</div>
         <div className="cnt-inner">
           <div className="title">
-            <span style={{fontSize: 18, fontWeight: "bolder"}}>{title || '제목 없음'}</span>
+            <span>{title || '제목 없음'}</span>
           </div>
           <div className="content">
             <span>{content}</span>

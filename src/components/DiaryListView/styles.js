@@ -44,9 +44,10 @@ export const DiaryListBox = styled.div`
   .cnt-inner {
     padding: 17px 20px;
   }
-  .cnt-inner .title {
+  .cnt-inner .title span {
     font-size: 18px;
     height: 22px;
+    font-weight: bolder;
   }
   .cnt-inner .content {
     margin-top: 12px;

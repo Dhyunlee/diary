@@ -6,6 +6,7 @@ export const ImageUploadForm = styled.div`
 `;
 
 export const ImgUploadBox = styled.div`
+  position: relative;
   width: 100%;
   border: 2px dashed #d2d1d1;
 `;
