@@ -10,7 +10,7 @@ const WriteDiary = () => {
       <Helmet>
         <title>새 다이어리 작성</title>
       </Helmet>
-      <FormDiaryContainer className="frm-diary-container">
+      <FormDiaryContainer>
         <HeaderTitle>
           <span>다이어리 작성</span>
         </HeaderTitle>

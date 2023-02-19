@@ -1,9 +1,5 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-export const DiaryContainer = styled.div`
-  padding: 20px 10px;
-  width: 100%;
-`;
 export const DiaryListBox = styled.div`
   margin-top: 40px;
   width: 100%;

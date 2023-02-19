@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { getUserInfo } from "@store/actions/users";
-import Header from "./components/base/Header";
-import DiaryTemplate from "./layouts/DiaryTemplate";
-import Routers from "./routers";
-import { authService } from "./fbconfig";
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getUserInfo } from '@store/actions/users';
+import Header from './components/base/Header';
+import DiaryTemplate from './layouts/DiaryTemplate';
+import Routers from './routers';
+import { authService } from './fbconfig';
 
-import { useSelector } from "react-redux";
-import { getState } from "@store/reducers/user";
+import { useSelector } from 'react-redux';
+import { getState } from '@store/reducers/user';
 
-import { Wrap } from "./styles/common";
-import { DiaryContainer } from "@components/DiaryListView/styles";
+import { Wrap } from './styles/common';
+import Spinners from '@components/Spinners';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -29,16 +29,36 @@ const App = () => {
     });
   }, [dispatch]);
 
-  if (isLoggedIn === null && !loadUserInfo) return <div>불러오는중...</div>;
+  if (isLoggedIn === null && !loadUserInfo) {
+    return <Spinners type="fade" color="#424242" loading={isLoggedIn} />;
+  }
+
+  const ComponentIsNotLogged = () => {
+    if (isLoggedIn === false) {
+      return (
+        <div
+          style={{
+            height: '70vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: 18,
+            textAlign: 'center'
+          }}
+        >
+          <p>다이어리를 사용하시려면 인증이 필요합니다.</p>
+        </div>
+      );
+    }
+  };
   return (
     <Wrap>
       <>
         <Header isLoggedIn={isLoggedIn} />
         <>
           <DiaryTemplate>
-            <DiaryContainer>
-              <Routers isLoggedIn={isLoggedIn}/>
-            </DiaryContainer>
+            {ComponentIsNotLogged()}
+            <Routers isLoggedIn={isLoggedIn} />
           </DiaryTemplate>
         </>
       </>

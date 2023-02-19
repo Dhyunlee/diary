@@ -3,7 +3,6 @@ export const DetailWrap = styled.div`
   width: 100%;
   padding: 32px 35px;
   height: 790px;
-  overflow: auto;
   position: relative;
 `;
 

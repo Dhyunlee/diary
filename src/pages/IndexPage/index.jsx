@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import DiaryList from '@containers/DiaryList';
+import { DiaryContainer } from './styles';
 
 const IndexPage = ({ isLoggedIn }) => {
   return (
@@ -9,7 +10,9 @@ const IndexPage = ({ isLoggedIn }) => {
         <title>diary</title>
         <meta name="description" content="하루 일상을 기록해보아요!" />
       </Helmet>
-      <DiaryList isLoggedIn={isLoggedIn} />
+      <DiaryContainer>
+        <DiaryList isLoggedIn={isLoggedIn} />
+      </DiaryContainer>
     </>
   );
 };

@@ -4,6 +4,7 @@ import DetailView from '@components/DetailView';
 import { fetchDeleteDiaryById, fetchGetDiaryById } from '@services/diary';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import Spinners from '@components/Spinners';
 const alert = withReactContent(Swal);
 
 const DiaryDetail = () => {
@@ -57,12 +58,13 @@ const DiaryDetail = () => {
       }`;
       navigate(editUrl, { state: diaryId, replace: true });
     },
-    [diaryItem?.title, navigate]
+    [diaryId, diaryItem?.title, navigate]
   );
 
-  if (isLoading) return <div>다이어리 불러오기</div>;
+  // if (isLoading) return <Spinners type='fade' color='#424242' loading={isLoading}/>;
   return (
     <>
+     {isLoading && <Spinners type='fade' color='#424242' loading={isLoading}/>}
       {diaryItem && (
         <DetailView diaryItem={diaryItem} onDelDiary={onDelDiary} onEditDiary={onEditDiary} />
       )}
