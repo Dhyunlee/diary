@@ -1,7 +1,7 @@
 import DiaryDetail from "@containers/DiaryDetail";
 
-const Detail = () => {
+const DetailPage = () => {
   return <DiaryDetail />;
 };
 
-export default Detail;
+export default DetailPage;

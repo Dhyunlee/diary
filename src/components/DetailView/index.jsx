@@ -15,7 +15,7 @@ import {
 const DetailView = ({ onDelDiary, onEditDiary, diaryItem }) => {
   const noImgUrl = "/assets/images/no-img.png";
   const { diaryId, title, createdAt, imgUrl, content } = diaryItem;
-  console.log({ diaryItem });
+  
   return (
     <>
       <Helmet>

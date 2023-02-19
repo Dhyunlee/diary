@@ -8,7 +8,7 @@ const WriteDiary = () => {
   return (
     <>
       <Helmet>
-        <title>diary | 새 다이어리 작성</title>
+        <title>새 다이어리 작성</title>
       </Helmet>
       <FormDiaryContainer className="frm-diary-container">
         <HeaderTitle>
