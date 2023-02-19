@@ -73,7 +73,7 @@ const ImageUpload = ({ diaryItem, setUploadImgFile }) => {
 
   return (
     <ImageUploadForm>
-      <ImgUploadBox style={{ position: "relative" }}>
+      <ImgUploadBox>
         <DrapFileArea onClick={onClickFileInput}>
           {thumbnail ? (
             <ThumbnailImg>
