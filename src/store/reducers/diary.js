@@ -1,4 +1,4 @@
-import { getDate } from "@utils/lib";
+import { getDate } from "@utils/days";
 
 const { createSlice } = require("@reduxjs/toolkit");
 

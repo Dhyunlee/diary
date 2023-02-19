@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { getDate } from "@utils/lib";
+import { getDate } from "@utils/days";
 import { Helmet } from "react-helmet-async";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import {

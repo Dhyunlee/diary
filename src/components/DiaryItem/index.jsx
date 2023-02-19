@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getDate } from "@utils/lib";
+import { getDate } from "@utils/days";
 
 const DiaryItem = (props) => {
   const { id, writer, title, content, imgUrl, createdAt } = props;

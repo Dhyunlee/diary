@@ -15,7 +15,7 @@ import {
 import { showAuthModal } from "@store/reducers/modal";
 import { getState } from "@store/reducers/user";
 import { getLogOut } from "@store/actions/users";
-import { getUserName } from "@utils/lib";
+import { getUserName } from "@utils/days";
 
 const Header = ({ isLoggedIn }) => {
   const [isShowModal, setShowModal] = useState(false);
