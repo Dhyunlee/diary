@@ -36,10 +36,6 @@ const DiaryList = ({ isLoggedIn }) => {
     setCurrentDate((prev) => sub(prev, { months: 1 }));
   };
 
-  if (isLoading) {
-    return <Spinners type="fade" color="#424242" loading={isLoggedIn} />;
-  }
-
   return (
     <>
       <DiaryHeader
