@@ -1,6 +1,4 @@
-import { useLocation } from "react-router-dom";
-import { useLayoutEffect, useState } from "react";
-import { ROUTES_PATH } from "../../constants/paths/routes_path";
+import React, { useLayoutEffect, useState } from "react";
 import ProtectedRoutes from "./privateRoutes";
 import PublicRouter from "./publicRoutes";
 import Header from "../common/header";
