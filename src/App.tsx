@@ -1,11 +1,5 @@
-import Routes from "./components/routes";
-
-function App() {
-  return (
-    <div className="App">
-      <Routes />
-    </div>
-  );
-}
+const App = () => {
+  return <div>다이어리</div>;
+};
 
 export default App;
