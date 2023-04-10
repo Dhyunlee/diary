@@ -1,0 +1,44 @@
+export const diaryData = [
+  {
+    id: 1,
+    writer: "green12",
+    title: "",
+    content: "12월인데도 그렇게 춥지가 않네? 말에는 추울까?",
+    imgUrl: "",
+    createAt: "2022-12-01",
+  },
+  {
+    id: 2,
+    writer: "green12",
+    title: "여름보다 겨울이 좋아!",
+    content: "여름보다는 그래도 겨울이 좋당 ^^",
+    imgUrl: "data:image/jpeg;base64,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",
+    createAt: "2022-12-05",
+  },
+  {
+    id: 3,
+    writer: "green12",
+    title: "",
+    content:
+      "코로나는 언제 없어지는 걸까? 벌써 2년이나 된 거 같은데, 너무 오래가는 거 아닌가?",
+    imgUrl: "https://cdn.pixabay.com/photo/2020/04/21/16/39/covid-19-5073811__340.jpg",
+    createAt: "2022-12-08",
+  },
+  {
+    id: 4,
+    writer: "green12",
+    title: "",
+    content:
+      "몸관리를 잘해야한다. 정말로... 날씨가 추우니 따듯하게 입고 나가지.",
+    imgUrl: "",
+    createAt: "2022-12-11",
+  },
+  {
+    id: 5,
+    writer: "green12",
+    title: "",
+    content: "오늘 정말 춥네..",
+    imgUrl: "",
+    createAt: "2022-12-12",
+  },
+];
