@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { dropEmotionModal, getState } from "@store/reducers/modal";
 import { useDispatch, useSelector } from "react-redux";
-import Modal from "@components/base/Modal";
+import Modal from "@components/Base/Modal";
 import SelectEmotion from "@components/DiaryForm/SelectEmotion";
 
 const EmotionModal = ({ emotion, setEmotion }) => {

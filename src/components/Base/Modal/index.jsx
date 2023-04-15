@@ -11,8 +11,11 @@ const Modal = ({ height, children, isShowModal, onCloseModal }) => {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
+    console.log({isShowModal})
+  }, [isShowModal])
+  useEffect(() => {
     let t;
-    if ((localVisible, !isShowModal)) {
+    if ((localVisible || !isShowModal)) {
       setAnimate(true);
       t = setTimeout(() => setAnimate(false), 250);
     }

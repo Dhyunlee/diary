@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getUserInfo } from "@store/actions/users";
-import Header from "./components/base/Header";
+import Header from "./components/Base/Header";
 import DiaryTemplate from "./layouts/DiaryTemplate";
 import Routers from "./routers";
 import { authService } from "./fbconfig";
@@ -11,6 +11,8 @@ import { getState } from "@store/reducers/user";
 
 import { Wrap } from "./styles/common";
 import Spinners from "@components/Spinners";
+import { BounceLoader } from "react-spinners";
+import Modal from "@components/Base/Modal";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -29,13 +31,9 @@ const App = () => {
     });
   }, [dispatch]);
 
-  // if (isLoggedIn === null && !loadUserInfo) {
-  //   console.log('실행')
-  //   return <Spinners type="bar" color="#424242" loading={isLoggedIn} />;
-  // }
-
   const ComponentIsNotLogged = () => {
     if (isLoggedIn === false) {
+      console.log("인증 필요");
       return (
         <div
           style={{
@@ -56,15 +54,22 @@ const App = () => {
   return (
     <Wrap>
       <>
-        {isLoggedIn === null || !loadUserInfo ? (
-          <Spinners type="bar" color="#424242" loading={isLoggedIn} />
+        {isLoggedIn && loadUserInfo === undefined ? (
+          <Spinners
+            type="bar"
+            color="#424242"
+            loading={loadUserInfo}
+          />
         ) : (
           <div>
             <Header isLoggedIn={isLoggedIn} />
             <>
               <DiaryTemplate>
-                {ComponentIsNotLogged()}
-                <Routers isLoggedIn={isLoggedIn} />
+                {isLoggedIn ? (
+                  <Routers isLoggedIn={isLoggedIn} />
+                ) : (
+                  ComponentIsNotLogged()
+                )}
               </DiaryTemplate>
             </>
           </div>

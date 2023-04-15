@@ -5,7 +5,7 @@ import withReactContent from 'sweetalert2-react-content';
 import { useDispatch, useSelector } from 'react-redux';
 import { getState, showEmotionModal } from '@store/reducers/modal';
 import { getState as userGetState } from '@store/reducers/user';
-import Label from '@components/base/Label';
+import Label from '@components/Base/Label';
 import DateArea from './DateArea';
 import ImageUpload from './ImageUpload';
 import EmotionModal from './EmotionModal';

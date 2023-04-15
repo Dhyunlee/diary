@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import Modal from "@components/base/Modal";
+import Modal from "@components/Base/Modal";
 import SingUpForm from "@components/Auth/SingUpForm";
 import LogInForm from "@components/Auth/LogInForm";
 
