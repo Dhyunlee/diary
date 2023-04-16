@@ -18,6 +18,17 @@ export const reset = css`
     line-height: 1.4;
   }
 
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(179, 179, 179);
+    border-radius: 25px;
+  }
+
   html {
     font-size: 16px;
   }

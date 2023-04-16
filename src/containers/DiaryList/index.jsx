@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { format, add, sub } from 'date-fns';
 import { getState } from '@store/reducers/user';
 import DiaryHeader from '@components/DiaryHeader';
-import Spinners from '@components/Spinners';
 
 const DiaryList = ({ isLoggedIn }) => {
   const [diary, setDiary] = useState([]);

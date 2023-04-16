@@ -79,7 +79,6 @@ export const fetchPostDiary = async (data) => {
 
 // 다이어리 수정
 export const fetchPutDiaryById = async (id, data) => {
-  console.log({id, data})
   const diaryDocRef = doc(diaryCollectionRef, id);
   try {
     await updateDoc(diaryDocRef, data);
