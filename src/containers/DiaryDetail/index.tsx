@@ -1,13 +1,13 @@
-import React, { useEffect, memo, useCallback } from "react";
+import { useEffect, memo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import DetailView from "@components/DetailView";
-import Spinners from "@components/Base/Spinners";
-import { fetchDeleteDiaryById } from "@services/diary";
-import { getDetailDiary } from "@store/actions/diary";
-import { getDiaryState } from "@store/reducers/diary";
+import DetailView from "components/DetailView";
+import Spinners from "components/Base/Spinners";
+import { fetchDeleteDiaryById } from "services/diary";
+import { getDetailDiary } from "store/actions/diary";
+import { getDiaryState } from "store/reducers/diary";
 import { deleteObject, getStorage, ref } from "firebase/storage";
 const alert = withReactContent(Swal);
 
@@ -24,7 +24,7 @@ const DiaryDetail = () => {
     dispatch(getDetailDiary(diaryId));
   }, [dispatch, diaryId]);
 
-  const onDelDiary = useCallback(async (id) => {
+  const onDelDiary = useCallback(async (diaryId: string) => {
     alert
       .fire({
         title: "정말 삭제하실건가요?",
@@ -37,7 +37,7 @@ const DiaryDetail = () => {
         confirmButtonText: "삭제",
       })
       .then(async (result) => {
-        console.log(detailDiary)
+        console.log(detailDiary);
         if (result.isConfirmed) {
           const fileRef = ref(storage, "images/" + detailDiary?.imgFileName);
           deleteObject(fileRef)
@@ -49,7 +49,7 @@ const DiaryDetail = () => {
               // Uh-oh, an error occurred!
             });
 
-          const res = await fetchDeleteDiaryById(id);
+          const res = await fetchDeleteDiaryById(diaryId);
           console.log({ 삭제결과: res });
           if (res.isOk) {
             Swal.fire("삭제되었습니다.", `${res.msg}`, "success");
@@ -62,13 +62,13 @@ const DiaryDetail = () => {
   }, []);
 
   const onEditDiary = useCallback(
-    (id) => {
+    (diaryId: string) => {
       const editUrl = `/edit/${
         detailDiary.title ? detailDiary.title.replaceAll(" ", "-") : "제목-없음"
       }`;
       navigate(editUrl, { state: diaryId, replace: true });
     },
-    [diaryId, detailDiary?.title, navigate]
+    [detailDiary.title, navigate]
   );
   console.log({ detailDiary, detailDiaryLoading });
   return (

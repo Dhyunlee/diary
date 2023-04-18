@@ -1,3 +1,9 @@
+export type TEmotion = {
+  id: number;
+  desc: "좋음" | "보통" | "나쁨" | "최악";
+  img: string;
+};
+
 export const emotionList = [
   {
     id: 1,

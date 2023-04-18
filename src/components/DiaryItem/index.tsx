@@ -1,13 +1,13 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { getDate } from "@utils/days";
+import { IDiary } from "types/db";
+import { getDate } from "utils/days";
 
-const DiaryItem = (props) => {
-  const { id, writer, title, content, imgUrl, createdAt } = props;
+const DiaryItem = (props: IDiary) => {
+  const { diaryId, title, content, imgUrl, createdAt } = props;
   const noImg = '/assets/images/no-img.png';
   return (
     <div className="diary-item">
-      <Link to={`/detail/${title ? title.replaceAll(' ', '-') : '제목-없음'}`} state={id}>
+      <Link to={`/detail/${title ? title.replaceAll(' ', '-') : '제목-없음'}`} state={diaryId}>
         <div className="img-wrap">{<img src={imgUrl|| noImg} alt="" />}</div>
         <div className="cnt-inner">
           <div className="title">

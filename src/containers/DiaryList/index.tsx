@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import DiaryListView from "@components/DiaryListView";
 import { useDispatch, useSelector } from "react-redux";
 import { format, add, sub } from "date-fns";
-import { getUserState } from "@store/reducers/user";
-import { getDiaryState } from "@store/reducers/diary";
-import DiaryHeader from "@components/DiaryHeader";
-import { getDiaryList } from "@store/actions/diary";
+import DiaryListView from "components/DiaryListView";
+import DiaryHeader from "components/DiaryHeader";
+import { getUserState } from "store/reducers/user";
+import { getDiaryState } from "store/reducers/diary";
+import { getDiaryList } from "store/actions/diary";
 
-const DiaryList = ({ isLoggedIn }) => {
+interface IProps {
+  isLoggedIn: boolean;
+}
+const DiaryList = ({ isLoggedIn }: IProps) => {
   const dispatch = useDispatch();
   const [currentDate, setCurrentDate] = useState(new Date());
   const thisMonth = format(currentDate, "yyyy년 MM월");

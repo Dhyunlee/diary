@@ -1,8 +1,13 @@
-import DiaryItem from "@components/DiaryItem";
-import React from "react";
+import React, { FunctionComponent } from "react";
+import DiaryItem from "components/DiaryItem";
+import {IDiary} from 'types/db';
 import { DiaryListBox } from "./styles";
 
-const DiaryListView = ({ diaryList }) => {
+interface IProps {
+  diaryList: IDiary[]
+}
+
+const DiaryListView: FunctionComponent<IProps> = ({ diaryList}) => {
   return (
     <DiaryListBox>
       {diaryList?.length === 0 ? (

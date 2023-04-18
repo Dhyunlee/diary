@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { getDate } from "@utils/days";
+import { getDate } from "utils/days";
 import { Helmet } from "react-helmet-async";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import {
@@ -12,10 +12,17 @@ import {
   EditArea,
 } from "./styles";
 
-const DetailView = ({ onDelDiary, onEditDiary, diaryItem }) => {
+import { IDiary } from "types/db";
+
+interface IProps {
+  onDelDiary: (diaryId: string) => void;
+  onEditDiary: (diaryId: string) => void;
+  diaryItem: IDiary;
+}
+const DetailView = ({ onDelDiary, onEditDiary, diaryItem }: IProps) => {
   const noImgUrl = "/assets/images/no-img.png";
   const { diaryId, title, createdAt, imgUrl, content } = diaryItem;
-  
+
   return (
     <>
       <Helmet>

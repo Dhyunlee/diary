@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
-import { fetchGetDiaryById } from '@services/diary';
-import DiaryFormTemplate from '@layouts/DiaryFormTemplate';
-import { FormDiaryContainer, HeaderTitle } from '@pages/WriteDiary/styles';
-import DiaryForm from '@components/DiaryForm';
+import DiaryFormTemplate from 'layouts/DiaryFormTemplate';
+import { FormDiaryContainer, HeaderTitle } from 'pages/WriteDiary/styles';
+import DiaryForm from 'components/DiaryForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDiaryState } from '@store/reducers/diary';
-import { getDetailDiary } from '@store/actions/diary';
+import { getDiaryState } from 'store/reducers/diary';
+import { getDetailDiary } from 'store/actions/diary';
 
 const EditDiary = () => {
   const dispatch = useDispatch();
   const { state: diaryId } = useLocation();
-
   const { detailDiary } = useSelector(getDiaryState);
 
   useEffect(() => {
