@@ -44,8 +44,8 @@ const ImageUpload = ({ diaryItem, setImgUrl, setImgFileName }) => {
       setThumbnail("");
       setImgUrl("");
       setImgFileName("");
-      const desertRef = ref(storage, diaryItem?.imgFileName);
-      deleteObject(desertRef)
+      const fileRef = ref(storage, "images/" + diaryItem?.imgFileName);
+      deleteObject(fileRef)
         .then(() => {
           console.log("삭제완료");
           // File deleted successfully
@@ -83,7 +83,7 @@ const ImageUpload = ({ diaryItem, setImgUrl, setImgFileName }) => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
           console.log(`완료 url: ${downloadUrl}`);
           setImgUrl(downloadUrl);
-          setImgFileName("images/" + newName + uniqueKey);
+          setImgFileName(newName + uniqueKey);
         });
       }
     );

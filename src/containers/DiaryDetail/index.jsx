@@ -8,14 +8,17 @@ import Spinners from "@components/Base/Spinners";
 import { fetchDeleteDiaryById } from "@services/diary";
 import { getDetailDiary } from "@store/actions/diary";
 import { getDiaryState } from "@store/reducers/diary";
+import { deleteObject, getStorage, ref } from "firebase/storage";
 const alert = withReactContent(Swal);
 
 const DiaryDetail = () => {
+  const storage = getStorage();
   const navigate = useNavigate();
   const { state: diaryId } = useLocation();
   const dispatch = useDispatch();
 
   const { detailDiary, detailDiaryLoading } = useSelector(getDiaryState);
+  console.log(detailDiary);
 
   useEffect(() => {
     dispatch(getDetailDiary(diaryId));
@@ -34,7 +37,18 @@ const DiaryDetail = () => {
         confirmButtonText: "삭제",
       })
       .then(async (result) => {
+        console.log(detailDiary)
         if (result.isConfirmed) {
+          const fileRef = ref(storage, "images/" + detailDiary?.imgFileName);
+          deleteObject(fileRef)
+            .then(() => {
+              console.log("삭제완료");
+              // File deleted successfully
+            })
+            .catch((error) => {
+              // Uh-oh, an error occurred!
+            });
+
           const res = await fetchDeleteDiaryById(id);
           console.log({ 삭제결과: res });
           if (res.isOk) {
@@ -56,11 +70,15 @@ const DiaryDetail = () => {
     },
     [diaryId, detailDiary?.title, navigate]
   );
-  console.log({detailDiary, detailDiaryLoading})
+  console.log({ detailDiary, detailDiaryLoading });
   return (
     <>
       {detailDiary ? (
-        <DetailView diaryItem={detailDiary} onDelDiary={onDelDiary} onEditDiary={onEditDiary} />
+        <DetailView
+          diaryItem={detailDiary}
+          onDelDiary={onDelDiary}
+          onEditDiary={onEditDiary}
+        />
       ) : (
         <Spinners type="bar" color="#424242" loading={detailDiaryLoading} />
       )}
