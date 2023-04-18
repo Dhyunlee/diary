@@ -7,7 +7,7 @@ import {
 
 const usersRef = collection(dbService, "users");
 
-export const fetchGetUserInfo = async (userId) => {
+export const fetchGetUserInfo = async (userId: string) => {
   const userDocRef = doc(usersRef, userId);
   try {
     const getData = await getDoc(userDocRef);

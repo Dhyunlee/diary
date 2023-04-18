@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
-import Header from "./components/Base/Header";
-import DiaryTemplate from "./layouts/DiaryTemplate";
 import Routers from "./routers";
 import { authService } from "./fbconfig";
-import { getUserInfo } from "@store/actions/users";
-import { getUserState } from "@store/reducers/user";
+import DiaryTemplate from "./layouts/DiaryTemplate";
+import { getUserInfo } from "store/actions/users";
+import { getUserState } from "store/reducers/user";
+import Header from "./components/Base/Header";
+import Spinners from "components/Base/Spinners";
 import { Wrap } from "./styles/common";
-import Spinners from "@components/Base/Spinners";
-import { format } from "date-fns";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const { loadUserInfo } = useSelector(getUserState);
   const dispatch = useDispatch();
   

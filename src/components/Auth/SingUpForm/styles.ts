@@ -85,7 +85,7 @@ export const InputWrap = styled.div`
   }
 `;
 
-export const CheckBtn = styled.button`
+export const CheckBtn = styled.button<{top: string}>`
   padding: 5px;
   margin: 0 0.3rem;
   position: relative;

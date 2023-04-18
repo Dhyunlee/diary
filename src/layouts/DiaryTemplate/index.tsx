@@ -1,7 +1,10 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { TemplateWrap, TemplateContainer } from "./styles";
 
-const DiaryTemplate = ({ children }) => {
+interface IProps {
+  children: React.ReactNode
+}
+const DiaryTemplate: FunctionComponent<IProps> = ({ children }) => {
   return (
     <TemplateWrap>
       <TemplateContainer>{children}</TemplateContainer>
