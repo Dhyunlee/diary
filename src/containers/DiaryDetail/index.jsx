@@ -1,29 +1,25 @@
-import React, { useEffect, useState, memo, useCallback } from "react";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import React, { useEffect, memo, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import DetailView from "@components/DetailView";
-import Spinners from "@components/Spinners";
-import { fetchDeleteDiaryById, fetchGetDiaryById } from "@services/diary";
+import Spinners from "@components/Base/Spinners";
+import { fetchDeleteDiaryById } from "@services/diary";
+import { getDetailDiary } from "@store/actions/diary";
+import { getDiaryState } from "@store/reducers/diary";
 const alert = withReactContent(Swal);
 
 const DiaryDetail = () => {
   const navigate = useNavigate();
-  const { id: paramId } = useParams();
   const { state: diaryId } = useLocation();
-  const [diaryItem, setDiaryItem] = useState(null);
-  const [isLoading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+
+  const { detailDiary, detailDiaryLoading } = useSelector(getDiaryState);
 
   useEffect(() => {
-    const getData = async () => {
-      setLoading(true);
-      const data = await fetchGetDiaryById(diaryId);
-      setDiaryItem(data);
-      setLoading(false);
-    };
-
-    getData();
-  }, [diaryId, paramId]);
+    dispatch(getDetailDiary(diaryId));
+  }, [dispatch, diaryId]);
 
   const onDelDiary = useCallback(async (id) => {
     alert
@@ -54,20 +50,19 @@ const DiaryDetail = () => {
   const onEditDiary = useCallback(
     (id) => {
       const editUrl = `/edit/${
-        diaryItem.title ? diaryItem.title.replaceAll(" ", "-") : "제목-없음"
+        detailDiary.title ? detailDiary.title.replaceAll(" ", "-") : "제목-없음"
       }`;
       navigate(editUrl, { state: diaryId, replace: true });
     },
-    [diaryId, diaryItem?.title, navigate]
+    [diaryId, detailDiary?.title, navigate]
   );
-
-  console.log({ diaryItem });
+  console.log({detailDiary, detailDiaryLoading})
   return (
     <>
-      {diaryItem ? (
-        <DetailView diaryItem={diaryItem} onDelDiary={onDelDiary} onEditDiary={onEditDiary} />
+      {detailDiary ? (
+        <DetailView diaryItem={detailDiary} onDelDiary={onDelDiary} onEditDiary={onEditDiary} />
       ) : (
-        <Spinners type="bar" color="#424242" loading={isLoading} />
+        <Spinners type="bar" color="#424242" loading={detailDiaryLoading} />
       )}
     </>
   );

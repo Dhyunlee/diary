@@ -32,7 +32,7 @@ const modalSlice = createSlice({
   },
 });
 
-export const getState = (state) => state.modal;
+export const getModalState = (state) => state.modal;
 export const {
   showAuthModal,
   dropAuthModal,

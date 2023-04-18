@@ -31,7 +31,6 @@ const SpinnerInterface = ({ type, color, loading, size }) => {
 };
 
 const Spinners = ({ type = 'beat', loading, size = 25, color = '#36d7b7' }) => {
-  console.log(type)
   return (
     <div className="sweet-loading">
       <SpinnerInterface

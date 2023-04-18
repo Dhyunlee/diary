@@ -1,33 +1,48 @@
-import { getDate } from "@utils/days";
+import { getDiaryList, getDetailDiary } from "@store/actions/diary";
 
 const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = {
-  currentDate: getDate(new Date()).substring(0, 9),
+  diaryList: null,
+  detailDiary: null,
+  diaryListLoading: false,
+  diaryListError: null,
+  detailDiaryLoading: false,
+  detailDiaryError: null,
 };
 
 const diarySlices = createSlice({
   name: "diary",
   initialState: initialState,
-  reducers: {
-    increamentMonth: {
-      prepare: (state) => {
-        const currentDate = getDate(new Date()).substring(0, 9);
-        const changeDate = state.currentDate + 1;
-        return changeDate < currentDate ? currentDate : currentDate;
-      },
-      reducer: (state, action) => {
-        state.currentDate += action.payload;
-      },
-    },
-    decrementMonth: {
-      reducer: (state) => {
-        state.currentDate = state.currentDate - 1;
-      },
-    },
-  },
+  extraReducers: (builder) =>
+    builder
+      .addCase(getDiaryList.pending, (state) => {
+        state.diaryListLoading = true;
+        state.diaryList = null;
+        state.diaryListError = null;
+      })
+      .addCase(getDiaryList.fulfilled, (state, action) => {
+        state.diaryListLoading = false;
+        state.diaryList = action.payload;
+      })
+      .addCase(getDiaryList.rejected, (state, action) => {
+        state.diaryListLoading = false;
+        state.diaryListError = action.error;
+      })
+      .addCase(getDetailDiary.pending, (state) => {
+        state.detailDiaryLoading = true;
+        state.detailDiary = null;
+        state.detailDiaryError = null;
+      })
+      .addCase(getDetailDiary.fulfilled, (state, action) => {
+        state.detailDiaryLoading = false;
+        state.detailDiary = action.payload;
+      })
+      .addCase(getDetailDiary.rejected, (state, action) => {
+        state.detailDiaryLoading = false;
+        state.detailDiaryError = action.error;
+      }),
 });
 
-export const getState = (state) => state.diary;
-export const { increamentMonth, decrementMonth } = diarySlices.actions;
+export const getDiaryState = (state) => state.diary;
 export default diarySlices;

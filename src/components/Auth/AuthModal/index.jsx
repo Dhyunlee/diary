@@ -4,12 +4,12 @@ import SingUpForm from "@components/Auth/SingUpForm";
 import LogInForm from "@components/Auth/LogInForm";
 
 import { AuthFormModal } from "./styles";
-import { dropAuthModal, getState } from "@store/reducers/modal";
+import { dropAuthModal, getModalState } from "@store/reducers/modal";
 
 const AuthModal = (props) => {
   // authType(로그인 or 회원가입)에 따라 컴포넌트 불러옴
   const { authType, setAuthType } = props;
-  const { isAuthModal } = useSelector(getState);
+  const { isAuthModal } = useSelector(getModalState);
   const dispatch = useDispatch();
   
   const onCloseModal = () => {
