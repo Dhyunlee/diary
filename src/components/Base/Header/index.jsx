@@ -13,13 +13,13 @@ import {
   UserMenu,
 } from "./styles";
 import { showAuthModal } from "@store/reducers/modal";
-import { getState } from "@store/reducers/user";
+import { getUserState } from "@store/reducers/user";
 import { getLogOut } from "@store/actions/users";
 import { getUserName } from "@utils/days";
 
 const Header = ({ isLoggedIn }) => {
   const [isShowModal, setShowModal] = useState(false);
-  const { loadUserInfo } = useSelector(getState);
+  const { loadUserInfo } = useSelector(getUserState);
   const dispatch = useDispatch();
 
   const onClickAuthModal = (e) => {

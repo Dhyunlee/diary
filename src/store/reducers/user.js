@@ -37,5 +37,5 @@ const userSlice = createSlice({
       })
 });
 
-export const getState = (state) => state.user;
+export const getUserState = (state) => state.user;
 export default userSlice;

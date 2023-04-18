@@ -1,31 +1,26 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { getUserInfo } from "@store/actions/users";
+import { useSelector,useDispatch } from "react-redux";
 import Header from "./components/Base/Header";
 import DiaryTemplate from "./layouts/DiaryTemplate";
 import Routers from "./routers";
 import { authService } from "./fbconfig";
-
-import { useSelector } from "react-redux";
-import { getState } from "@store/reducers/user";
-
+import { getUserInfo } from "@store/actions/users";
+import { getUserState } from "@store/reducers/user";
 import { Wrap } from "./styles/common";
-import Spinners from "@components/Spinners";
-import { BounceLoader } from "react-spinners";
-import Modal from "@components/Base/Modal";
+import Spinners from "@components/Base/Spinners";
+import { format } from "date-fns";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
-  const { loadUserInfo } = useSelector(getState);
+  const { loadUserInfo } = useSelector(getUserState);
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
         dispatch(getUserInfo(user?.uid));
         setIsLoggedIn(true);
       } else {
-        dispatch(getUserInfo(false));
         setIsLoggedIn(false);
       }
     });
@@ -50,7 +45,6 @@ const App = () => {
       );
     }
   };
-
   return (
     <Wrap>
       <>
