@@ -3,7 +3,6 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import IndexPage from '@pages/IndexPage';
 import DetailPage from '@pages/DetailPage';
 import WriteDiary from '@pages/WriteDiary';
-import Mypage from '@pages/Mypage';
 import EditPage from '@pages/EditPage';
 const Routers = ({ isLoggedIn }) => {
   return (
@@ -20,10 +19,6 @@ const Routers = ({ isLoggedIn }) => {
       <Route
         path="/edit/:title"
         element={isLoggedIn ? <EditPage /> : <Navigate to="/" replace={false} />}
-      />
-      <Route
-        path="mypage"
-        element={isLoggedIn ? <Mypage /> : <Navigate to="/" replace={false} />}
       />
       <Route path="not-found" element={<div>요청하신 페이지가 없습니다.</div>} />
       <Route path="*" element={<Navigate replace to="/not-found" />} />

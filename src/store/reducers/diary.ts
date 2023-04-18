@@ -1,4 +1,4 @@
-import { getDiaryList, getDetailDiary } from "@store/actions/diary";
+import { getDiaryList, getDetailDiary } from "store/actions/diary";
 
 const { createSlice } = require("@reduxjs/toolkit");
 

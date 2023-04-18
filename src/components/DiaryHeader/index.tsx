@@ -2,7 +2,13 @@
 import { css } from "@emotion/react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { DiaryHeaderContainer } from "./styles";
-const DiaryHeader = ({ thisMonth, onIncreateMonth, ondecreateMonth }) => {
+
+interface IProps {
+  thisMonth: string;
+  onIncreateMonth: () => void;
+  ondecreateMonth: () => void;
+}
+const DiaryHeader = ({ thisMonth, onIncreateMonth, ondecreateMonth }: IProps) => {
   return (
     <div
       css={css`
