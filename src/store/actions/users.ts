@@ -7,7 +7,7 @@ export const getUserInfo = createAsyncThunk("user/userInfo", async (userId: stri
   return res;
 });
 
-export const getLogOut = createAsyncThunk("user/logout", async () => {
+export const getLogOut = createAsyncThunk<Promise<any>>("user/logout", async () => {
   const res = await logOut();
   return res;
 });

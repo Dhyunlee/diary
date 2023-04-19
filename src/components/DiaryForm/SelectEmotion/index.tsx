@@ -1,12 +1,16 @@
-import { useState, useEffect, memo, useCallback } from "react";
-import { emotionList } from "@utils/emotion";
+import { useState, useEffect, memo, useCallback, Dispatch } from "react";
+import { TEmotion, emotionList } from "utils/emotion";
 import { EmotionWrap, Emotions } from "./styles";
 
-const SelectEmotion = ({ setEmotion, onCloseModal }) => {
-  const [selectedElement, setsSelectedElement] = useState(null);
+interface IProps {
+  setEmotion: Dispatch<React.SetStateAction<TEmotion>>, 
+  onCloseModal: () => void;
+}
+const SelectEmotion = ({ setEmotion, onCloseModal }: IProps) => {
+  const [selectedElement, setsSelectedElement] = useState<number>(0);
   
   useEffect(() => {
-    let timer;
+    let timer: any;
     if (selectedElement) {
       timer = setTimeout(() => {
         onCloseModal();
@@ -19,7 +23,7 @@ const SelectEmotion = ({ setEmotion, onCloseModal }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedElement]);
 
-  const onClickEmotion = useCallback((emotion) => {
+  const onClickEmotion = useCallback((emotion: TEmotion) => {
     setEmotion((prev) => Object.assign(prev, emotion));
     setsSelectedElement(emotion.id);
   }, [setEmotion]);

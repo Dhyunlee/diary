@@ -49,28 +49,6 @@ export const checkEmail = async (email: string) => {
   }
 };
 
-// export const signUp = async ({ email, password }: IAuth): SignupReturnType => {
-//   try {
-//     const { user } = await createUserWithEmailAndPassword(
-//       authService,
-//       email,
-//       password
-//     );
-
-//     await setDoc(doc(usersRef, user.uid), { email });
-//     return {
-//       isOk: true,
-//     };
-//   } catch (err: any) {
-//     if (err instanceof Error) {
-//       return {
-//         isOk: false,
-//         msg: err.message,
-//       };
-//     }
-//   }
-// };
-
 export const signUp = async ({ email, password }: IAuth): Promise<any> => {
   try {
     const { user } = await createUserWithEmailAndPassword(
@@ -115,7 +93,7 @@ export const logIn = async ({ email, password }: IAuth): Promise<any> => {
   }
 };
 
-export const logOut = async () => {
+export const logOut = async (): Promise<any> => {
   try {
     await signOut(authService);
     return {

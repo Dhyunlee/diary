@@ -1,4 +1,4 @@
-import { memo, useRef, useState } from "react";
+import { Dispatch, memo, useRef, useState } from "react";
 import {
   getDownloadURL,
   ref,
@@ -14,29 +14,36 @@ import {
   ThumbnailImg,
 } from "./styles";
 import { InputGroup } from "../styles";
-import Label from "@components/Base/Label";
+import Label from "components/Base/Label";
+import { IDiary } from "types/db";
 
 const storage = getStorage();
 
-const ImageUpload = ({ diaryItem, setImgUrl, setImgFileName }) => {
-  const inputFileRef = useRef(null);
-  const [thumbnail, setThumbnail] = useState(diaryItem?.imgUrl);
+interface IProps {
+  diaryItem: IDiary, 
+  setImgUrl: Dispatch<React.SetStateAction<string>>, 
+  setImgFileName: Dispatch<React.SetStateAction<string>>
+}
 
-  const onChangeImg = (e) => {
-    const file = e.target.files[0];
+const ImageUpload = ({ diaryItem, setImgUrl, setImgFileName }: IProps) => {
+  const inputFileRef = useRef<HTMLInputElement>(null);
+  const [thumbnail, setThumbnail] = useState<string | null>(diaryItem.imgUrl ?? '');
+
+  const onChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = (e.target.files as FileList)[0];
     if (file) {
-      const fileReader = new FileReader();
+      const fileReader: FileReader  = new FileReader();
       fileReader.readAsDataURL(file);
-      fileReader.addEventListener("loadend", (e) => {
-        const { result } = e.currentTarget;
+      fileReader.addEventListener("loadend", (e: ProgressEvent<FileReader>) => {
+        const { result } = e.currentTarget as FileReader;
         console.log({ result });
-        setThumbnail(result);
+        setThumbnail(result as string);
         onSaveToFStorage(file);
       });
     }
   };
   const onClickFileInput = () => {
-    inputFileRef?.current.click();
+      inputFileRef?.current?.click();
   };
 
   const onCancelImageUpload = () => {
@@ -56,7 +63,7 @@ const ImageUpload = ({ diaryItem, setImgUrl, setImgFileName }) => {
     }
   };
 
-  const onSaveToFStorage = (file) => {
+  const onSaveToFStorage = (file: File) => {
     const uniqueKey = new Date().getTime();
     const newName = file.name
       .replace(/[~`!#$%^&*+=\-[\]\\';,/{}()|\\":<>?]/g, "")

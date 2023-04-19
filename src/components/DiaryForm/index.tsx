@@ -14,6 +14,7 @@ import { Form, FormBtn, InputGroup, InputWrap } from "./styles";
 import { format } from "date-fns";
 import { getDate } from "utils/days";
 import { IDiary } from "types/db";
+import { TEmotion } from "utils/emotion";
 
 const alert = withReactContent(Swal);
 
@@ -27,13 +28,13 @@ const DiaryForm = ({ diaryId, isEdit, diaryItem }: IProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [date, setDate] = useState(new Date(savedDate));
-  const emotionInit = diaryItem
+  const emotionInit: TEmotion = diaryItem
     ? diaryItem?.emotion
     : { id: 3, img: "/assets/images/emtion_3.png", desc: "보통" };
 
   const [title, setTitle] = useState(diaryItem?.title || "");
   const [content, setContent] = useState(diaryItem?.content || "");
-  const [emotion, setEmotion] = useState(emotionInit);
+  const [emotion, setEmotion] = useState<TEmotion>(emotionInit);
 
   const [imgUrl, setImgUrl] = useState(diaryItem?.imgUrl || "");
   const [imgFileName, setImgFileName] = useState(diaryItem?.imgFileName || "");
@@ -112,7 +113,7 @@ const DiaryForm = ({ diaryId, isEdit, diaryItem }: IProps) => {
             </div>
           </div>
           {isEmotionModal && (
-            <EmotionModal emotion={emotion} setEmotion={setEmotion} />
+            <EmotionModal setEmotion={setEmotion} />
           )}
         </InputWrap>
       </InputGroup>
@@ -146,11 +147,15 @@ const DiaryForm = ({ diaryId, isEdit, diaryItem }: IProps) => {
         </InputWrap>
       </InputGroup>
       <InputGroup style={{ position: "relative" }}>
-        <ImageUpload
-          diaryItem={diaryItem}
-          setImgUrl={setImgUrl}
-          setImgFileName={setImgFileName}
-        />
+        {
+          diaryItem && (
+            <ImageUpload
+              diaryItem={diaryItem}
+              setImgUrl={setImgUrl}
+              setImgFileName={setImgFileName}
+            />
+          )
+        }
       </InputGroup>
       <FormBtn>
         <div className="btnWrap">

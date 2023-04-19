@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getLogOut, getUserInfo } from "@store/actions/users";
+import { getLogOut, getUserInfo } from "store/actions/users";
 
 const initialState = {
   loadUserLoading: false, //유저 정보(유저 정보) 로딩 상태
