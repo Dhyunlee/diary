@@ -1,6 +1,6 @@
-import { getUserInfo } from "@store/actions/users";
-import { dropAuthModal } from "@store/reducers/modal";
-import React from "react";
+import { getUserInfo } from "store/actions/users";
+import { dropAuthModal } from "store/reducers/modal";
+import React, { Dispatch } from "react";
 
 import { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
@@ -17,10 +17,17 @@ import {
   FormBtn,
 } from "../SingUpForm/styles";
 import { EmailAuthWrap, SocialAuthWrap } from "./styles";
+import { IAuth } from "types/db";
+import { QueryDiary } from "store/actions/types";
 
 const alert = withReactContent(Swal);
 
-const LogInForm = ({ setAuthType, onAuth }) => {
+interface IProps {
+  setAuthType: Dispatch<React.SetStateAction<"login" | "signup">>;
+  onAuth: ({ email, password }: IAuth) => Promise<any>;
+}
+
+const LogInForm = ({ setAuthType, onAuth }: IProps) => {
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -30,11 +37,11 @@ const LogInForm = ({ setAuthType, onAuth }) => {
   const { email, password } = inputs;
 
   const onGoSingUp = () => {
-    setAuthType((prev) => (prev = "singup"));
+    setAuthType((prev) => (prev = "signup"));
   };
 
   const onFormChange = useCallback(
-    (e) => {
+    (e: React.ChangeEvent<HTMLInputElement>) => {
       setInputs({
         ...inputs,
         [e.target.name]: e.target.value.trim(),
@@ -43,7 +50,7 @@ const LogInForm = ({ setAuthType, onAuth }) => {
     [inputs]
   );
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (email && password) {
       const { isOk, userId } = await onAuth({ email, password });

@@ -3,33 +3,41 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useDispatch, useSelector } from "react-redux";
-import { getModalState, showEmotionModal } from "@store/reducers/modal";
-import { getUserState } from "@store/reducers/user";
-import Label from "@components/Base/Label";
+import { getModalState, showEmotionModal } from "store/reducers/modal";
+import { getUserState } from "store/reducers/user";
+import Label from "components/Base/Label";
 import DateArea from "./DateArea";
 import ImageUpload from "./ImageUpload";
 import EmotionModal from "./EmotionModal";
-import { fetchPostDiary, fetchPutDiaryById } from "@services/diary";
+import { fetchPostDiary, fetchPutDiaryById } from "services/diary";
 import { Form, FormBtn, InputGroup, InputWrap } from "./styles";
 import { format } from "date-fns";
-import { getDate } from "@utils/days";
+import { getDate } from "utils/days";
+import { IDiary } from "types/db";
+import { TEmotion } from "utils/emotion";
 
 const alert = withReactContent(Swal);
 
-const DiaryForm = ({ diaryId, isEdit, diaryItem }) => {
+interface IProps {
+  diaryId?: string;
+  isEdit?: boolean;
+  diaryItem?: IDiary;
+}
+const DiaryForm = ({ diaryId, isEdit, diaryItem }: IProps) => {
+  const savedDate = diaryItem ? diaryItem?.createdAt : Date.now();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [date, setDate] = useState(new Date(diaryItem?.createdAt));
-  const emotionInit = diaryItem
+  const [date, setDate] = useState(new Date(savedDate));
+  const emotionInit: TEmotion = diaryItem
     ? diaryItem?.emotion
     : { id: 3, img: "/assets/images/emtion_3.png", desc: "보통" };
 
-  const [title, setTitle] = useState(diaryItem?.title || '');
-  const [content, setContent] = useState(diaryItem?.content || '');
-  const [emotion, setEmotion] = useState(emotionInit);
+  const [title, setTitle] = useState(diaryItem?.title || "");
+  const [content, setContent] = useState(diaryItem?.content || "");
+  const [emotion, setEmotion] = useState<TEmotion>(emotionInit);
 
-  const [imgUrl, setImgUrl] = useState(diaryItem?.imgUrl || '');
-  const [imgFileName, setImgFileName] = useState(diaryItem?.imgFileName || '');
+  const [imgUrl, setImgUrl] = useState(diaryItem?.imgUrl || "");
+  const [imgFileName, setImgFileName] = useState(diaryItem?.imgFileName || "");
   const [isEmotionModal, setIsEmotionModal] = useState(false);
   const { isShowModal } = useSelector(getModalState);
   const { loadUserInfo } = useSelector(getUserState);
@@ -38,7 +46,7 @@ const DiaryForm = ({ diaryId, isEdit, diaryItem }) => {
     navigate(-1);
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const uploadData = {
       createdAt: date,
@@ -46,12 +54,12 @@ const DiaryForm = ({ diaryId, isEdit, diaryItem }) => {
       title,
       content,
       writer: loadUserInfo?.userId,
-      imgUrl, 
+      imgUrl,
       imgFileName,
       emotion,
     };
     if (isEdit) {
-      console.log(uploadData)
+      console.log(uploadData);
       const res = await fetchPutDiaryById(diaryId, uploadData);
       console.log(res);
       if (res.isOk) {
@@ -71,11 +79,10 @@ const DiaryForm = ({ diaryId, isEdit, diaryItem }) => {
         navigate("/");
       }
     }
-
   };
 
   const onClickEmotionModal = useCallback(
-    (e) => {
+    (e: React.MouseEvent<HTMLDivElement>) => {
       setIsEmotionModal((prev) => (prev = true));
       dispatch(showEmotionModal(isShowModal));
     },
@@ -106,7 +113,7 @@ const DiaryForm = ({ diaryId, isEdit, diaryItem }) => {
             </div>
           </div>
           {isEmotionModal && (
-            <EmotionModal emotion={emotion} setEmotion={setEmotion} />
+            <EmotionModal setEmotion={setEmotion} />
           )}
         </InputWrap>
       </InputGroup>
@@ -120,7 +127,9 @@ const DiaryForm = ({ diaryId, isEdit, diaryItem }) => {
             required
             placeholder="제목을 입력해주세요"
             autoFocus
-            onInput={(e) => setTitle(e.target.value)}
+            onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setTitle(e.target.value)
+            }
             value={title}
           />
         </InputWrap>
@@ -138,8 +147,15 @@ const DiaryForm = ({ diaryId, isEdit, diaryItem }) => {
         </InputWrap>
       </InputGroup>
       <InputGroup style={{ position: "relative" }}>
-        <ImageUpload diaryItem={diaryItem} setImgUrl={setImgUrl}
-setImgFileName={setImgFileName}/>
+        {
+          diaryItem && (
+            <ImageUpload
+              diaryItem={diaryItem}
+              setImgUrl={setImgUrl}
+              setImgFileName={setImgFileName}
+            />
+          )
+        }
       </InputGroup>
       <FormBtn>
         <div className="btnWrap">

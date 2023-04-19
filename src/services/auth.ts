@@ -13,10 +13,22 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import { IAuth } from "types/db";
+
+// export type LoginReturnType = Promise<{
+//   isOk: boolean;
+//   msg?: string;
+//   userId?: string;
+// }>;
+// export type SignupReturnType = Promise<{
+//   isOk: boolean;
+//   msg?: string;
+//   userId?: string;
+// }>;
 
 const usersRef = collection(dbService, "users");
 
-export const checkEmail = async (email) => {
+export const checkEmail = async (email: string) => {
   let hasUserEmail;
   const getQuery = query(usersRef, where("email", "==", email));
 
@@ -37,7 +49,7 @@ export const checkEmail = async (email) => {
   }
 };
 
-export const signUp = async ({ email, password }) => {
+export const signUp = async ({ email, password }: IAuth): Promise<any> => {
   try {
     const { user } = await createUserWithEmailAndPassword(
       authService,
@@ -49,15 +61,17 @@ export const signUp = async ({ email, password }) => {
     return {
       isOk: true,
     };
-  } catch (err) {
-    return {
-      isOk: false,
-      msg: err.message,
-    };
+  } catch (err: any) {
+    if (err instanceof Error) {
+      return {
+        isOk: false,
+        msg: err.message,
+      };
+    }
   }
 };
 
-export const logIn = async ({ email, password }) => {
+export const logIn = async ({ email, password }: IAuth): Promise<any> => {
   try {
     const { user } = await signInWithEmailAndPassword(
       authService,
@@ -69,15 +83,17 @@ export const logIn = async ({ email, password }) => {
       msg: "인증 성공",
       userId: user.uid,
     };
-  } catch (err) {
-    return {
-      isOk: false,
-      msg: err.message,
-    };
+  } catch (err: any) {
+    if (err instanceof Error) {
+      return {
+        isOk: false,
+        msg: err.message,
+      };
+    }
   }
 };
 
-export const logOut = async () => {
+export const logOut = async (): Promise<any> => {
   try {
     await signOut(authService);
     return {
@@ -85,6 +101,11 @@ export const logOut = async () => {
       msg: null,
     };
   } catch (err) {
-    console.error(err);
+    if (err instanceof Error) {
+      return {
+        isOk: false,
+        msg: err.message,
+      };
+    }
   }
 };

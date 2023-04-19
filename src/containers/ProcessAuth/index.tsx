@@ -4,7 +4,7 @@ import { logIn, signUp } from "services/auth";
 import { IAuth } from "types/db";
 
 const ProcessAuth = () => {
-  const [authType, setAuthType] = useState("login");
+  const [authType, setAuthType] = useState<"login" | "signup">("login");
 
   // api 요청 로직 및 인증 관련된 비즈니스 코드
   const onAuth = async ({ email, password }: IAuth) => {

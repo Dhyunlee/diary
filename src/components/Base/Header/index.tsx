@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import ProcessAuth from "@containers/ProcessAuth";
+import ProcessAuth from "containers/ProcessAuth";
 
 import {
   HeaderContainer,
@@ -12,19 +12,23 @@ import {
   TopBar,
   UserMenu,
 } from "./styles";
-import { showAuthModal } from "@store/reducers/modal";
-import { getUserState } from "@store/reducers/user";
-import { getLogOut } from "@store/actions/users";
-import { getUserName } from "@utils/days";
+import { showAuthModal } from "store/reducers/modal";
+import { getUserState } from "store/reducers/user";
+import { getLogOut } from "store/actions/users";
+import { getUserName } from "utils/days";
 
-const Header = ({ isLoggedIn }) => {
+interface IProps {
+  isLoggedIn: boolean;
+}
+
+const Header = ({ isLoggedIn }: IProps) => {
   const [isShowModal, setShowModal] = useState(false);
   const { loadUserInfo } = useSelector(getUserState);
   const dispatch = useDispatch();
 
-  const onClickAuthModal = (e) => {
+  const onClickAuthModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     setShowModal((prev) => (prev = true));
-    dispatch(showAuthModal());
+    dispatch(showAuthModal(true));
   };
 
   const onClickLogOut = () => {

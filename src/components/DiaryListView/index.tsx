@@ -15,7 +15,7 @@ const DiaryListView: FunctionComponent<IProps> = ({ diaryList}) => {
           <p>작성하신 내용이 없습니다.</p>
         </div>
       ) : (
-        diaryList?.map((diary) => <DiaryItem key={diary.id} {...diary} />)
+        diaryList?.map((diary) => <DiaryItem key={diary.diaryId} {...diary} />)
       )}
     </DiaryListBox>
   );

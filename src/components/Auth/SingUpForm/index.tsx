@@ -1,9 +1,9 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, Dispatch } from "react";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { checkEmail } from "@services/auth";
-import { dropAuthModal } from "@store/reducers/modal";
+import { checkEmail } from "services/auth";
+import { dropAuthModal } from "store/reducers/modal";
 import {
   CheckBtn,
   Container,
@@ -15,10 +15,15 @@ import {
   FrmBtnContainer,
   FormBtn,
 } from "./styles";
+import { IAuth } from "types/db";
 
 const alert = withReactContent(Swal);
 
-const SingUpForm = ({ setAuthType, onAuth }) => {
+interface IProps {
+  setAuthType: Dispatch<React.SetStateAction<"login" | "signup">>;
+  onAuth: ({ email, password }: IAuth) => Promise<any>;
+}
+const SingUpForm = ({ setAuthType, onAuth }: IProps) => {
   const isFormValue = useRef(false);
   const [inputs, setInputs] = useState({
     email: "",
@@ -43,7 +48,7 @@ const SingUpForm = ({ setAuthType, onAuth }) => {
     setAuthType("login");
   };
 
-  const isValidValue = (e) => {
+  const isValidValue = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     const { name, value } = e.target;
     const isValidProps = {
       isValidEmail:
@@ -63,7 +68,7 @@ const SingUpForm = ({ setAuthType, onAuth }) => {
     }
   };
 
-  const onFormChange = (e) => {
+  const onFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value.trim(),
@@ -98,8 +103,8 @@ const SingUpForm = ({ setAuthType, onAuth }) => {
     }
   }, [isEmail, email]);
 
-  const checkPw = (p1, p2) => p1 === p2;
-  const onClickCheckPw = (e) => {
+  const checkPw = (p1: string, p2: string) => p1 === p2;
+  const onClickCheckPw = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (password === "" || passwordCheck === "") {
       alert.fire({
         html: <p style={{ fontSize: 18 }}>비밀번호를 입력해주세요</p>,
@@ -129,7 +134,7 @@ const SingUpForm = ({ setAuthType, onAuth }) => {
     }
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isCheckEmail && isCheckPw) {
       const { isOk } = await onAuth({ email, password });
@@ -143,7 +148,11 @@ const SingUpForm = ({ setAuthType, onAuth }) => {
       }
     } else {
       alert.fire({
-        html: <p style={{ fontSize: 18 }}>이메일 중복을 확인하거나 비밀번호를 확인해주세요</p>,
+        html: (
+          <p style={{ fontSize: 18 }}>
+            이메일 중복을 확인하거나 비밀번호를 확인해주세요
+          </p>
+        ),
         icon: "warning",
       });
     }

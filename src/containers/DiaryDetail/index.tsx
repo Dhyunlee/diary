@@ -68,7 +68,7 @@ const DiaryDetail = () => {
       }`;
       navigate(editUrl, { state: diaryId, replace: true });
     },
-    [detailDiary.title, navigate]
+    [detailDiary?.title, navigate]
   );
   console.log({ detailDiary, detailDiaryLoading });
   return (

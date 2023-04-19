@@ -1,10 +1,14 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import IndexPage from '@pages/IndexPage';
-import DetailPage from '@pages/DetailPage';
-import WriteDiary from '@pages/WriteDiary';
-import EditPage from '@pages/EditPage';
-const Routers = ({ isLoggedIn }) => {
+import IndexPage from 'pages/IndexPage';
+import DetailPage from 'pages/DetailPage';
+import WriteDiary from 'pages/WriteDiary';
+import EditPage from 'pages/EditPage';
+
+interface IProps {
+  isLoggedIn: boolean;
+}
+const Routers = ({ isLoggedIn }: IProps) => {
   return (
     <Routes>
       <Route path="/" index element={<IndexPage isLoggedIn={isLoggedIn} />} />

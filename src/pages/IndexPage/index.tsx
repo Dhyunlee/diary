@@ -1,9 +1,12 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import DiaryList from '@containers/DiaryList';
+import DiaryList from 'containers/DiaryList';
 import { DiaryContainer } from './styles';
 
-const IndexPage = ({ isLoggedIn }) => {
+interface IProps {
+  isLoggedIn: boolean;
+}
+const IndexPage = ({ isLoggedIn }: IProps) => {
   return (
     <>
       <Helmet>

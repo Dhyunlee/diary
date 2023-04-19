@@ -1,10 +1,10 @@
 export type TEmotion = {
   id: number;
-  desc: "좋음" | "보통" | "나쁨" | "최악";
+  desc: "좋음" | "행복" | "보통" | "나쁨" | "최악";
   img: string;
 };
 
-export const emotionList = [
+export const emotionList: TEmotion[] = [
   {
     id: 1,
     img: "/assets/images/emtion_1.png",

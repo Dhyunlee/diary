@@ -1,7 +1,7 @@
 import { IGetDiaryList, QueryDiary } from "./types";
 
 const { createAsyncThunk } = require("@reduxjs/toolkit");
-const { fetchGetDiary, fetchGetDiaryById } = require("@services/diary");
+const { fetchGetDiary, fetchGetDiaryById } = require("services/diary");
 
 export const getDiaryList = createAsyncThunk(
   "diary/detailList",

@@ -1,4 +1,4 @@
-import DiaryDetail from "@containers/DiaryDetail";
+import DiaryDetail from "containers/DiaryDetail";
 
 const DetailPage = () => {
   return <DiaryDetail />;

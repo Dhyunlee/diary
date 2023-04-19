@@ -33,7 +33,7 @@ export const slideDown = keyframes`
  }
 `;
 
-export const ModalWrap = styled.div`
+export const ModalWrap = styled.div<{ disappear: boolean }>`
   width: 100%;
   position: fixed;
   left: 0;
@@ -58,7 +58,10 @@ export const ModalWrap = styled.div`
     `}
 `;
 
-export const ModalContainer = styled.div`
+export const ModalContainer = styled.div<{
+  height: string;
+  disappear: boolean;
+}>`
   width: auto;
   height: ${({ height }) => (height ? height : "auto")};
   padding: 50px 70px;
