@@ -112,9 +112,7 @@ const DiaryForm = ({ diaryId, isEdit, diaryItem }: IProps) => {
               <img src={emotion.img} alt="emotion-img" />
             </div>
           </div>
-          {isEmotionModal && (
-            <EmotionModal setEmotion={setEmotion} />
-          )}
+          {isEmotionModal && <EmotionModal setEmotion={setEmotion} />}
         </InputWrap>
       </InputGroup>
 
@@ -147,15 +145,11 @@ const DiaryForm = ({ diaryId, isEdit, diaryItem }: IProps) => {
         </InputWrap>
       </InputGroup>
       <InputGroup style={{ position: "relative" }}>
-        {
-          diaryItem && (
-            <ImageUpload
-              diaryItem={diaryItem}
-              setImgUrl={setImgUrl}
-              setImgFileName={setImgFileName}
-            />
-          )
-        }
+        <ImageUpload
+          diaryItem={diaryItem}
+          setImgUrl={setImgUrl}
+          setImgFileName={setImgFileName}
+        />
       </InputGroup>
       <FormBtn>
         <div className="btnWrap">
