@@ -9,7 +9,11 @@
 일상을 기록할 수 있는 다이어리앱입니다.
 
 <br/><br/>
-
+# 💕 데모 계정
+- email: hello123@gmail.com
+- password: hello123!@
+<br/><br/>
+  
 # 🛠 기술 스택
 
 - react
@@ -114,13 +118,10 @@
 <br/><br/>
 
 # 📝 회고
-이 다이어리는 학습 차원으로 진행한 프로젝이다. 그래서 기본적인 기능들 위주로 구현했다. 이것을 만들기전 기획은 우선 개발할 수 있는 기본적인 기능들을 개발해서 완료한 후, 하나씩 기능들을 추가해서 확장시켜 나가는 방식으로 진행하기로 했다. 
+이 다이어리는 학습 차원으로 진행한 프로젝트이다. 그래서 기본적인 기능들 위주로 구현했습니다. 이미지 처리 부분에서 미흡한 부분이 있어서 
+수정하고, 좀 더 기능들을 추가해볼 예정이다. 
 
-브런치명을 버전명으로 정한 이유도 그런 이유이다. 
-
-아직 이미지 처리부분에 미흡한 부분이 있어서 수정하고, 좀 더 기능들을 추가해볼 예정이다. 
-
-아래는 프로젝트를 하면서 해결했던 점이나 기록하고 싶은 것을 정리한 내용이다. 
+아래는 프로젝트를 하면서 해결했던 점이나 기록하고 싶은 것을 정리한 내용이다.
 
 <br />
 
@@ -129,9 +130,8 @@
 
 이렇게 구현하니 해결은 되었지만, "모달창이 추가될 때마다 다른 이름으로 상태를 추가하며 관리"해야 하는 문제가 생겼다. 이부분은 나중에 좀 더 찾아보고 해결할 생각이다. 
 
-[관련 코드 보기](https://github1s.com/donghyunami/diary/blob/ver1/src/components/base/Modal/index.jsx)
-
-<br />
+<a href="https://github1s.com/donghyunami/diary/blob/main/src/components/Base/Modal/index.tsx" target="_blank"> 관련 코드 보기 </a>
+<br /> 
 
 ### 2. 감정 모달창 
 감정을 선택할 수 있게 감정 모달창을 구현했다. 감정을 선택하고 닫을 때 애니메이션을 적용했지만 바로 닫히게 되어 뭔가 어색했다. 
@@ -140,4 +140,4 @@
 
 이렇게 딜레이를 줘서 처리했더니 애니메이션 효과가 잘 적용되어 부드럽게 잘 작동했다. 
 
-[관련 코드 보기](https://github1s.com/donghyunami/diary/blob/ver1/src/components/DiaryForm/SelectEmotion/index.jsx)
+<a href="https://github1s.com/donghyunami/diary/blob/main/src/components/DiaryForm/SelectEmotion/index.jsx" target="_blank"> 관련 코드 보기 </a>
