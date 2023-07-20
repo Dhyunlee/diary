@@ -130,8 +130,9 @@
 
 이렇게 구현하니 해결은 되었지만, "모달창이 추가될 때마다 다른 이름으로 상태를 추가하며 관리"해야 하는 문제가 생겼다. 이부분은 나중에 좀 더 찾아보고 해결할 생각이다. 
 
-<a href="https://github1s.com/donghyunami/diary/blob/main/src/components/Base/Modal/index.tsx" target="_blank"> 관련 코드 보기 </a>
-<br /> 
+[관련 코드 보기](https://github1s.com/donghyunami/diary/blob/main/src/components/Base/Modal/index.tsx)  
+
+<br/>  
 
 ### 2. 감정 모달창 
 감정을 선택할 수 있게 감정 모달창을 구현했다. 감정을 선택하고 닫을 때 애니메이션을 적용했지만 바로 닫히게 되어 뭔가 어색했다. 
@@ -140,4 +141,5 @@
 
 이렇게 딜레이를 줘서 처리했더니 애니메이션 효과가 잘 적용되어 부드럽게 잘 작동했다. 
 
-<a href="https://github1s.com/donghyunami/diary/blob/main/src/components/DiaryForm/SelectEmotion/index.jsx" target="_blank"> 관련 코드 보기 </a>
+[관련 코드 보기](https://github1s.com/donghyunami/diary/blob/main/src/components/DiaryForm/SelectEmotion/index.jsx)
+
