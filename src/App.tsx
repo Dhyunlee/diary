@@ -17,7 +17,6 @@ const App = () => {
   
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
-      console.log({user})
       if (user) {
         dispatch(getUserInfo(user?.uid));
         setIsLoggedIn(true);

@@ -27,7 +27,7 @@ interface IProps {
 
 const ImageUpload = ({ diaryItem, setImgUrl, setImgFileName }: IProps) => {
   const inputFileRef = useRef<HTMLInputElement>(null);
-  const [thumbnail, setThumbnail] = useState<string | null>(diaryItem.imgUrl ?? '');
+  const [thumbnail, setThumbnail] = useState<string | null>(diaryItem?.imgUrl ?? '');
 
   const onChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = (e.target.files as FileList)[0];

@@ -19,7 +19,7 @@ import { TEmotion } from "utils/emotion";
 const alert = withReactContent(Swal);
 
 interface IProps {
-  diaryId?: string;
+  diaryId: string;
   isEdit?: boolean;
   diaryItem?: IDiary;
 }
@@ -48,6 +48,14 @@ const DiaryForm = ({ diaryId, isEdit, diaryItem }: IProps) => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if(!title && !content) {
+      alert.fire({
+        html: <p style={{ fontSize: 18 }}>제목 또는 내용을 입력해주세요!</p>,
+        icon: "warning",
+      });
+      return;
+    };
+
     const uploadData = {
       createdAt: date,
       month: format(date, "MM월"),
@@ -59,10 +67,8 @@ const DiaryForm = ({ diaryId, isEdit, diaryItem }: IProps) => {
       emotion,
     };
     if (isEdit) {
-      console.log(uploadData);
       const res = await fetchPutDiaryById(diaryId, uploadData);
-      console.log(res);
-      if (res.isOk) {
+      if (res?.isOk) {
         alert.fire({
           html: <p style={{ fontSize: 18 }}>다이어리가 수정되었습니다.</p>,
           icon: "success",
@@ -71,7 +77,7 @@ const DiaryForm = ({ diaryId, isEdit, diaryItem }: IProps) => {
       }
     } else {
       const res = await fetchPostDiary(uploadData);
-      if (res.isOk) {
+      if (res?.isOk) {
         alert.fire({
           html: <p style={{ fontSize: 18 }}>다이어리가 등록되었습니다.</p>,
           icon: "success",
@@ -112,9 +118,7 @@ const DiaryForm = ({ diaryId, isEdit, diaryItem }: IProps) => {
               <img src={emotion.img} alt="emotion-img" />
             </div>
           </div>
-          {isEmotionModal && (
-            <EmotionModal setEmotion={setEmotion} />
-          )}
+          {isEmotionModal && <EmotionModal setEmotion={setEmotion} />}
         </InputWrap>
       </InputGroup>
 
@@ -147,15 +151,11 @@ const DiaryForm = ({ diaryId, isEdit, diaryItem }: IProps) => {
         </InputWrap>
       </InputGroup>
       <InputGroup style={{ position: "relative" }}>
-        {
-          diaryItem && (
-            <ImageUpload
-              diaryItem={diaryItem}
-              setImgUrl={setImgUrl}
-              setImgFileName={setImgFileName}
-            />
-          )
-        }
+        <ImageUpload
+          diaryItem={diaryItem as IDiary}
+          setImgUrl={setImgUrl}
+          setImgFileName={setImgFileName}
+        />
       </InputGroup>
       <FormBtn>
         <div className="btnWrap">
