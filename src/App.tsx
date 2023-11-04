@@ -8,14 +8,16 @@ import { getUserState } from "store/reducers/user";
 import Header from "./components/Base/Header";
 import Spinners from "components/Base/Spinners";
 import { Wrap } from "./styles/common";
+import { AppDispatch } from "store/configureStore";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const { loadUserInfo } = useSelector(getUserState);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
+      console.log({user})
       if (user) {
         dispatch(getUserInfo(user?.uid));
         setIsLoggedIn(true);
@@ -55,7 +57,7 @@ const App = () => {
           />
         ) : (
           <div>
-            <Header isLoggedIn={isLoggedIn} />
+            <Header isLoggedIn={isLoggedIn as boolean} />
             <>
               <DiaryTemplate>
                 {isLoggedIn ? (

@@ -35,6 +35,7 @@ export const DiaryListBox = styled.div`
   .img-wrap {
     width: 100%;
     height: 180px;
+    box-shadow: 0 0 5px 1px rgb(0 0 0 / 8%);
     img {
       width: 100%;
       height: 100%;

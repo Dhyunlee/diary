@@ -7,7 +7,7 @@ const DiaryItem = (props: IDiary) => {
   const noImg = '/assets/images/no-img.png';
   return (
     <div className="diary-item">
-      <Link to={`/detail/${title ? title.replaceAll(' ', '-') : '제목-없음'}`} state={diaryId}>
+      <Link to={`/detail/${title ? title.replace(' ', '-') : '제목-없음'}`} state={diaryId}>
         <div className="img-wrap">{<img src={imgUrl|| noImg} alt="" />}</div>
         <div className="cnt-inner">
           <div className="title">

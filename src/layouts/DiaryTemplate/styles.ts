@@ -8,6 +8,4 @@ export const TemplateContainer = styled.div`
   max-width: 680px;
   width: 80%;
   margin: 0px auto;
-  background-color: #fbfafa;
-  box-shadow: 0 0 5px 1px rgb(0 0 0 / 13%);
 `;
