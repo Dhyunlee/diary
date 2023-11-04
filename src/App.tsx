@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import Routers from "./routers";
 import { authService } from "./fbconfig";
 import DiaryTemplate from "./layouts/DiaryTemplate";
@@ -63,8 +63,32 @@ const App = () => {
       }
     }
   };
-
-  return <Wrap>{render()}</Wrap>;
+  return (
+    <Wrap>
+      <>
+        {isLoggedIn && loadUserInfo === undefined ? (
+          <Spinners
+            type="bar"
+            color="#424242"
+            loading={loadUserInfo}
+          />
+        ) : (
+          <div>
+            <Header isLoggedIn={isLoggedIn as boolean} />
+            <>
+              <DiaryTemplate>
+                {isLoggedIn ? (
+                  <Routers isLoggedIn={isLoggedIn} />
+                ) : (
+                  ComponentIsNotLogged()
+                )}
+              </DiaryTemplate>
+            </>
+          </div>
+        )}
+      </>
+    </Wrap>
+  );
 };
 
 export default App;
