@@ -30,7 +30,7 @@ export const ImgWrap = styled.div`
 `;
 
 export const Content = styled.div`
-  margin: 30px 0;
+  margin: 50px 0 30px;
   font-size: 18px;
 `;
 
