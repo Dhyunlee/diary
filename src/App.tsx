@@ -4,7 +4,6 @@ import Routers from "./routers";
 import { authService } from "./fbconfig";
 import DiaryTemplate from "./layouts/DiaryTemplate";
 import { getUserInfo } from "store/actions/users";
-import { getUserState } from "store/reducers/user";
 import Header from "./components/Base/Header";
 import Spinners from "components/Base/Spinners";
 import { Wrap } from "./styles/common";
@@ -12,8 +11,6 @@ import { AppDispatch } from "store/configureStore";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
-  const { loadUserInfo } = useSelector(getUserState);
-  console.log(loadUserInfo)
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
