@@ -23,6 +23,7 @@ interface IProps {
 }
 
 const Header = ({ isLoggedIn }: IProps) => {
+  console.log(isLoggedIn)
   const [isShowModal, setShowModal] = useState(false);
   const { loadUserInfo } = useSelector(getUserState);
   const dispatch = useDispatch<AppDispatch>();
