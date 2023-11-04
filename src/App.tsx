@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Routers from "./routers";
 import { authService } from "./fbconfig";
 import DiaryTemplate from "./layouts/DiaryTemplate";
@@ -14,7 +14,7 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const { loadUserInfo } = useSelector(getUserState);
   const dispatch = useDispatch<AppDispatch>();
-  
+
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
@@ -48,24 +48,22 @@ const App = () => {
   return (
     <Wrap>
       <>
-        {isLoggedIn && loadUserInfo === undefined ? (
-          <Spinners
-            type="bar"
-            color="#424242"
-            loading={loadUserInfo}
-          />
+        {isLoggedIn && !loadUserInfo ? (
+          <Spinners type="bar" color="#424242" loading={loadUserInfo} />
         ) : (
           <div>
-            <Header isLoggedIn={isLoggedIn as boolean} />
-            <>
-              <DiaryTemplate>
-                {isLoggedIn ? (
-                  <Routers isLoggedIn={isLoggedIn} />
-                ) : (
-                  ComponentIsNotLogged()
-                )}
-              </DiaryTemplate>
-            </>
+            {isLoggedIn && (
+              <>
+                <Header isLoggedIn={isLoggedIn} />
+                <DiaryTemplate>
+                  {isLoggedIn !== null ? (
+                    <Routers isLoggedIn={isLoggedIn} />
+                  ) : (
+                    ComponentIsNotLogged()
+                  )}
+                </DiaryTemplate>
+              </>
+            )}
           </div>
         )}
       </>
