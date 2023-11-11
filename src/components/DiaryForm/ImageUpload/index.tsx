@@ -124,9 +124,7 @@ const ImageUpload = ({ diaryItem, setImgUrl, setImgFileName }: IProps) => {
                     />
                   </div>
                   <span className="upload-msg">
-                    클릭해서 직접 업로드하거나
-                    <br />
-                    이미지를 끌어다 놓으세요
+                    클릭해서 이미지를 업로드해주세요!
                   </span>
                 </>
               )}

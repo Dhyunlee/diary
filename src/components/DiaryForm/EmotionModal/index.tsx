@@ -13,7 +13,7 @@ const EmotionModal = ({ setEmotion }: IProps) => {
   const dispatch = useDispatch();
 
   const onCloseModal = () => {
-    dispatch(dropEmotionModal(false));
+    dispatch(dropEmotionModal());
   };
 
   return (

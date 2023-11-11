@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import Routers from "./routers";
 import { authService } from "./fbconfig";
 import DiaryTemplate from "./layouts/DiaryTemplate";
-import { getUserInfo } from "store/actions/users";
 import Header from "./components/Base/Header";
 import Spinners from "components/Base/Spinners";
-import { Wrap } from "./styles/common";
+import { getUserInfo } from "store/actions/users";
 import { AppDispatch } from "store/configureStore";
+import { Wrap } from "./styles/common";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);

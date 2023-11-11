@@ -32,7 +32,7 @@ export const DrapFileArea = styled.div`
   .upload-msg {
     position: absolute;
     font-size: 14px;
-    bottom: 28px;
+    bottom: 60px;
     left: 50%;
     transform: translateX(-50%);
   }
