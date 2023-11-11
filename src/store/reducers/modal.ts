@@ -9,30 +9,22 @@ const modalSlice = createSlice({
   name: "modal",
   initialState,
   reducers: {
-    showAuthModal: {
-      reducer(state) {
-        state.isAuthModal = true;
-      },
+    showAuthModal: (state) => {
+      state.isAuthModal = true;
     },
-    dropAuthModal: {
-      reducer(state) {
-        state.isAuthModal = false;
-      },
+    dropAuthModal: (state) => {
+      state.isAuthModal = false;
     },
-    showEmotionModal: {
-      reducer(state) {
-        state.isEmotionModal = true;
-      },
+    showEmotionModal: (state) => {
+      state.isEmotionModal = true;
     },
-    dropEmotionModal: {
-      reducer(state) {
-        state.isEmotionModal = false;
-      },
+    dropEmotionModal: (state) => {
+      state.isEmotionModal = false;
     },
   },
 });
 
-export const getModalState = (state) => state.modal;
+export const getModalState = (state: any) => state.modal;
 export const {
   showAuthModal,
   dropAuthModal,

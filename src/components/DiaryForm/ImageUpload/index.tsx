@@ -27,7 +27,7 @@ interface IProps {
 
 const ImageUpload = ({ diaryItem, setImgUrl, setImgFileName }: IProps) => {
   const inputFileRef = useRef<HTMLInputElement>(null);
-  const [thumbnail, setThumbnail] = useState<string | null>(diaryItem.imgUrl ?? '');
+  const [thumbnail, setThumbnail] = useState<string | null>(diaryItem?.imgUrl ?? '');
 
   const onChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = (e.target.files as FileList)[0];
@@ -124,9 +124,7 @@ const ImageUpload = ({ diaryItem, setImgUrl, setImgFileName }: IProps) => {
                     />
                   </div>
                   <span className="upload-msg">
-                    클릭해서 직접 업로드하거나
-                    <br />
-                    이미지를 끌어다 놓으세요
+                    클릭해서 이미지를 업로드해주세요!
                   </span>
                 </>
               )}

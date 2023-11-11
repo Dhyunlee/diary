@@ -23,13 +23,22 @@ const Modal = ({
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    console.log({ isShowModal });
-  }, [isShowModal]);
-  useEffect(() => {
     let t: any;
+    console.log("animation before", {
+      localVisible,
+      isShowModal: !isShowModal,
+    });
     if (localVisible || !isShowModal) {
+      console.log("animation after", {
+        localVisible,
+        isShowModal: !isShowModal,
+      });
       setAnimate(true);
-      t = setTimeout(() => setAnimate(false), 250);
+      t = setTimeout(() => {
+        console.log("animation close localVisible", localVisible);
+        console.log("animation close !isShowModal", !isShowModal);
+        setAnimate(false);
+      }, 250);
     }
     setLocalVisible(isShowModal);
 

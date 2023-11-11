@@ -12,16 +12,16 @@ import {
   where,
 } from "firebase/firestore";
 import { dbService } from "../fbconfig";
+import { TDiaryQuery } from "types/db";
 
 const diaryCollectionRef = collection(dbService, "diarys");
 
 // 다이어리 리스트 조회
-export const fetchGetDiary = async (userId, thisMonth) => {
+export const fetchGetDiary = async (userId: string) => {
   try {
     const q = query(
       diaryCollectionRef,
       where("writer", "==", userId),
-      where("month", "==", thisMonth),
       orderBy("createdAt", "desc"),
       limit(10)
     );
@@ -40,13 +40,13 @@ export const fetchGetDiary = async (userId, thisMonth) => {
       });
     });
     return getData.then((data) => data);
-  } catch (err) {
+  } catch (err: any) {
     new Error(err);
   }
 };
 
 // 다이어리 상세 조회
-export const fetchGetDiaryById = async (id) => {
+export const fetchGetDiaryById = async (id: string) => {
   const diaryDocRef = doc(dbService, "diarys", id);
   try {
     const getData = await getDoc(diaryDocRef);
@@ -56,29 +56,25 @@ export const fetchGetDiaryById = async (id) => {
       ...getData.data(),
       createdAt: new Date(getData.data().createdAt.toDate()).getTime(),
     };
-  } catch (err) {
-    console.error(err);
+  } catch (err: any) {
+    new Error(err);
   }
 };
-
 // 다이어리 추가
-export const fetchPostDiary = async (data) => {
+export const fetchPostDiary = async (data: TDiaryQuery) => {
   try {
     await addDoc(diaryCollectionRef, data);
     return {
       isOk: true,
       msg: "추가했습니다.",
     };
-  } catch (err) {
-    return {
-      isOk: false,
-      msg: err.massage,
-    };
+  } catch (err: any) {
+    new Error(err);
   }
 };
 
 // 다이어리 수정
-export const fetchPutDiaryById = async (id, data) => {
+export const fetchPutDiaryById = async (id: string, data: any) => {
   const diaryDocRef = doc(diaryCollectionRef, id);
   try {
     await updateDoc(diaryDocRef, data);
@@ -86,16 +82,13 @@ export const fetchPutDiaryById = async (id, data) => {
       isOk: true,
       msg: "수정했습니다.",
     };
-  } catch (err) {
-    return {
-      isOk: false,
-      msg: err.massage,
-    };
+  } catch (err: any) {
+    new Error(err);
   }
 };
 
 // 다이어리 삭제
-export const fetchDeleteDiaryById = async (id) => {
+export const fetchDeleteDiaryById = async (id: string) => {
   const diaryDocRef = doc(dbService, "diarys", id);
   try {
     await deleteDoc(diaryDocRef);
@@ -103,10 +96,7 @@ export const fetchDeleteDiaryById = async (id) => {
       isOk: true,
       msg: "삭제되었습니다.",
     }; // res는 undefined
-  } catch (err) {
-    return {
-      isOk: false,
-      msg: err.massage,
-    };
+  } catch (err: any) {
+    new Error(err);
   }
 };

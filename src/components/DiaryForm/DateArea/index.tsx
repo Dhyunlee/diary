@@ -1,5 +1,8 @@
 import React, { memo, useState } from "react";
-import DatePicker, { registerLocale } from "react-datepicker";
+import DatePicker, {
+  ReactDatePickerCustomHeaderProps,
+  registerLocale,
+} from "react-datepicker";
 import { ko } from "date-fns/esm/locale";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { getMonth, getYear } from "date-fns";
@@ -8,8 +11,13 @@ import { DatePickerBtn, DatePickerWrap } from "./styles";
 import "react-datepicker/dist/react-datepicker.css";
 registerLocale("ko", ko);
 
-const DateArea = ({setDate}) => {
-  const [startDate, setStartDate] = useState(new Date());
+interface IProps {
+  setDate: React.Dispatch<React.SetStateAction<Date>>;
+}
+const DateArea = ({ setDate }: IProps) => {
+  const [startDate, setStartDate] = useState<Date | null | undefined>(
+    new Date()
+  );
   const months = [
     "01월",
     "02월",
@@ -30,10 +38,11 @@ const DateArea = ({setDate}) => {
     nextMonthButtonDisabled,
     decreaseMonth,
     increaseMonth,
-  }) => {
+  }: ReactDatePickerCustomHeaderProps) => {
     return (
       <DatePickerWrap>
         <DatePickerBtn
+          type="button"
           onClick={decreaseMonth}
           disabled={prevMonthButtonDisabled}
         >
@@ -43,10 +52,11 @@ const DateArea = ({setDate}) => {
           {getYear(date)}년 {months[getMonth(date)]}
         </span>
         <DatePickerBtn
+          type="button"
           onClick={increaseMonth}
           disabled={nextMonthButtonDisabled}
         >
-         <AiOutlineArrowRight />
+          <AiOutlineArrowRight />
         </DatePickerBtn>
       </DatePickerWrap>
     );
@@ -58,10 +68,13 @@ const DateArea = ({setDate}) => {
       dateFormat="yyyy.MM.dd"
       maxDate={new Date()}
       selected={startDate}
-      onChange={(date) => {setStartDate(date); setDate(date)}}
+      onChange={(date) => {
+        setStartDate(date);
+        setDate(date as Date);
+      }}
       renderCustomHeader={renderCustomHeader}
     />
   );
-}
+};
 
 export default memo(DateArea);

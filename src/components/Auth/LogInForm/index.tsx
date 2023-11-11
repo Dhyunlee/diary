@@ -18,7 +18,7 @@ import {
 } from "../SingUpForm/styles";
 import { EmailAuthWrap, SocialAuthWrap } from "./styles";
 import { IAuth } from "types/db";
-import { QueryDiary } from "store/actions/types";
+import { AppDispatch } from "store/configureStore";
 
 const alert = withReactContent(Swal);
 
@@ -32,7 +32,7 @@ const LogInForm = ({ setAuthType, onAuth }: IProps) => {
     email: "",
     password: "",
   });
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const { email, password } = inputs;
 

@@ -4,8 +4,10 @@ export const DiaryListBox = styled.div`
   margin-top: 40px;
   width: 100%;
   display: flex;
+  justify-content: start;
+  padding-left: 11px;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 35px;
 
   .empty-diary {
     display: flex;
@@ -35,6 +37,7 @@ export const DiaryListBox = styled.div`
   .img-wrap {
     width: 100%;
     height: 180px;
+    box-shadow: 0 0 5px 1px rgb(0 0 0 / 8%);
     img {
       width: 100%;
       height: 100%;
@@ -64,5 +67,3 @@ export const DiaryListBox = styled.div`
     font-size: 12px;
   }
 `;
-
-export const CreateBtn = styled.div``;

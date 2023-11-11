@@ -1,10 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getLogOut, getUserInfo } from "store/actions/users";
 
+// interface UserState {
+//   loadUserLoading: boolean;
+//   loadUserInfo: ??;
+//   loadUserError: boolean;
+// }
+
 const initialState = {
   loadUserLoading: false, //유저 정보(유저 정보) 로딩 상태
   loadUserInfo: undefined,
-  loadUserError: null, 
+  loadUserError: null,
 };
 
 const userSlice = createSlice({
@@ -34,7 +40,7 @@ const userSlice = createSlice({
       .addCase(getLogOut.rejected, (state, action) => {
         state.loadUserLoading = false;
         state.loadUserError = action.payload;
-      })
+      }),
 });
 
 export const getUserState = (state) => state.user;

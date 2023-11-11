@@ -7,10 +7,11 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/configureStore";
 import { HelmetProvider } from "react-helmet-async";
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 root.render(
-  <React.StrictMode>
+  <>
     <Global styles={reset} />
     <Provider store={store}>
       <BrowserRouter>
@@ -19,5 +20,5 @@ root.render(
         </HelmetProvider>
       </BrowserRouter>
     </Provider>
-  </React.StrictMode>
+  </>
 );

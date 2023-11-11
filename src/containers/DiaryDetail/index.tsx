@@ -18,7 +18,6 @@ const DiaryDetail = () => {
   const dispatch = useDispatch();
 
   const { detailDiary, detailDiaryLoading } = useSelector(getDiaryState);
-  console.log(detailDiary);
 
   useEffect(() => {
     dispatch(getDetailDiary(diaryId));
@@ -51,13 +50,12 @@ const DiaryDetail = () => {
 
           const res = await fetchDeleteDiaryById(diaryId);
           console.log({ 삭제결과: res });
-          if (res.isOk) {
+          if (res?.isOk) {
             Swal.fire("삭제되었습니다.", `${res.msg}`, "success");
             navigate("/", { replace: true });
           }
         }
       });
-    console.log("삭제 ");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -70,7 +68,6 @@ const DiaryDetail = () => {
     },
     [detailDiary?.title, navigate]
   );
-  console.log({ detailDiary, detailDiaryLoading });
   return (
     <>
       {detailDiary ? (

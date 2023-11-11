@@ -3,12 +3,12 @@ import { TEmotion, emotionList } from "utils/emotion";
 import { EmotionWrap, Emotions } from "./styles";
 
 interface IProps {
-  setEmotion: Dispatch<React.SetStateAction<TEmotion>>, 
+  setEmotion: Dispatch<React.SetStateAction<TEmotion>>;
   onCloseModal: () => void;
 }
 const SelectEmotion = ({ setEmotion, onCloseModal }: IProps) => {
   const [selectedElement, setsSelectedElement] = useState<number>(0);
-  
+
   useEffect(() => {
     let timer: any;
     if (selectedElement) {
@@ -16,17 +16,20 @@ const SelectEmotion = ({ setEmotion, onCloseModal }: IProps) => {
         onCloseModal();
       }, 500);
     }
-    
+
     return () => {
       clearTimeout(timer);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedElement]);
 
-  const onClickEmotion = useCallback((emotion: TEmotion) => {
-    setEmotion((prev) => Object.assign(prev, emotion));
-    setsSelectedElement(emotion.id);
-  }, [setEmotion]);
+  const onClickEmotion = useCallback(
+    (emotion: TEmotion) => {
+      setEmotion(emotion);
+      setsSelectedElement(emotion.id);
+    },
+    [setEmotion]
+  );
 
   return (
     <EmotionWrap>

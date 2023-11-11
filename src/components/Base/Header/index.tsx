@@ -16,15 +16,17 @@ import { showAuthModal } from "store/reducers/modal";
 import { getUserState } from "store/reducers/user";
 import { getLogOut } from "store/actions/users";
 import { getUserName } from "utils/days";
+import { AppDispatch } from "store/configureStore";
 
 interface IProps {
   isLoggedIn: boolean;
 }
 
 const Header = ({ isLoggedIn }: IProps) => {
+  console.log(isLoggedIn)
   const [isShowModal, setShowModal] = useState(false);
   const { loadUserInfo } = useSelector(getUserState);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const onClickAuthModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     setShowModal((prev) => (prev = true));

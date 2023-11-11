@@ -1,4 +1,12 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
+
+export const DiaryWrap = styled.div`
+  background: #fff;
+  z-index: 2;
+  position: sticky;
+  top: -20px;
+  border-bottom: 1px solid #eae9e9;
+`;
 
 export const DiaryHeaderContainer = styled.div`
   padding: 0 15px;
@@ -27,5 +35,3 @@ export const DiaryHeaderContainer = styled.div`
     font-weight: 600;
   }
 `;
-
-
