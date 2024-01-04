@@ -85,7 +85,7 @@ export const InputWrap = styled.div`
   }
 `;
 
-export const CheckBtn = styled.button<{top: string}>`
+export const CheckBtn = styled.button<{ top: string }>`
   padding: 5px;
   margin: 0 0.3rem;
   position: relative;
@@ -103,7 +103,8 @@ export const CheckBtn = styled.button<{top: string}>`
 `;
 
 export const FrmBtnContainer = styled.div`
-  margin: 18px 18px 32px;
+  text-align: center;
+  margin: 30px 18px;
   position: relative;
 
   & > button {

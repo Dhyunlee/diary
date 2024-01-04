@@ -1,7 +1,7 @@
 const { default: styled } = require("@emotion/styled");
 
 export const EmailAuthWrap = styled.div`
-  border-bottom: 1px solid lightgray;
+  /* border-bottom: 1px solid lightgray; */
 `;
 
 export const SocialAuthWrap = styled.div`
@@ -11,7 +11,5 @@ export const SocialAuthWrap = styled.div`
       font-weight: bold;
     }
     margin-bottom: 30px;
-  }
-  .social-link {
   }
 `;

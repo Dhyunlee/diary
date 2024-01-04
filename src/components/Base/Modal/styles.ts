@@ -64,7 +64,7 @@ export const ModalContainer = styled.div<{
 }>`
   width: auto;
   height: ${({ height }) => (height ? height : "auto")};
-  padding: 50px 70px;
+  padding: 85px 0px;
   position: absolute;
   border: 1px solid gray;
   border-radius: 5px;
