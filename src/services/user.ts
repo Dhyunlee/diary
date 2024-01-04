@@ -20,5 +20,3 @@ export const fetchGetUserInfo = async (userId: string) => {
     console.error(err);
   }
 };
-
-export const fetchGetUserId = async () => {};
