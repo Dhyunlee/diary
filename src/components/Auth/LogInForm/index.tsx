@@ -16,7 +16,7 @@ import {
   FrmBtnContainer,
   FormBtn,
 } from "../SingUpForm/styles";
-import { EmailAuthWrap, SocialAuthWrap } from "./styles";
+import { EmailAuthWrap } from "./styles";
 import { IAuth } from "types/db";
 import { AppDispatch } from "store/configureStore";
 
@@ -55,7 +55,7 @@ const LogInForm = ({ setAuthType, onAuth }: IProps) => {
     if (email && password) {
       const { isOk, userId } = await onAuth({ email, password });
       if (isOk) {
-        dispatch(dropAuthModal(false));
+        dispatch(dropAuthModal());
         dispatch(getUserInfo(userId));
       } else {
         alert.fire({
@@ -120,7 +120,7 @@ const LogInForm = ({ setAuthType, onAuth }: IProps) => {
               </FrmBtnContainer>
             </form>
           </EmailAuthWrap>
-          <SocialAuthWrap>
+          {/* <SocialAuthWrap>
             <InputGroup>
               <div className="title">
                 <span>쇼셜 로그인</span>
@@ -131,7 +131,7 @@ const LogInForm = ({ setAuthType, onAuth }: IProps) => {
                 <Link to="">구글</Link>
               </div>
             </InputGroup>
-          </SocialAuthWrap>
+          </SocialAuthWrap> */}
           <FormBtn>
             <InputGroup>
               회원이 아니신가요?&nbsp;

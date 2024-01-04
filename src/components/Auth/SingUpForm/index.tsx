@@ -103,7 +103,7 @@ const SingUpForm = ({ setAuthType, onAuth }: IProps) => {
     }
   }, [isEmail, email]);
 
-  const checkPw = (p1: string, p2: string) => p1 === p2;
+  const checkPw = (p1: string, p2: string) => p1 === p2; 
   const onClickCheckPw = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (password === "" || passwordCheck === "") {
       alert.fire({
@@ -114,7 +114,7 @@ const SingUpForm = ({ setAuthType, onAuth }: IProps) => {
     }
 
     let isCheck = password && checkPw(password, passwordCheck);
-    if (isCheck) {
+    if (isPw && isCheck) {
       alert.fire({
         html: <p style={{ fontSize: 18 }}>비밀번호가 일치합니다.</p>,
         icon: "success",
@@ -122,7 +122,7 @@ const SingUpForm = ({ setAuthType, onAuth }: IProps) => {
       setIsCheckPw(true);
     } else {
       alert.fire({
-        html: <p style={{ fontSize: 18 }}>비밀번호가 일치하지 않습니다.</p>,
+        html: <p style={{ fontSize: 18 }}>비밀번호 형식에 맞지 않거나 일치하지 않습니다.</p>,
         icon: "error",
       });
       setIsCheckPw(false);
@@ -144,7 +144,7 @@ const SingUpForm = ({ setAuthType, onAuth }: IProps) => {
           icon: "success",
         });
         setAuthType("login");
-        dispatch(dropAuthModal(false));
+        dispatch(dropAuthModal());
       }
     } else {
       alert.fire({
