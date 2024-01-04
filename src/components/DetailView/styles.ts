@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 export const DetailWrap = styled.div`
   width: 100%;
-  padding: 32px 35px;
   height: 790px;
   position: relative;
 `;
